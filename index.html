@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobuj — Men Are Brave</title>
+<meta name="description" content="Stories, Pinterest visuals, and blockchain notes by Sobuj Islam.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b0b10;
+  --text: #f4f1ea;
+  --muted: #8a857c;
+  --accent: #c8b8a0;
+  --line: rgba(244, 241, 234, 0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+#gl { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.4; }
+.overlay { position: fixed; inset: 0; background: radial-gradient(ellipse at center, transparent 0%, var(--bg) 78%); z-index: 1; pointer-events: none; }
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.3rem 2rem; mix-blend-mode: difference;
+  font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+}
+nav a { color: var(--text); text-decoration: none; }
+.nav-links { display: flex; gap: 1.8rem; }
+.nav-links a { opacity: 0.65; transition: opacity 0.3s; }
+.nav-links a:hover { opacity: 1; }
+.content { position: relative; z-index: 2; }
+.chapter {
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+  padding: 7.5rem 7vw 5rem; position: relative;
+}
+.chapter-num { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.2rem; }
+h1, h2 { font-family: 'Instrument Serif', serif; font-weight: 400; line-height: 0.95; }
+.hero h1 { font-size: clamp(3.8rem, 11vw, 8.5rem); margin: 0.4rem 0 1.2rem; }
+.hero .sub { font-size: 1.1rem; max-width: 26rem; color: var(--muted); }
+.issue-label { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+.chapter h2 { font-size: clamp(2.4rem, 5.5vw, 4rem); margin-bottom: 1.2rem; max-width: 18ch; }
+.chapter p { max-width: 34rem; font-size: 1.05rem; color: rgba(244,241,234,0.78); }
+.meta { margin-top: 1.6rem; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.scroll-cue { position: absolute; bottom: 2.5rem; left: 7vw; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); animation: pulse 2.6s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { opacity: 0.35; } 50% { opacity: 1; } }
+
+/* Grid sections */
+.grid-section { padding: 6rem 7vw 4rem; }
+.grid-section h2 { font-size: clamp(2.2rem, 5vw, 3.5rem); margin-bottom: 0.6rem; }
+.section-desc { color: var(--muted); margin-bottom: 2.5rem; max-width: 28rem; }
+.gallery {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+.gallery-item {
+  aspect-ratio: 1; background: #16161c; border: 1px solid var(--line);
+  border-radius: 4px; display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+  overflow: hidden; position: relative;
+}
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+.posts { display: flex; flex-direction: column; gap: 1.8rem; max-width: 42rem; }
+.post {
+  border-left: 1px solid var(--line); padding-left: 1.4rem;
+}
+.post h3 { font-family: 'Outfit', sans-serif; font-weight: 400; font-size: 1.15rem; margin-bottom: 0.4rem; }
+.post p { font-size: 0.95rem; color: rgba(244,241,234,0.7); }
+.post .date { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.5rem; }
+
+footer {
+  padding: 5rem 7vw 3rem; border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem;
+}
+.socials { dis
+...
