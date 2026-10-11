@@ -6,155 +6,170 @@
 <title>Sobuj — Men Are Brave</title>
 <meta name="description" content="Stories, Pinterest visuals, and blockchain notes by Sobuj Islam.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0b0b10;
-  --text: #f4f1ea;
-  --muted: #8a857c;
-  --accent: #c8b8a0;
-  --line: rgba(244, 241, 234, 0.08);
+:root{
+  --bg:#07080d;
+  --bg2:#10131c;
+  --text:#f6f2ea;
+  --muted:#9a948a;
+  --accent:#d7c4a8;
+  --line:rgba(246,242,234,.1);
+  --glass:rgba(255,255,255,.045);
+  --glass-border:rgba(255,255,255,.1);
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Outfit', system-ui, sans-serif;
-  font-weight: 300;
-  line-height: 1.7;
-  overflow-x: hidden;
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(900px 500px at 12% -10%, rgba(215,196,168,.14), transparent 55%),
+    radial-gradient(700px 420px at 100% 8%, rgba(90,120,180,.12), transparent 50%),
+    var(--bg);
+  color:var(--text);
+  font-family:'Outfit',system-ui,sans-serif;
+  font-weight:300;
+  line-height:1.7;
+  overflow-x:hidden;
 }
-#gl { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.4; }
-.overlay { position: fixed; inset: 0; background: radial-gradient(ellipse at center, transparent 0%, var(--bg) 78%); z-index: 1; pointer-events: none; }
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 1.3rem 2rem; mix-blend-mode: difference;
-  font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+.orb{position:fixed;border-radius:50%;filter:blur(40px);pointer-events:none;z-index:0;opacity:.55}
+.orb.a{width:280px;height:280px;background:#c8b8a0;top:-80px;left:-60px;animation:float 12s ease-in-out infinite}
+.orb.b{width:220px;height:220px;background:#3d5278;right:-40px;top:30%;animation:float 16s ease-in-out infinite reverse}
+@keyframes float{50%{transform:translateY(28px)}}
+nav{
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);
+  width:min(920px,calc(100% - 24px));z-index:20;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.75rem 1rem;background:rgba(10,12,18,.62);
+  border:1px solid var(--glass-border);border-radius:999px;backdrop-filter:blur(16px);
 }
-nav a { color: var(--text); text-decoration: none; }
-.nav-links { display: flex; gap: 1.8rem; }
-.nav-links a { opacity: 0.65; transition: opacity 0.3s; }
-.nav-links a:hover { opacity: 1; }
-.content { position: relative; z-index: 2; }
-.chapter {
-  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
-  padding: 7.5rem 7vw 5rem; position: relative;
-}
-.chapter-num { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.2rem; }
-h1, h2 { font-family: 'Instrument Serif', serif; font-weight: 400; line-height: 0.95; }
-.hero h1 { font-size: clamp(3.8rem, 11vw, 8.5rem); margin: 0.4rem 0 1.2rem; }
-.hero .sub { font-size: 1.1rem; max-width: 26rem; color: var(--muted); }
-.issue-label { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
-.chapter h2 { font-size: clamp(2.4rem, 5.5vw, 4rem); margin-bottom: 1.2rem; max-width: 18ch; }
-.chapter p { max-width: 34rem; font-size: 1.05rem; color: rgba(244,241,234,0.78); }
-.meta { margin-top: 1.6rem; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-.scroll-cue { position: absolute; bottom: 2.5rem; left: 7vw; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); animation: pulse 2.6s ease-in-out infinite; }
-@keyframes pulse { 0%,100% { opacity: 0.35; } 50% { opacity: 1; } }
-.grid-section { padding: 6rem 7vw 4rem; }
-.grid-section h2 { font-size: clamp(2.2rem, 5vw, 3.5rem); margin-bottom: 0.6rem; }
-.section-desc { color: var(--muted); margin-bottom: 2.5rem; max-width: 28rem; }
-.gallery {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 1rem;
-}
-.gallery-item {
-  aspect-ratio: 1; background: #16161c; border: 1px solid var(--line);
-  border-radius: 4px; overflow: hidden; position: relative; color: var(--text); text-decoration: none;
-}
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
-.gallery-item:hover img { transform: scale(1.04); }
-.gallery-item span {
-  position: absolute; left: 10px; bottom: 10px;
-  background: rgba(11,11,16,.55); backdrop-filter: blur(8px);
-  padding: 4px 8px; border-radius: 999px; font-size: 0.7rem; letter-spacing: .08em;
-}
-.posts { display: flex; flex-direction: column; gap: 1.8rem; max-width: 42rem; }
-.post { border-left: 1px solid var(--line); padding-left: 1.4rem; color: inherit; text-decoration: none; display: block; }
-.post h3 { font-family: 'Outfit', sans-serif; font-weight: 400; font-size: 1.15rem; margin-bottom: 0.4rem; }
-.post p { font-size: 0.95rem; color: rgba(244,241,234,0.7); }
-.post .date { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.5rem; }
-footer {
-  padding: 5rem 7vw 3rem; border-top: 1px solid var(--line);
-  display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem;
-}
-.socials { display: flex; gap: 1.8rem; }
-.socials a { color: var(--muted); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.3s; }
-.socials a:hover { color: var(--text); }
-@media (max-width: 700px) {
-  nav { padding: 1.1rem 1.2rem; }
-  .nav-links { gap: 1rem; font-size: 0.7rem; }
-  .chapter { padding: 6.5rem 1.2rem 4rem; }
-  .grid-section { padding: 4rem 1.2rem 3rem; }
-  footer { flex-direction: column; align-items: flex-start; }
+.brand{font-family:'Instrument Serif',serif;font-size:1.25rem;color:var(--text);text-decoration:none}
+.nav-links{display:flex;gap:1.1rem}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+.nav-links a:hover{color:var(--text)}
+main{position:relative;z-index:1}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 7vw 5rem}
+.kicker{color:var(--accent);letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;margin-bottom:1rem;opacity:0;animation:rise .9s .1s forwards}
+h1{font-family:'Instrument Serif',serif;font-weight:400;line-height:.9;font-size:clamp(4.2rem,12vw,9rem);opacity:0;animation:rise 1s .25s forwards}
+.sub{max-width:34rem;margin-top:1.3rem;color:var(--muted);font-size:1.08rem;opacity:0;animation:rise 1s .4s forwards}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+section{padding:5.5rem 7vw}
+.sec-label{color:var(--accent);letter-spacing:.18em;text-transform:uppercase;font-size:.72rem;margin-bottom:.6rem}
+h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(2.4rem,5vw,4rem);line-height:.95;margin-bottom:.7rem}
+.lead{color:var(--muted);max-width:32rem;margin-bottom:2rem}
+.reveal{opacity:0;transform:translateY(24px);animation:rise .9s forwards}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+.card{background:var(--glass);border:1px solid var(--glass-border);border-radius:22px;padding:1.3rem;backdrop-filter:blur(12px);transition:transform .35s,border-color .35s}
+.card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.2)}
+.card h3{font-size:1.15rem;font-weight:500;margin:.35rem 0 .4rem}
+.card p{color:rgba(246,242,234,.72);font-size:.95rem}
+.date{margin-top:.8rem;color:var(--muted);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}
+.pin-grid{columns:3 220px;column-gap:1rem}
+.pin{break-inside:avoid;margin-bottom:1rem;position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#141820}
+.pin img{width:100%;display:block;transition:transform .5s}
+.pin:hover img{transform:scale(1.04)}
+.pin figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;gap:.6rem;padding:.7rem .8rem;background:linear-gradient(transparent,rgba(0,0,0,.72))}
+.dl{border:0;border-radius:999px;padding:.38rem .7rem;background:rgba(255,255,255,.9);color:#111;font-size:.72rem;cursor:pointer;font-family:inherit}
+.notes{display:flex;flex-direction:column;gap:.9rem;max-width:46rem}
+.note{background:var(--glass);border:1px solid var(--glass-border);border-radius:18px;padding:1.15rem 1.2rem;backdrop-filter:blur(12px);transition:transform .3s}
+.note:hover{transform:translateX(6px)}
+.note h3{font-weight:500;margin-bottom:.25rem}
+.note p{color:rgba(246,242,234,.72)}
+footer{padding:3rem 7vw 2.4rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:end}
+.socials{display:flex;gap:1.1rem}
+.socials a{color:var(--muted);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;font-size:.75rem}
+@media(max-width:700px){
+  nav{top:8px;border-radius:18px}
+  .nav-links{gap:.7rem}
+  .hero,section{padding-left:1.1rem;padding-right:1.1rem}
+  .hero{padding-top:7rem}
+  .pin-grid{columns:2 140px}
 }
 </style>
 </head>
 <body>
-<canvas id="gl"></canvas>
-<div class="overlay"></div>
+<div class="orb a"></div>
+<div class="orb b"></div>
 <nav>
-  <a href="#hero">Sobuj</a>
+  <a class="brand" href="#top">Sobuj</a>
   <div class="nav-links">
-    <a href="#stories">Stories</a>
+    <a href="#stories">Story</a>
     <a href="#pinterest">Pinterest</a>
-    <a href="#blockchain">Blockchain</a>
+    <a href="#chain">Blockchain</a>
   </div>
 </nav>
-<div class="content">
-  <section class="chapter hero" id="hero">
-    <div class="issue-label">Issue 01 · October 2026</div>
+<main id="top">
+  <header class="hero">
+    <div class="kicker">Issue 01 · October 2026</div>
     <h1>Men Are<br>Brave.</h1>
-    <p class="sub">Stories, visuals, and quiet notes on the chain.<br>Written slowly. Not loud. Just steady.</p>
-    <div class="scroll-cue">Scroll</div>
-  </section>
-  <section class="grid-section" id="stories">
-    <div class="chapter-num">Stories</div>
+    <p class="sub">Stories, pictures, and quiet notes on the chain. Written slowly. Not loud. Just steady.</p>
+  </header>
+  <section id="stories">
+    <div class="sec-label">Story</div>
     <h2>Own writing</h2>
-    <p class="section-desc">Personal stories. Short, quiet, and unfinished in the best way.</p>
-    <div class="posts">
-      <a class="post" href="story-sandhya.html"><h3>সন্ধ্যা</h3><p>তিনটা ছবি।</p><div class="date">9 Oct</div></a>
-      <a class="post" href="story-hell.html"><h3>এক নরকের মাঝখানে</h3><p>পৃথিবীর দিকে বেশি তাকালে চোখ জ্বালাপোড়া করে।</p><div class="date">12 Sep</div></a>
-      <a class="post" href="story-night.html"><h3>রাতের শহর</h3><p>রাত বারোটার পরে একটা ছোট শহর, রিকশা, আর খালি রাস্তা।</p><div class="date">12 Aug</div></a>
-      <a class="post" href="story-rose.html"><h3>নিজের জন্য একটা গোলাপ</h3><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময়।</p><div class="date">27 Jul</div></a>
+    <p class="lead">Personal stories. Short, quiet, and kept as they were written.</p>
+    <div class="cards">
+      <article class="card reveal"><div class="sec-label">Story</div><h3>সন্ধ্যা</h3><p>তিনটা ছবি। সন্ধ্যার আলো, রেলিং, আর একটা শহর যেটা কথা বলে না।</p><div class="date">9 Oct 2026</div></article>
+      <article class="card reveal"><div class="sec-label">Story</div><h3>এক নরকের মাঝখানে</h3><p>এই পৃথিবীর দিকে বেশি তাকাইয়া থাকলে চোখ জ্বালাপোড়া করে। তবু ফুল ফোটে, মেঘ উড়ে।</p><div class="date">12 Sep 2026</div></article>
+      <article class="card reveal"><div class="sec-label">Story</div><h3>রাতের শহর</h3><p>রাত বারোটার পরে একটা ছোট শহর, রিকশা, সোডিয়াম আলো, আর খালি রাস্তা।</p><div class="date">12 Aug 2026</div></article>
+      <article class="card reveal"><div class="sec-label">Story</div><h3>নিজের জন্য একটা গোলাপ</h3><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময়। শেষবার কেনা হয়েছিল লাবণ্যর জন্য।</p><div class="date">27 Jul 2026</div></article>
     </div>
   </section>
-  <section class="grid-section" id="pinterest">
-    <div class="chapter-num">Pinterest</div>
+  <section id="pinterest">
+    <div class="sec-label">Pinterest</div>
     <h2>Visuals</h2>
-    <p class="section-desc">Pictures collected and made.</p>
-    <div class="gallery">
-      <div class="gallery-item"><span>সন্ধ্যা</span></div>
-      <div class="gallery-item"><span>সন্ধ্যা</span></div>
-      <div class="gallery-item"><span>সন্ধ্যা</span></div>
+    <p class="lead">ছবি এখানে থাকবে। কেউ চাইলে ডাউনলোড করতে পারবে।</p>
+    <div class="pin-grid" id="pins"></div>
+  </section>
+  <section id="chain">
+    <div class="sec-label">Blockchain</div>
+    <h2>Notes for the chain</h2>
+    <p class="lead">Trust, copies, and what a ledger is actually for.</p>
+    <div class="notes">
+      <article class="note reveal"><h3>A ledger is a promise</h3><p>Trust, copies, and what a chain is actually for. Not loud. Just a record that holds.</p></article>
+      <article class="note reveal"><h3>Seen by all. Known by one.</h3><p>Some things stay encrypted on purpose. The public sees the mark. Only the holder sees the essence.</p></article>
+      <article class="note reveal"><h3>Slow chain</h3><p>Not everything needs to be fast. Some records are meant to sit quietly and still be true.</p></article>
     </div>
   </section>
-  <section class="grid-section" id="blockchain">
-    <div class="chapter-num">Blockchain</div>
-    <h2>Notes for X</h2>
-    <p class="section-desc">Short thoughts written for the timeline. On trust, copies, and what a chain is actually for.</p>
-    <div class="posts">
-      <div class="post"><h3>A ledger is a promise</h3><p>Trust, copies, and what a chain is actually for. Not loud. Just a record that holds.</p><div class="date">Blockchain</div></div>
-      <div class="post"><h3>Seen by all. Known by one.</h3><p>Some things stay encrypted on purpose. The public sees the mark. Only the holder sees the essence.</p><div class="date">Note</div></div>
-    </div>
-  </section>
-  <section class="chapter" id="about">
-    <div class="chapter-num">—</div>
-    <h2>Not loud.<br>Just steady.</h2>
-    <p>Stories, pictures, and notes. Written and collected slowly.</p>
-    <div class="meta">Sobuj Islam</div>
-  </section>
-  <footer>
-    <div>
-      <div style="font-family: 'Instrument Serif', serif; font-size: 1.3rem; margin-bottom: 0.3rem;">Sobuj</div>
-      <div style="font-size: 0.75rem; color: var(--muted);">© 2026 · Men Are Brave</div>
-    </div>
-    <div class="socials">
-      <a href="https://www.instagram.com/sobuj_nothing">Instagram</a>
-      <a href="https://x.com/Robiulislam796">X</a>
-      <a href="https://www.facebook.com/share/1CJnpbYL1G/">Facebook</a>
-    </div>
-  </footer>
-</div>
+</main>
+<footer>
+  <div>
+    <div style="font-family:'Instrument Serif',serif;font-size:1.4rem">Sobuj</div>
+    <div style="color:var(--muted);font-size:.78rem">© 2026 · Men Are Brave</div>
+  </div>
+  <div class="socials">
+    <a href="https://www.instagram.com/sobuj_nothing">Instagram</a>
+    <a href="https://x.com/Robiulislam796">X</a>
+    <a href="https://www.facebook.com/share/1CJnpbYL1G/">Facebook</a>
+  </div>
+</footer>
+<script>
+const pins = [
+  {title:'Evening light', src:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80'},
+  {title:'City haze', src:'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=900&q=80'},
+  {title:'Quiet street', src:'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=900&q=80'},
+  {title:'Rain glass', src:'https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?auto=format&fit=crop&w=900&q=80'},
+  {title:'Night walk', src:'https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=80'},
+  {title:'Paper and ink', src:'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80'}
+];
+const grid = document.getElementById('pins');
+pins.forEach((p, i) => {
+  const fig = document.createElement('figure');
+  fig.className = 'pin';
+  fig.innerHTML = `<img src="\( {p.src}" alt=" \){p.title}"><figcaption><span>\( {p.title}</span><button class="dl" data-src=" \){p.src}" data-name="sobuj-${i+1}.jpg">Download</button></figcaption>`;
+  grid.appendChild(fig);
+});
+grid.addEventListener('click', async (e) => {
+  const btn = e.target.closest('.dl');
+  if (!btn) return;
+  try {
+    const res = await fetch(btn.dataset.src);
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = btn.dataset.name; a.click();
+    URL.revokeObjectURL(url);
+  } catch { window.open(btn.dataset.src, '_blank'); }
+});
+</script>
 </body>
 </html>
