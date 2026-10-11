@@ -38,15 +38,14 @@ section{padding:5.5rem 7vw}
 h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(2.4rem,5vw,4rem);line-height:.95;margin-bottom:.7rem}
 .lead{color:var(--muted);max-width:32rem;margin-bottom:2rem}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
-.card,.note{background:var(--glass);border:1px solid var(--glass-border);border-radius:22px;padding:1.3rem;backdrop-filter:blur(12px);transition:transform .4s,border-color .4s;animation:up .8s both}
+.card,.note{background:var(--glass);border:1px solid var(--glass-border);border-radius:22px;padding:1.3rem;backdrop-filter:blur(12px);transition:transform .4s;animation:up .8s both}
 .card:hover,.note:hover,.pin:hover{transform:translateY(-8px);border-color:rgba(255,255,255,.22)}
 .card h3{font-size:1.15rem;font-weight:500;margin:.35rem 0 .4rem}
 .card p,.note p{color:rgba(246,242,234,.72);font-size:.95rem}
 .date{margin-top:.8rem;color:var(--muted);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}
 .pin-grid{columns:3 220px;column-gap:1rem}
-.pin{break-inside:avoid;margin-bottom:1rem;position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#141820;animation:up .9s both}
-.pin img{width:100%;display:block;min-height:190px;object-fit:cover;transition:transform .6s}
-.pin:hover img{transform:scale(1.06)}
+.pin{break-inside:avoid;margin-bottom:1rem;position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#141820;cursor:pointer}
+.pin img{width:100%;display:block;min-height:190px;object-fit:cover}
 .pin figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;gap:.6rem;padding:.7rem .8rem;background:linear-gradient(transparent,rgba(0,0,0,.78))}
 .dl{border:0;border-radius:999px;padding:.38rem .7rem;background:#fff;color:#111;font-size:.72rem;text-decoration:none}
 .notes{display:flex;flex-direction:column;gap:.9rem;max-width:46rem}
@@ -54,6 +53,12 @@ h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(2.4rem,5
 footer{padding:3rem 7vw 2.4rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:end}
 .socials{display:flex;gap:1.1rem}
 .socials a{color:var(--muted);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;font-size:.75rem}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;padding:1rem}
+.lb.open{display:flex}
+.lb img{max-width:100%;max-height:78vh;border-radius:16px}
+.lb-bar{position:absolute;left:0;right:0;bottom:0;display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;padding:1rem}
+.lb-bar button,.lb-bar a{border:0;border-radius:999px;padding:.55rem .9rem;background:#fff;color:#111;font-size:.78rem;text-decoration:none;font-family:inherit;cursor:pointer}
+.lb-x{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.9);cursor:pointer}
 @media(max-width:700px){nav{top:8px;border-radius:18px}.nav-links{gap:.65rem}.hero,section{padding-left:1.1rem;padding-right:1.1rem}.hero{padding-top:7rem}.pin-grid{columns:2 140px}.live{display:none}}
 </style>
 </head>
@@ -89,8 +94,8 @@ footer{padding:3rem 7vw 2.4rem;border-top:1px solid var(--line);display:flex;jus
   </section>
   <section id="pinterest">
     <div class="sec-label">Pinterest</div>
-    <h2>Visuals</h2>
-    <p class="lead">Pictures made for this page. Download if you want one.</p>
+    <h2>Pinterest</h2>
+    <p class="lead">Tap a picture for full view. Copy the link and share it.</p>
     <div class="pin-grid">
       <figure class="pin"><img src="https://x0.at/u6Gm.jpg" alt="Emerald Veil"><figcaption><span>Emerald Veil</span><a class="dl" href="https://x0.at/u6Gm.jpg" download>Download</a></figcaption></figure>
       <figure class="pin"><img src="https://x0.at/HeCC.jpg" alt="Charcoal Bloom"><figcaption><span>Charcoal Bloom</span><a class="dl" href="https://x0.at/HeCC.jpg" download>Download</a></figcaption></figure>
@@ -120,6 +125,15 @@ footer{padding:3rem 7vw 2.4rem;border-top:1px solid var(--line);display:flex;jus
     <a href="https://www.facebook.com/share/1CJnpbYL1G/">Facebook</a>
   </div>
 </footer>
+<div class="lb" id="lb">
+  <button class="lb-x" id="lbx">×</button>
+  <img id="lbimg" alt="">
+  <div class="lb-bar">
+    <button id="copy">Copy link</button>
+    <a id="open" href="#" target="_blank">Open</a>
+    <a id="save" href="#" download>Download</a>
+  </div>
+</div>
 <script>
 var c=document.getElementById('dust');var x=c.getContext('2d');var dots=[];
 function size(){c.width=innerWidth;c.height=innerHeight;}
@@ -128,6 +142,28 @@ for(var i=0;i<70;i++) dots.push({x:Math.random()*c.width,y:Math.random()*c.heigh
 function draw(){x.clearRect(0,0,c.width,c.height);for(var i=0;i<dots.length;i++){var d=dots[i];d.y-=d.s;if(d.y<-4)d.y=c.height+4;x.beginPath();x.fillStyle='rgba(215,196,168,.45)';x.arc(d.x,d.y,d.r,0,6.28);x.fill();}requestAnimationFrame(draw);}
 draw();
 addEventListener('resize',size);
+var lb=document.getElementById('lb');
+var lbimg=document.getElementById('lbimg');
+var open=document.getElementById('open');
+var save=document.getElementById('save');
+var current='';
+document.querySelectorAll('.pin').forEach(function(pin){
+  pin.addEventListener('click', function(e){
+    if(e.target.closest('.dl')) return;
+    var img=pin.querySelector('img');
+    current=img.src;
+    lbimg.src=current;
+    open.href=current;
+    save.href=current;
+    lb.classList.add('open');
+  });
+});
+document.getElementById('lbx').onclick=function(){lb.classList.remove('open');};
+lb.addEventListener('click', function(e){ if(e.target===lb) lb.classList.remove('open'); });
+document.getElementById('copy').onclick=function(){
+  if(navigator.clipboard){ navigator.clipboard.writeText(current); this.textContent='Copied'; var b=this; setTimeout(function(){b.textContent='Copy link';},1200); }
+  else { prompt('Copy this link', current); }
+};
 </script>
 </body>
 </html>
