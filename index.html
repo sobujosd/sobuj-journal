@@ -17,12 +17,12 @@ nav{position:sticky;top:14px;z-index:20;width:min(1180px,calc(100% - 28px));marg
 .nav-links{display:flex;gap:1.2rem}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
 main{width:min(1180px,calc(100% - 28px));margin:18px auto 4rem;background:linear-gradient(180deg,#e7f0e2,#d5e2d0);border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.5);box-shadow:0 30px 80px rgba(40,60,45,.12)}
-.hero{min-height:86vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:7rem 1.4rem 4rem}
+.hero{min-height:86vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:6.2rem 1.4rem 4rem}
 .hero-pic{width:min(220px,42vw);height:min(280px,52vw);object-fit:cover;object-position:center 20%;border-radius:28px;margin-bottom:1.2rem;box-shadow:0 20px 40px rgba(40,60,45,.18);border:4px solid rgba(255,255,255,.7)}
 .kicker{letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;color:var(--accent);margin-bottom:1rem}
 h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(4.6rem,14vw,10.5rem);line-height:.86;color:#fff;text-shadow:0 10px 40px rgba(40,70,50,.18)}
 .sub{max-width:28rem;margin-top:1.4rem;color:var(--accent);font-size:1.05rem}
-.visits{margin-top:1rem}
+.visits{margin-top:1rem;border:0;background:rgba(255,255,255,.6);border-radius:999px;padding:.45rem .8rem;color:var(--accent);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;font-family:inherit;cursor:pointer}
 .hero-meta{margin-top:1.2rem;display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center}
 .pill{background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.7);border-radius:999px;padding:.45rem .8rem;font-size:.75rem;color:var(--accent)}
 section{padding:4.5rem 7vw}
@@ -80,7 +80,7 @@ footer{padding:2rem 7vw 2.4rem;display:flex;justify-content:space-between;gap:1r
     <div class="kicker">Issue 01 · October 2026</div>
     <h1>Men Are<br>Brave</h1>
     <p class="sub">Stories, pictures, and quiet notes. Not loud. Just steady.</p>
-    <div class="visits"><img alt="visitors" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fsobuj-journal.fadedman.workers.dev&count_bg=%231d2a22&title_bg=%232f4a3a&title=visits&edge_flat=false" style="height:22px"></div>
+    <button class="visits" id="visits" type="button">Visitors · …</button>
     <div class="hero-meta"><span class="pill">Story</span><span class="pill">Pinterest</span><span class="pill">Blockchain</span></div>
   </header>
   <section id="stories">
@@ -167,6 +167,14 @@ footer{padding:2rem 7vw 2.4rem;display:flex;justify-content:space-between;gap:1r
   <article id="story-rose" data-title="নিজের জন্য একটা গোলাপ" data-date="27 July 2026" data-pics="https://x0.at/ohUg.jpg"><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময় হঠাৎ মনে পড়ল, বহুদিন কারও জন্য ফুল কেনা হয়নি। শেষবার ফুল কিনেছিলাম লাবণ্যর জন্য। বারান্দার রেলিংয়ের দিকে হাত বাড়িয়ে বেশ কষ্ট করে দিতে হয়েছিল সেই ফুল। ওকে কিছু দিতে পারলে ভালো লাগত আমার। বুঝতে পারিনি, সেসব জিনিস ওর কাছে কেবল সস্তা বস্তু ছিল। আমার খারাপ লাগবে ভেবে হয়তো কখনো বলেনি।</p><p>যাকগে, আজ নিজের জন্য একটা গোলাপ কিনেছি। যদিও গোলাপ আমার পছন্দ নয়। আমার পছন্দ বেলিফুল। নিজেকে গোলাপটা দিয়ে বললাম, “তোমার নিজেকে ভালোবাসা উচিত, সবুজ।” এরপর গোলাপটাকে নিষ্ঠুরভাবে ছুড়ে ফেলে দিয়েছি রাস্তায়। ফুলের প্রসঙ্গ এখন থাক।</p><p>আমি সিগারেট টানতে টানতে আসলে ভাবছি অন্য কিছু। যার জন্য কিছুদিন আগেও মরে যাওয়ার কথা ভাবছিলাম, আজকাল তার কথা ভেবে আর খারাপ লাগে না। না তার প্রতি ভালোবাসা আসে, না ঘৃণা। তবে হ্যাঁ, মাঝে মাঝে ওর চেহারাটা চোখের সামনে ভেসে ওঠে। তখন আমি আকাশের দিকে তাকাই। উড়ে যাওয়া মেঘ দেখি, পাখি দেখি।</p><p>খানিক আগেও যে পথটা ধরে রিকশায় করে এলাম, বহুদিন ওর সঙ্গে সেই পথেই হাতে হাত রেখে ঘুরেছি। আজ থেকে কিছুদিন আগেও ওই পথ ধরে হাঁটতে পারতাম না। ওর স্মৃতি মাথার ভেতরটা খুবলে খেত। কিন্তু আজ আর খারাপ লাগেনি। উল্টো অট্টহাসি হেসেছি। নিজেকে বলেছি, “সবুজ, তুই কী ভীষণ বোকা!”</p><p>নিজেকেই প্রশ্ন করেছি, “আচ্ছা, একটা মানুষ এতবার ছেড়ে দেওয়ার পরেও তাকে কেউ ফিরিয়ে নেয়? তোর জায়গায় অন্য কেউ হলে হয়তো এই বোকামিটা করত না।” সাইকিয়াট্রিস্টও তো এই কারণেই তোকে বলেছিল, “সবুজ, আপনি তো বোকার থেকেও বেশি বোকা।” আচ্ছা, তুই তো জানতিস ওর ছেড়ে দিয়ে থাকার অভ্যাস আছে। তুই তো জানতিস, যে একবার ছেড়ে যেতে পারে, সে বারবারও পারে।</p><p>আমি নিজেকে করা প্রত্যেকটি প্রশ্নের উত্তর জানি। হাতের সিগারেটটা কখন ফুরিয়ে গেছে, এসব লিখতে লিখতে খেয়ালই করিনি। আমি আরেকটা সিগারেট জ্বালালাম। তারপর কী যেন ভেবে খানিকটা হাসলাম।</p><p>আর কে যেন একটা কথা বলছিল, এই পৃথিবীতে ভালোবাসার ব্যাপারগুলো অনেক আগেই ফিকে হয়ে গেছে। মানুষের সঙ্গে মানুষের সম্পর্ক এখন কেবল বিনিময়ের। এই ব্যাপারগুলো যে যত তাড়াতাড়ি বুঝতে পারবে, তার জন্য ততই ভালো।</p><p>২৭ জুলাই ২০২৬</p></article>
 </div>
 <script>
+fetch('https://countapi.mileshilliard.com/api/v1/hit/sobuj-journal-visits').then(function(r){return r.json();}).then(function(d){
+  var n = d && d.value ? d.value : '—';
+  var el = document.getElementById('visits');
+  el.textContent = 'Visitors · ' + n;
+  el.onclick = function(){ alert('Total visits: ' + n); };
+}).catch(function(){
+  document.getElementById('visits').textContent = 'Visitors';
+});
 var reader=document.getElementById('reader');
 document.querySelectorAll('.card[data-story]').forEach(function(card){
   card.addEventListener('click', function(){
