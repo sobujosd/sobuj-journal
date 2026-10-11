@@ -1,752 +1,235 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#10120f">
-  <meta name="description" content="Sobuj Journal — ব্যক্তিগত লেখা, স্মৃতি, রাতের শহর ও জীবনের গল্প।">
-  <meta property="og:title" content="Sobuj Journal">
-  <meta property="og:description" content="Stories, memories and notes from a quiet life.">
-  <meta property="og:type" content="website">
-  <title>Sobuj Journal — A Quiet Archive</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Noto+Serif+Bengali:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #10120f;
-      --panel: #191c17;
-      --text: #f0eee5;
-      --muted: #a3a597;
-      --line: #30332b;
-      --accent: #b9c6a3;
-      --serif: "Instrument Serif", "Noto Serif Bengali", serif;
-      --bangla: "Noto Serif Bengali", serif;
-      --mono: "DM Mono", monospace;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--bangla);
-      line-height: 1.9;
-      transition: background .25s, color .25s;
-    }
-
-    body.light {
-      color-scheme: light;
-      --bg: #f1f0e8;
-      --panel: #e7e6dc;
-      --text: #25271f;
-      --muted: #686b5f;
-      --line: #d3d3c7;
-      --accent: #596c47;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button, input, select { font: inherit; }
-    button { color: inherit; cursor: pointer; }
-    .wrap { width: min(1100px, calc(100% - 40px)); margin: auto; }
-    .mono { font: 11px var(--mono); letter-spacing: .12em; }
-    .muted { color: var(--muted); }
-    .accent { color: var(--accent); }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: var(--bg);
-      border-bottom: 1px solid var(--line);
-    }
-
-    nav {
-      min-height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 15px;
-    }
-
-    .brand-mark {
-      width: 34px;
-      height: 34px;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font: 22px var(--serif);
-    }
-
-    .navlinks { display: flex; align-items: center; gap: 22px; }
-    .navlinks a { font: 10px var(--mono); color: var(--muted); }
-    .navlinks a:hover { color: var(--accent); }
-
-    .icon-btn {
-      width: 37px;
-      height: 37px;
-      border: 1px solid var(--line);
-      background: transparent;
-      border-radius: 50%;
-    }
-
-    .hero {
-      min-height: 590px;
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 45px;
-      align-items: center;
-      padding-top: 65px;
-      padding-bottom: 70px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .pill {
-      display: inline-block;
-      padding: 5px 12px;
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      color: var(--muted);
-      font: 10px var(--mono);
-    }
-
-    h1 {
-      font: 400 clamp(75px, 11vw, 140px)/.85 var(--serif);
-      letter-spacing: -.045em;
-      margin: 35px 0 25px;
-    }
-
-    h1 em { color: var(--accent); }
-    .hero p { max-width: 400px; color: var(--muted); font-size: 14px; }
-
-    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
-
-    .btn {
-      display: inline-block;
-      border: 1px solid var(--line);
-      padding: 9px 16px;
-      background: transparent;
-      font-size: 12px;
-    }
-
-    .btn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
-
-    .landscape {
-      height: 410px;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background:
-        radial-gradient(circle at 70% 25%, #d7d6bd 0 7%, transparent 7.5%),
-        radial-gradient(ellipse at 50% 100%, #35412d 0 20%, transparent 65%),
-        linear-gradient(155deg, #283024, #10130e 70%);
-    }
-
-    .landscape::before {
-      content: "";
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      border: 1px solid #a9b49a55;
-      border-radius: 50%;
-      top: 48%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 0 35px #b9c6a309, 0 0 0 70px #b9c6a307;
-    }
-
-    .mountains {
-      position: absolute;
-      inset: 55% 0 0;
-      background: #0b0d0a;
-      clip-path: polygon(0 35%, 20% 10%, 38% 47%, 58% 4%, 77% 37%, 100% 12%, 100% 100%, 0 100%);
-    }
-
-    .landscape-label {
-      position: absolute;
-      bottom: 15px;
-      left: 16px;
-      right: 16px;
-      color: #e2e4d5;
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      font: 9px var(--mono);
-      letter-spacing: .08em;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .stat { padding: 22px 15px; border-right: 1px solid var(--line); }
-    .stat:first-child { padding-left: 0; }
-    .stat:last-child { border: 0; }
-    .stat strong { display: block; font: 28px var(--serif); font-weight: 400; }
-    .stat span { color: var(--muted); font: 9px var(--mono); letter-spacing: .1em; }
-
-    section { padding: 85px 0; border-bottom: 1px solid var(--line); }
-    .section-head { margin-bottom: 30px; }
-    .section-head h2 { font: 400 clamp(42px, 7vw, 68px)/1 var(--serif); margin: 10px 0; }
-    .section-head p { color: var(--muted); font-size: 13px; max-width: 450px; }
-
-    .tools { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
-    .tools input, .tools select {
-      min-height: 44px;
-      padding: 9px 12px;
-      color: var(--text);
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 0;
-    }
-
-    .tools input { flex: 1; min-width: 190px; }
-    .tools select { max-width: 100%; }
-
-    .story-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-
-    .story {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      padding: 23px;
-      min-height: 230px;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      transition: border-color .2s, transform .2s;
-    }
-
-    .story:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .story.featured { grid-row: span 2; min-height: 475px; }
-    .story-meta { display: flex; justify-content: space-between; gap: 10px; color: var(--muted); font: 9px var(--mono); }
-    .story-tag { color: var(--accent); text-transform: uppercase; }
-    .story h3 { font: 400 32px/1.3 var(--bangla); margin: 32px 0 10px; }
-    .story.featured h3 { font-size: clamp(38px, 5vw, 57px); margin-top: auto; }
-    .story p { color: var(--muted); font-size: 12px; }
-    .story-foot { border-top: 1px solid var(--line); padding-top: 12px; margin-top: auto; color: var(--accent); font: 10px var(--mono); }
-
-    .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    .art {
-      min-height: 260px;
-      aspect-ratio: 3 / 4;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      display: flex;
-      align-items: end;
-      padding: 15px;
-      background: radial-gradient(circle at 65% 25%, #c1c8a5 0 8%, transparent 8.5%), linear-gradient(145deg, #35432e, #11140f 70%);
-    }
-
-    .art:nth-child(2) { background: radial-gradient(circle at 30% 35%, #b38d6b 0 12%, transparent 12.5%), linear-gradient(145deg, #292b2b, #161819 70%); }
-    .art:nth-child(3) { background: repeating-linear-gradient(135deg, transparent 0 20px, #d3dcb91a 21px 22px), linear-gradient(145deg, #4b5739, #151a14 70%); }
-    .art:nth-child(4) { background: radial-gradient(circle at 65% 32%, #c4a47e 0 7%, transparent 7.5%), linear-gradient(145deg, #43362c, #171512 70%); }
-    .art::after { content: ""; position: absolute; inset: 35% 0 0; background: linear-gradient(transparent, #070906e8); }
-    .art span { position: relative; z-index: 1; font: 24px var(--serif); }
-
-    .notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-    .note { border-top: 1px solid var(--accent); padding: 20px 0; }
-    .note small { color: var(--accent); font: 10px var(--mono); }
-    .note h3 { font: 26px var(--serif); margin: 14px 0 8px; }
-    .note p { font-size: 12px; color: var(--muted); }
-
-    footer { padding: 35px 0; }
-    .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-    footer p { color: var(--muted); font-size: 11px; }
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      z-index: 30;
-      background: #000c;
-      display: none;
-      overflow-y: auto;
-      padding: 25px 15px;
-    }
-
-    .modal.open { display: block; }
-    .modal-box {
-      max-width: 760px;
-      margin: 35px auto;
-      padding: clamp(22px, 5vw, 55px);
-      background: var(--bg);
-      border: 1px solid var(--line);
-    }
-
-    .modal-top { display: flex; justify-content: space-between; gap: 15px; align-items: center; }
-    .modal h2 { font: 400 clamp(38px, 7vw, 65px)/1.2 var(--bangla); margin: 35px 0 5px; }
-    .modal-content { font-size: 15px; line-height: 2.2; overflow-wrap: anywhere; }
-    .modal-content p { margin: 22px 0; }
-    .modal-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 30px; }
-
-    .empty { display: none; color: var(--muted); padding: 25px 0; }
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-
-    @media (max-width: 720px) {
-      .wrap { width: min(100% - 30px, 550px); }
-      .navlinks { gap: 12px; }
-      .navlinks a { font-size: 9px; }
-      .hero { grid-template-columns: 1fr; gap: 30px; padding-top: 55px; }
-      .hero h1 { font-size: clamp(78px, 18vw, 115px); }
-      .landscape { height: 320px; }
-      .story-grid { grid-template-columns: 1fr; }
-      .story.featured { grid-row: auto; min-height: 340px; }
-      .story.featured h3 { font-size: 42px; }
-      .gallery { grid-template-columns: repeat(2, 1fr); }
-      .art { min-height: 230px; }
-      .notes { grid-template-columns: 1fr; gap: 8px; }
-      section { padding: 65px 0; }
-    }
-
-    @media (max-width: 420px) {
-      .navlinks { gap: 9px; }
-      .navlinks a:nth-child(3) { display: none; }
-      .stats span { font-size: 8px; }
-      .stat strong { font-size: 24px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobuj — Men Are Brave</title>
+<meta name="description" content="Stories, Pinterest visuals, and blockchain notes by Sobuj Islam.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07080d;--text:#f6f2ea;--muted:#9a948a;--accent:#d7c4a8;--line:rgba(246,242,234,.1);--glass:rgba(255,255,255,.045);--glass-border:rgba(255,255,255,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(900px 500px at 12% -10%, rgba(215,196,168,.16), transparent 55%),radial-gradient(700px 420px at 100% 8%, rgba(90,120,180,.16), transparent 50%),var(--bg);color:var(--text);font-family:'Outfit',system-ui,sans-serif;font-weight:300;line-height:1.75;overflow-x:hidden}
+#dust{position:fixed;inset:0;z-index:0;pointer-events:none}
+.glow{position:fixed;width:42vw;height:42vw;border-radius:50%;filter:blur(70px);opacity:.35;pointer-events:none;z-index:0}
+.glow.a{background:#c8b8a0;top:-12vw;left:-10vw;animation:drift 14s ease-in-out infinite}
+.glow.b{background:#35507a;right:-12vw;top:28vh;animation:drift 18s ease-in-out infinite reverse}
+@keyframes drift{50%{transform:translate3d(20px,30px,0) scale(1.08)}}
+nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(920px,calc(100% - 24px));z-index:20;display:flex;justify-content:space-between;align-items:center;padding:.75rem 1rem;background:rgba(10,12,18,.55);border:1px solid var(--glass-border);border-radius:999px;backdrop-filter:blur(16px)}
+.brand{font-family:'Instrument Serif',serif;font-size:1.25rem;color:var(--text);text-decoration:none}
+.live{display:flex;align-items:center;gap:.4rem;color:var(--accent);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase}
+.dot{width:7px;height:7px;border-radius:50%;background:#7dffa1;box-shadow:0 0 10px #7dffa1;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.35;transform:scale(.8)}}
+.nav-links{display:flex;gap:1.1rem}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+main{position:relative;z-index:1}
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 7vw 4.5rem}
+.quote{font-family:'Instrument Serif',serif;font-size:clamp(2.6rem,7vw,4.6rem);line-height:.95}
+.hero-note{margin-top:.8rem;color:var(--muted);max-width:24rem}
+.kicker{color:var(--accent);letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;margin:1.6rem 0 .8rem}
+h1{font-family:'Instrument Serif',serif;font-weight:400;line-height:.9;font-size:clamp(4.2rem,12vw,9rem)}
+.sub{max-width:34rem;margin-top:1.2rem;color:var(--muted)}
+section{padding:5rem 7vw}
+.sec-label{color:var(--accent);letter-spacing:.18em;text-transform:uppercase;font-size:.72rem;margin-bottom:.6rem}
+h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(2.4rem,5vw,4rem);line-height:.95;margin-bottom:.7rem}
+.lead{color:var(--muted);max-width:32rem;margin-bottom:2rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+.card,.note{background:var(--glass);border:1px solid var(--glass-border);border-radius:22px;padding:1.3rem;backdrop-filter:blur(12px);transition:transform .45s,border-color .45s}
+.card{cursor:pointer}
+.card:hover{transform:translateY(-8px);border-color:rgba(255,255,255,.24)}
+.card h3{font-size:1.2rem;font-weight:500;margin:.35rem 0 .4rem}
+.card p,.note p{color:rgba(246,242,234,.72);font-size:.95rem}
+.date{margin-top:.8rem;color:var(--muted);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}
+.read{display:inline-block;margin-top:.8rem;color:var(--accent);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}
+.pin-grid{columns:3 220px;column-gap:1rem}
+.pin{break-inside:avoid;margin-bottom:1rem;position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#141820;cursor:pointer}
+.pin img{width:100%;display:block;min-height:190px;object-fit:cover}
+.pin figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;gap:.6rem;padding:.7rem .8rem;background:linear-gradient(transparent,rgba(0,0,0,.78))}
+.dl{border:0;border-radius:999px;padding:.38rem .7rem;background:#fff;color:#111;font-size:.72rem;text-decoration:none}
+.notes{display:flex;flex-direction:column;gap:.9rem;max-width:46rem}
+.note h3{font-weight:500;margin-bottom:.25rem}
+footer{padding:3rem 7vw 2.4rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:end}
+.socials{display:flex;gap:1.1rem;flex-wrap:wrap}
+.socials a{color:var(--muted);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;font-size:.75rem}
+.lb,.reader{position:fixed;inset:0;z-index:50;background:rgba(5,6,10,.9);display:none;padding:1rem}
+.lb.open,.reader.open{display:flex;align-items:center;justify-content:center}
+.lb img{max-width:100%;max-height:78vh;border-radius:16px}
+.lb-bar{position:absolute;left:0;right:0;bottom:0;display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;padding:1rem}
+.lb-bar button,.lb-bar a,.xbtn{border:0;border-radius:999px;padding:.55rem .9rem;background:#1c1915;color:#f6f1e8;font-size:.78rem;text-decoration:none;font-family:inherit;cursor:pointer}
+.sheet{width:min(680px,100%);margin:auto;max-height:94vh;overflow:auto;background:#f6f1e8;color:#1c1915;border-radius:28px;padding:1.6rem 1.35rem 2.4rem}
+.reader-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem}
+.sheet .sec-label{color:#8a7358}
+.sheet h3{font-family:'Instrument Serif',serif;font-size:clamp(2.1rem,6vw,3.2rem);line-height:1.05;margin:.2rem 0 1rem;color:#1c1915}
+.story-pics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.7rem;margin:0 0 1.2rem}
+.story-pics img{width:100%;border-radius:16px;display:block}
+.story-body{font-family:'Instrument Serif',serif;font-size:1.18rem;line-height:1.9;color:#2a241d}
+.story-body p{margin:0 0 1.15rem}
+.story-body p:first-of-type::first-letter{float:left;font-size:3.2rem;line-height:.8;padding-right:.35rem;color:#8a7358}
+@media(max-width:700px){nav{top:8px;border-radius:18px}.nav-links{gap:.65rem}.hero,section{padding-left:1.1rem;padding-right:1.1rem}.hero{padding-top:7rem}.pin-grid{columns:2 140px}.live{display:none}}
+</style>
 </head>
-
 <body>
-<header>
-  <nav class="wrap">
-    <a href="#home" class="brand">
-      <span class="brand-mark">S</span>
-      <span>Sobuj Journal</span>
-    </a>
-
-    <div class="navlinks">
-      <a href="#stories">STORIES</a>
-      <a href="#gallery">GALLERY</a>
-      <a href="#notes">NOTES</a>
-    </div>
-
-    <button class="icon-btn" id="themeToggle" aria-label="Change theme">◐</button>
-  </nav>
-</header>
-
-<main>
-  <div class="wrap">
-    <section class="hero" id="home">
-      <div>
-        <span class="pill">PERSONAL JOURNAL · EST. 2026</span>
-        <h1>Sobuj<br><em>Journal.</em></h1>
-        <p>
-          কিছু গল্প থেকে যায়। কিছু মানুষ হারিয়ে যায়।
-          আর কিছু কথা শুধু নিজের জন্য লিখে রাখতে হয়।
-          এই আমার ছোট্ট আর্কাইভ।
-        </p>
-        <div class="actions">
-          <a href="#stories" class="btn primary">লেখাগুলো পড়ো ↗</a>
-          <a href="#about" class="btn">আমার সম্পর্কে</a>
-        </div>
-      </div>
-
-      <div class="landscape" role="img" aria-label="রাতের আকাশ ও পাহাড়ের বিমূর্ত দৃশ্য">
-        <div class="mountains"></div>
-        <div class="landscape-label">
-          <span>FIELD NOTES · 001</span>
-          <span>AFTER DARK</span>
-        </div>
-      </div>
-    </section>
-
-    <div class="stats">
-      <div class="stat">
-        <strong>01</strong>
-        <span>A PERSONAL ARCHIVE</span>
-      </div>
-      <div class="stat">
-        <strong>∞</strong>
-        <span>THINGS TO REMEMBER</span>
-      </div>
-      <div class="stat">
-        <strong>2026</strong>
-        <span>THE JOURNEY CONTINUES</span>
-      </div>
-    </div>
-
-    <section id="stories">
-      <div class="section-head">
-        <span class="mono accent">01 / THE WRITING ROOM</span>
-        <h2>গল্প ও স্মৃতি</h2>
-        <p>কিছু লেখা অতীতের, কিছু বর্তমানের। প্রতিটি লেখার পেছনে আছে একটি সময়।</p>
-      </div>
-
-      <div class="tools">
-        <input id="search" type="search" placeholder="লেখা খুঁজুন..." aria-label="Search stories">
-        <select id="filter" aria-label="Filter stories">
-          <option value="all">সব লেখা</option>
-          <option value="বাংলা">বাংলা</option>
-          <option value="English">English</option>
-          <option value="memory">স্মৃতি</option>
-          <option value="reflection">জীবন ও ভাবনা</option>
-        </select>
-      </div>
-
-      <div class="story-grid" id="storyGrid"></div>
-      <p class="empty" id="empty">কোনো লেখা পাওয়া যায়নি। অন্য শব্দ দিয়ে খুঁজে দেখো।</p>
-    </section>
-
-    <section id="gallery">
-      <div class="section-head">
-        <span class="mono accent">02 / VISUAL DIARY</span>
-        <h2>ছবির খাতা</h2>
-        <p>রং, নীরবতা, রাত এবং কিছু না-বলা অনুভূতির জন্য একটি ছোট্ট জায়গা।</p>
-      </div>
-
-      <div class="gallery">
-        <div class="art"><span>Emerald Veil</span></div>
-        <div class="art"><span>Charcoal Bloom</span></div>
-        <div class="art"><span>Lime Fracture</span></div>
-        <div class="art"><span>Copper Tide</span></div>
-      </div>
-      <p class="muted" style="font-size:11px;margin-top:15px">
-        এগুলো CSS দিয়ে তৈরি নমুনা আর্টওয়ার্ক। নিজের ছবি যোগ করতে চাইলে নিচের কোডের gallery অংশে পরিবর্তন করো।
-      </p>
-    </section>
-
-    <section id="notes">
-      <div class="section-head">
-        <span class="mono accent">03 / SHORT NOTES</span>
-        <h2>ছোট ছোট নোট</h2>
-        <p>সব কথা গল্প হয়ে উঠতে পারে না। কিছু কথা ছোট থাকলেই ভালো।</p>
-      </div>
-
-      <div class="notes">
-        <article class="note">
-          <small>NOTE 001</small>
-          <h3>A ledger is a promise.</h3>
-          <p>Trust, copies, and what a chain is actually for. Not loud. Just a record that holds.</p>
-        </article>
-        <article class="note">
-          <small>NOTE 002</small>
-          <h3>Seen by all. Known by one.</h3>
-          <p>Some things are meant to stay private. Visibility and understanding are not the same thing.</p>
-        </article>
-        <article class="note">
-          <small>NOTE 003</small>
-          <h3>Slow down.</h3>
-          <p>Not everything needs to happen today. Some things need time, patience, and another morning.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="section-head">
-        <span class="mono accent">04 / ABOUT THE AUTHOR</span>
-        <h2>আমি সবুজ।</h2>
-        <p>
-          আমি লিখি মানুষ, স্মৃতি, ভালোবাসা, বিচ্ছেদ এবং এই অদ্ভুত সুন্দর পৃথিবীকে নিয়ে।
-          এই ওয়েবসাইট আমার ব্যক্তিগত লেখার খাতা।
-        </p>
-        <p>Not loud. Just steady.</p>
-      </div>
-    </section>
+<canvas id="dust"></canvas>
+<div class="glow a"></div>
+<div class="glow b"></div>
+<nav>
+  <a class="brand" href="#top">Sobuj</a>
+  <div class="live"><span class="dot"></span> Live</div>
+  <div class="nav-links">
+    <a href="#stories">Story</a>
+    <a href="#pinterest">Pinterest</a>
+    <a href="#chain">Blockchain</a>
   </div>
-</main>
-
-<footer>
-  <div class="wrap footer-inner">
-    <div>
-      <a href="#home" class="brand"><span class="brand-mark">S</span> Sobuj Journal</a>
-      <p>A quiet archive of stories, memories and notes.</p>
+</nav>
+<main id="top">
+  <header class="hero">
+    <p class="quote">Not loud.<br>Just steady.</p>
+    <p class="hero-note">Stories, pictures, and notes from a quiet life.</p>
+    <div class="kicker">Issue 01 · October 2026</div>
+    <h1>Men Are<br>Brave.</h1>
+    <p class="sub">Tap a story to read the full piece, with its pictures.</p>
+  </header>
+  <section id="stories">
+    <div class="sec-label">Story</div>
+    <h2>Own writing</h2>
+    <p class="lead">Personal stories. Tap a card to open the full writing.</p>
+    <div class="cards">
+      <article class="card" data-story="sandhya"><div class="sec-label">Story</div><h3>সন্ধ্যা</h3><p>তিনটা ছবি। সন্ধ্যার আলো, রেলিং, আর একটা শহর যেটা কথা বলে না।</p><div class="date">9 Oct 2026</div><div class="read">Read →</div></article>
+      <article class="card" data-story="hell"><div class="sec-label">Story</div><h3>এক নরকের মাঝখানে</h3><p>এই পৃথিবীর দিকে বেশি তাকাইয়া থাকলে চোখ জ্বালাপোড়া করে।</p><div class="date">12 Sep 2026</div><div class="read">Read →</div></article>
+      <article class="card" data-story="night"><div class="sec-label">Story</div><h3>রাতের শহর</h3><p>রাত বারোটার পরে একটা ছোট শহর, রিকশা, আর খালি রাস্তা।</p><div class="date">12 Aug 2026</div><div class="read">Read →</div></article>
+      <article class="card" data-story="rose"><div class="sec-label">Story</div><h3>নিজের জন্য একটা গোলাপ</h3><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময়।</p><div class="date">27 Jul 2026</div><div class="read">Read →</div></article>
     </div>
-    <p>© <span id="year"></span> Sobuj Journal. Made with care.</p>
+  </section>
+  <section id="pinterest">
+    <div class="sec-label">Pinterest</div>
+    <h2>Pinterest</h2>
+    <p class="lead">Tap a picture for full view. Copy the link and share it.</p>
+    <div class="pin-grid">
+      <figure class="pin"><img src="https://x0.at/u6Gm.jpg" alt="Emerald Veil"><figcaption><span>Emerald Veil</span><a class="dl" href="https://x0.at/u6Gm.jpg" download>Download</a></figcaption></figure>
+      <figure class="pin"><img src="https://x0.at/HeCC.jpg" alt="Charcoal Bloom"><figcaption><span>Charcoal Bloom</span><a class="dl" href="https://x0.at/HeCC.jpg" download>Download</a></figcaption></figure>
+      <figure class="pin"><img src="https://x0.at/Qi1Z.jpg" alt="Lime Fracture"><figcaption><span>Lime Fracture</span><a class="dl" href="https://x0.at/Qi1Z.jpg" download>Download</a></figcaption></figure>
+      <figure class="pin"><img src="https://x0.at/sHIO.jpg" alt="Copper Tide"><figcaption><span>Copper Tide</span><a class="dl" href="https://x0.at/sHIO.jpg" download>Download</a></figcaption></figure>
+    </div>
+  </section>
+  <section id="chain">
+    <div class="sec-label">Blockchain</div>
+    <h2>Notes for the chain</h2>
+    <p class="lead">Trust, copies, and what a ledger is actually for.</p>
+    <div class="notes">
+      <article class="note"><h3>A ledger is a promise</h3><p>Trust, copies, and what a chain is actually for. Not loud. Just a record that holds.</p></article>
+      <article class="note"><h3>Seen by all. Known by one.</h3><p>Some things stay encrypted on purpose. The public sees the mark. Only the holder sees the essence.</p></article>
+      <article class="note"><h3>Slow chain</h3><p>Not everything needs to be fast. Some records are meant to sit quietly and still be true.</p></article>
+    </div>
+  </section>
+</main>
+<footer>
+  <div>
+    <div style="font-family:'Instrument Serif',serif;font-size:1.4rem">Sobuj</div>
+    <div style="color:var(--muted);font-size:.78rem">© 2026 · Men Are Brave</div>
+  </div>
+  <div class="socials">
+    <a href="https://www.instagram.com/sobuj_nothing">Instagram</a>
+    <a href="https://x.com/Robiulislam796">X</a>
+    <a href="https://www.facebook.com/share/1CJnpbYL1G/">Facebook</a>
+    <a href="https://pin.it/3yqjH6Rz0">Pinterest</a>
   </div>
 </footer>
-
-<div class="modal" id="storyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal-box">
-    <div class="modal-top">
-      <span class="mono accent" id="modalCategory">STORY</span>
-      <button class="icon-btn" id="closeModal" aria-label="Close story">✕</button>
-    </div>
-    <h2 id="modalTitle"></h2>
-    <p class="mono muted" id="modalDate"></p>
-    <div class="modal-content" id="modalContent"></div>
-    <div class="modal-actions">
-      <button class="btn" id="copyStory">লেখা কপি করো</button>
-      <button class="btn primary" id="shareStory">শেয়ার করো ↗</button>
-      <button class="btn" id="closeBottom">বন্ধ করো</button>
-    </div>
+<div class="reader" id="reader">
+  <div class="sheet">
+    <div class="reader-top"><div class="sec-label" id="rdate"></div><button class="xbtn" id="rx">Close</button></div>
+    <h3 id="rtitle"></h3>
+    <div class="story-pics" id="rpics"></div>
+    <div class="story-body" id="rbody"></div>
   </div>
 </div>
-
+<div class="lb" id="lb">
+  <img id="lbimg" alt="">
+  <div class="lb-bar">
+    <button id="copy">Copy link</button>
+    <a id="open" href="#" target="_blank">Open</a>
+    <a id="save" href="#" download>Download</a>
+    <button id="lbx">Close</button>
+  </div>
+</div>
+<div id="stories-data" hidden>
+  <article id="story-sandhya" data-title="সন্ধ্যা" data-date="9 October 2026" data-pics="https://x0.at/J9rT.jpg|https://x0.at/E0mn.jpg|https://x0.at/NU1W.jpg">
+    <p>সন্ধ্যা। তিনটা ছবি। আলো নরম। রেলিং। একটা শহর যেটা কথা বলে না।</p>
+    <p>কিছু লেখার দরকার ছিল না। ছবিগুলোই যথেষ্ট।</p>
+  </article>
+  <article id="story-hell" data-title="এক নরকের মাঝখানে" data-date="12 September 2026">
+    <p>এই পৃথিবীর দিকে বেশি তাকাইয়া থাকলে আমার চোখ জ্বালাপোড়া করে, মন খারাপ হয়। মনে হয়, কী অদ্ভুত সুন্দর এক নরকের মাঝখানে দাঁড়াইয়া আছি!</p>
+    <p>আমি ভেবে কূল পাই না, এই দুনিয়ার মতো এত বিভৎস জায়গায় কেমনে ফুল ফোটার মতো সুন্দর ব্যাপার ঘটে, কেমনে আকাশে মেঘ উইড়া বেড়ায়, কেমনে বৃষ্টি নামে?!</p>
+    <p>এই যে কেউ হারাইলো তার সন্তানরে, কেউ হারাইলো তার প্রিয় মানুষরে। এই যে পৃথিবীর প্রত্যেকটা বিন্দুতে বিন্দুতে লুকাইয়া আছে প্রতারণা। এত কিছুর পরেও এই পৃথিবী সুন্দর কেমনে হয়?</p>
+    <p>আমার এই নরকের মাঝে দাঁড়াইয়া থাকতে থাকতে মাথা ভার হয়ে আসে। কিছুই ভালো লাগে না। খালি মনে হয়, একটা কেয়ামত হোক। পৃথিবীটা ওলট-পালট হইয়া সব ফুরাইয়া যাক।</p>
+    <p>১২ সেপ্টেম্বর ২০২৬</p>
+  </article>
+  <article id="story-night" data-title="রাতের শহর" data-date="12 August 2026" data-pics="https://x0.at/gvVW.jpg">
+    <p>রাত ১২ টারও বেশি। এই ছোট্ট শহরটা অনেক আগেই শান্ত হয়ে গেছে। কোথাও কোথাও দু-একজন মানুষ, মাথার ওপর সোডিয়াম আলো আর আমি। যে এমন নিস্তব্ধ শহরে অন্ধকারের বুক চিড়ে পথ হাঁটেনি, সে কোনো দিন জানতে পারবে না রাতের আসল সৌন্দর্য কী।</p>
+    <p>আমি অনেকক্ষণ যাবৎ হাঁটছি। কখনো সঙ্গী হিসেবে পেয়েছি নিজের ছায়াটাকে, গভীর অন্ধকারে সেটাও নেই। ঠোঁটে অসংখ্য সিগারেট পোড়ানোর পরেও এখনো পকেটে ছয়টা সিগারেট বাকি। এগুলোও শেষ করতে হবে।</p>
+    <p>রাত গভীর থেকে আরও গভীরে চলে যাচ্ছে। ভাবছি, ঘরে ফেরার আগে শেষ সময়টুকু রিকশায় ঘুরব। বহু খুঁজে একটা রিকশা পাওয়া গেল। রিকশাওয়ালা মামা জিজ্ঞেস করছিল, কই যাইবেন, মামা? আমি আদতে জানি না, কোথায় যাব আমি। আমার কোনো গন্তব্য নেই। ভাবলাম, কিছুটা স্মৃতি রোমন্থন করা যাক আজ।</p>
+    <p>রিকশাওয়ালাকে বললাম, মামা, বর্ডার গার্ড স্কুলের দিকে চলেন। ঠিক স্কুলের গেটের সামনে গিয়ে দাঁড়াবেন। রিকশা চলছে। আমি একটা সিগারেট ধরালাম। রিকশা স্কুলের সামনে গিয়ে দাঁড়াল। স্কুলের দিকে তাকিয়ে রইলাম খানিকক্ষণ। নিজে নিজে বিড়বিড় করে বললাম, লাবণ্য পড়ত এখানে। বহুদিন এই রাস্তাটা দিয়ে ওর আর আমার আসা-যাওয়া হয়েছে।</p>
+    <p>রিকশাওয়ালাকে জিজ্ঞেস করলাম, মামা, এত রাতে কি ফুলের দোকান খোলা আছে? ফুলের দোকান বন্ধ ছিল। পকেটে তখনো দুইটা সিগারেট। আমি একটা জ্বালালাম। আকাশে অসংখ্য তারা মিটমিট করে জ্বলছে। তবে এমন রাতে জ্যোৎস্না থাকলে ভালো হতো।</p>
+    <p>জ্যোৎস্নার কথা মনে পড়তেই একটা গানের দুটো লাইন গুনগুন করে গাইতে লাগলাম, “ঘর খুলিয়া বাহির হইয়া জোছনা ধরতে যাই, হাত ভরতি চান্দের আলো ধরতে গেলে নাই।”</p>
+    <p>আমি রিকশা থেকে নেমে পড়লাম। শেষ সিগারেটটা জ্বালিয়ে হাঁটতে শুরু করলাম। স্টেশন পর্যন্ত হেঁটে যাব। এই রাস্তাটা ভীষণ সুন্দর। আমি হাঁটতে হাঁটতে ভাবছি, এই ফিকে হয়ে যাওয়া ভালোবাসার যুগে আমার মতো মানুষেরা বোধহয় কেবল বিলীন হয়ে যাওয়ার জন্যই এসেছে।</p>
+    <p>রাতের গভীরতা আরও বেড়েছে। রাস্তাঘাট একেবারে শূন্য। আমার ঘরে ফিরতে হবে। নানান চিন্তায় ভার হয়ে আসা মাথা নিয়ে আর দাঁড়িয়ে থাকা যাচ্ছে না। একগাদা ওষুধ গিলে ঘুমোতে হবে। না ঘুমোতে পারলেই মরণ।</p>
+    <p>১২ আগস্ট ২০২৬</p>
+  </article>
+  <article id="story-rose" data-title="নিজের জন্য একটা গোলাপ" data-date="27 July 2026" data-pics="https://x0.at/ohUg.jpg">
+    <p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময় হঠাৎ মনে পড়ল, বহুদিন কারও জন্য ফুল কেনা হয়নি। শেষবার ফুল কিনেছিলাম লাবণ্যর জন্য। বারান্দার রেলিংয়ের দিকে হাত বাড়িয়ে বেশ কষ্ট করে দিতে হয়েছিল সেই ফুল। ওকে কিছু দিতে পারলে ভালো লাগত আমার। বুঝতে পারিনি, সেসব জিনিস ওর কাছে কেবল সস্তা বস্তু ছিল। আমার খারাপ লাগবে ভেবে হয়তো কখনো বলেনি।</p>
+    <p>যাকগে, আজ নিজের জন্য একটা গোলাপ কিনেছি। যদিও গোলাপ আমার পছন্দ নয়। আমার পছন্দ বেলিফুল। নিজেকে গোলাপটা দিয়ে বললাম, “তোমার নিজেকে ভালোবাসা উচিত, সবুজ।” এরপর গোলাপটাকে নিষ্ঠুরভাবে ছুড়ে ফেলে দিয়েছি রাস্তায়। ফুলের প্রসঙ্গ এখন থাক।</p>
+    <p>আমি সিগারেট টানতে টানতে আসলে ভাবছি অন্য কিছু। যার জন্য কিছুদিন আগেও মরে যাওয়ার কথা ভাবছিলাম, আজকাল তার কথা ভেবে আর খারাপ লাগে না। না তার প্রতি ভালোবাসা আসে, না ঘৃণা। তবে হ্যাঁ, মাঝে মাঝে ওর চেহারাটা চোখের সামনে ভেসে ওঠে। তখন আমি আকাশের দিকে তাকাই। উড়ে যাওয়া মেঘ দেখি, পাখি দেখি।</p>
+    <p>খানিক আগেও যে পথটা ধরে রিকশায় করে এলাম, বহুদিন ওর সঙ্গে সেই পথেই হাতে হাত রেখে ঘুরেছি। আজ থেকে কিছুদিন আগেও ওই পথ ধরে হাঁটতে পারতাম না। ওর স্মৃতি মাথার ভেতরটা খুবলে খেত। কিন্তু আজ আর খারাপ লাগেনি। উল্টো অট্টহাসি হেসেছি। নিজেকে বলেছি, “সবুজ, তুই কী ভীষণ বোকা!”</p>
+    <p>নিজেকেই প্রশ্ন করেছি, “আচ্ছা, একটা মানুষ এতবার ছেড়ে দেওয়ার পরেও তাকে কেউ ফিরিয়ে নেয়? তোর জায়গায় অন্য কেউ হলে হয়তো এই বোকামিটা করত না।” সাইকিয়াট্রিস্টও তো এই কারণেই তোকে বলেছিল, “সবুজ, আপনি তো বোকার থেকেও বেশি বোকা।” আচ্ছা, তুই তো জানতিস ওর ছেড়ে দিয়ে থাকার অভ্যাস আছে। তুই তো জানতিস, যে একবার ছেড়ে যেতে পারে, সে বারবারও পারে।</p>
+    <p>আমি নিজেকে করা প্রত্যেকটি প্রশ্নের উত্তর জানি। হাতের সিগারেটটা কখন ফুরিয়ে গেছে, এসব লিখতে লিখতে খেয়ালই করিনি। আমি আরেকটা সিগারেট জ্বালালাম। তারপর কী যেন ভেবে খানিকটা হাসলাম।</p>
+    <p>আর কে যেন একটা কথা বলছিল, এই পৃথিবীতে ভালোবাসার ব্যাপারগুলো অনেক আগেই ফিকে হয়ে গেছে। মানুষের সঙ্গে মানুষের সম্পর্ক এখন কেবল বিনিময়ের। এই ব্যাপারগুলো যে যত তাড়াতাড়ি বুঝতে পারবে, তার জন্য ততই ভালো।</p>
+    <p>২৭ জুলাই ২০২৬</p>
+  </article>
+</div>
 <script>
-  const stories = [
-    {
-      id: "world",
-      title: "এক নরকের মাঝখানে",
-      date: "19 September 2026",
-      category: "বাংলা",
-      type: "reflection",
-      featured: true,
-      short: "এই পৃথিবী এত সুন্দর হয়েও কখনো কখনো নরকের মতো লাগে কেন?",
-      body: `এই পৃথিবীর দিকে বেশিক্ষণ তাকিয়ে থাকলে আমার চোখ জ্বালাপোড়া করে, মন খারাপ হয়। মনে হয়, কী অদ্ভুত সুন্দর এক নরকের মাঝখানে দাঁড়িয়ে আছি!
-
-আমি ভেবে কূল পাই না, এই দুনিয়ার মতো এত বিভীষিকাময় জায়গায় কীভাবে ফুল ফোটার মতো সুন্দর ব্যাপার ঘটে, কীভাবে আকাশে মেঘ উড়ে বেড়ায়, কীভাবে বৃষ্টি নামে!
-
-এই যে পৃথিবীর প্রত্যেকটা বিন্দুতে বিন্দুতে লুকিয়ে আছে প্রতারণা। এত কিছুর পরেও এই পৃথিবী সুন্দর কেমন করে হয়?`
-    },
-    {
-      id: "city",
-      title: "রাতের শহর",
-      date: "12 August 2026",
-      category: "বাংলা",
-      type: "memory",
-      short: "রাত বারোটার পরে একটা ছোট শহর, রিকশা আর খালি রাস্তা।",
-      body: `রাত ১২টারও বেশি। এই ছোট্ট শহরটা অনেক আগেই শান্ত হয়ে গেছে। কোথাও কোথাও দু-একজন মানুষ, মাথার ওপর সোডিয়াম আলো আর আমি।
-
-যে এমন নিস্তব্ধ শহরে অন্ধকারের বুক চিরে পথ হাঁটেনি, সে কোনো দিন জানতে পারবে না রাতের আসল সৌন্দর্য কী।
-
-আমি অনেকক্ষণ যাবৎ হাঁটছি। কখনো সঙ্গী হিসেবে পেয়েছি নিজের ছায়াটাকে, গভীর অন্ধকারে সেটাও নেই।
-
-রিকশাওয়ালা মামা জিজ্ঞেস করছিলেন, কই যাইবেন, মামা? আমি আদতে জানি না, কোথায় যাব আমি। আমার কোনো গন্তব্য নেই।
-
-আমি হাঁটতে হাঁটতে ভাবছি, এই ফিকে হয়ে যাওয়া ভালোবাসার যুগে আমার মতো মানুষেরা বোধহয় কেবল বিলীন হয়ে যাওয়ার জন্যই এসেছে।`
-    },
-    {
-      id: "rose",
-      title: "নিজের জন্য একটা গোলাপ",
-      date: "27 July 2026",
-      category: "বাংলা",
-      type: "memory",
-      short: "ফুলের দোকানের সামনে দিয়ে যেতে যেতে নিজের কথা মনে পড়ে।",
-      body: `ফুলের দোকানের সামনে দিয়ে যাওয়ার সময় হঠাৎ মনে পড়ল, বহুদিন কারও জন্য ফুল কেনা হয়নি।
-
-যাকগে, আজ নিজের জন্য একটা গোলাপ কিনেছি। যদিও গোলাপ আমার পছন্দ নয়। আমার পছন্দ বেলিফুল।
-
-নিজেকে গোলাপটা দিয়ে বললাম, “তোমার নিজেকে ভালোবাসা উচিত, সবুজ।”
-
-আমি আসলে ভাবছি অন্য কিছু। যার জন্য কিছুদিন আগেও মরে যাওয়ার কথা ভাবছিলাম, আজকাল তার কথা ভেবে আর আগের মতো খারাপ লাগে না।
-
-খানিক আগেও যে পথটা ধরে রিকশায় করে এলাম, বহুদিন ওর সঙ্গে সেই পথেই হাতে হাত রেখে ঘুরেছি। আজ আর খারাপ লাগেনি। উল্টো অট্টহাসি হেসেছি। নিজেকে বলেছি, “সবুজ, তুই কী ভীষণ বোকা!”`
-    },
-    {
-      id: "second-reading",
-      title: "The second reading",
-      date: "Journal note",
-      category: "English",
-      type: "memory",
-      short: "A book that refused me in July sat down with me in September.",
-      body: `A book that refused me in July sat down with me in September.
-
-Sometimes the same words find us at a different time. The page has not changed. We have.`
-    },
-    {
-      id: "october",
-      title: "And it’s October again",
-      date: "1 October 2026",
-      category: "English",
-      type: "reflection",
-      short: "Some months arrive carrying more stories than we can explain.",
-      body: `And it’s October again.
-
-I don’t know why you like it, but I have countless reasons—and stories—for loving it.
-
-Some memories return with the season. Some stay behind, quietly teaching us how to begin again.`
-    }
-  ];
-
-  const $ = selector => document.querySelector(selector);
-  let activeStory = null;
-  let previousFocus = null;
-
-  function escapeHTML(value) {
-    return String(value).replace(/[&<>"']/g, char => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
-    })[char]);
-  }
-
-  function renderStories() {
-    const query = $("#search").value.trim().toLocaleLowerCase();
-    const category = $("#filter").value;
-
-    const filtered = stories.filter(story => {
-      const searchable = [
-        story.title, story.short, story.body, story.date
-      ].join(" ").toLocaleLowerCase();
-
-      const matchesQuery = !query || searchable.includes(query);
-      const matchesCategory =
-        category === "all" ||
-        story.category === category ||
-        story.type === category;
-
-      return matchesQuery && matchesCategory;
-    });
-
-    $("#storyGrid").innerHTML = filtered.map((story, index) => `
-      <article
-        class="story ${story.featured && !query && category === "all" ? "featured" : ""}"
-        tabindex="0"
-        role="button"
-        data-id="${escapeHTML(story.id)}"
-        aria-label="পড়ুন: ${escapeHTML(story.title)}"
-      >
-        <div class="story-meta">
-          <span class="story-tag">${escapeHTML(story.category)} · STORY</span>
-          <span>${escapeHTML(story.date)}</span>
-        </div>
-        <h3>${escapeHTML(story.title)}</h3>
-        <p>${escapeHTML(story.short)}</p>
-        <div class="story-foot">READ THE STORY ↗</div>
-      </article>
-    `).join("");
-
-    $("#empty").style.display = filtered.length ? "none" : "block";
-
-    document.querySelectorAll(".story[data-id]").forEach(card => {
-      const open = () => openStory(card.dataset.id);
-      card.addEventListener("click", open);
-      card.addEventListener("keydown", event => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          open();
-        }
-      });
-    });
-  }
-
-  function openStory(id) {
-    activeStory = stories.find(story => story.id === id);
-    if (!activeStory) return;
-
-    previousFocus = document.activeElement;
-    $("#modalCategory").textContent = activeStory.category + " / STORY";
-    $("#modalTitle").textContent = activeStory.title;
-    $("#modalDate").textContent = activeStory.date;
-
-    $("#modalContent").replaceChildren();
-
-    activeStory.body.split(/\n\n+/).forEach(paragraph => {
-      const p = document.createElement("p");
-      p.textContent = paragraph;
-      $("#modalContent").appendChild(p);
-    });
-
-    $("#storyModal").classList.add("open");
-    document.body.style.overflow = "hidden";
-    $("#closeModal").focus();
-  }
-
-  function closeStory() {
-    $("#storyModal").classList.remove("open");
-    document.body.style.overflow = "";
-    if (previousFocus && previousFocus.focus) previousFocus.focus();
-  }
-
-  async function copyText(text) {
-    try {
-      await navigator.clipboard.writeText(text);
-      alert("কপি করা হয়েছে!");
-    } catch {
-      const field = document.createElement("textarea");
-      field.value = text;
-      document.body.appendChild(field);
-      field.select();
-      document.execCommand("copy");
-      field.remove();
-      alert("কপি করা হয়েছে!");
-    }
-  }
-
-  $("#search").addEventListener("input", renderStories);
-  $("#filter").addEventListener("change", renderStories);
-  $("#closeModal").addEventListener("click", closeStory);
-  $("#closeBottom").addEventListener("click", closeStory);
-
-  $("#storyModal").addEventListener("click", event => {
-    if (event.target === $("#storyModal")) closeStory();
+var c=document.getElementById('dust');var x=c.getContext('2d');var dots=[];
+function size(){c.width=innerWidth;c.height=innerHeight;}
+size();
+for(var i=0;i<70;i++) dots.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.4+.3,s:Math.random()*.35+.08});
+function draw(){x.clearRect(0,0,c.width,c.height);for(var i=0;i<dots.length;i++){var d=dots[i];d.y-=d.s;if(d.y<-4)d.y=c.height+4;x.beginPath();x.fillStyle='rgba(215,196,168,.45)';x.arc(d.x,d.y,d.r,0,6.28);x.fill();}requestAnimationFrame(draw);}
+draw();
+addEventListener('resize',size);
+var reader=document.getElementById('reader');
+document.querySelectorAll('.card[data-story]').forEach(function(card){
+  card.addEventListener('click', function(){
+    var id=card.getAttribute('data-story');
+    var src=document.getElementById('story-'+id);
+    document.getElementById('rtitle').textContent=src.getAttribute('data-title');
+    document.getElementById('rdate').textContent=src.getAttribute('data-date');
+    document.getElementById('rbody').innerHTML=src.innerHTML;
+    var pics=document.getElementById('rpics');
+    pics.innerHTML='';
+    var list=(src.getAttribute('data-pics')||'').split('|');
+    list.forEach(function(url){ if(!url) return; var img=document.createElement('img'); img.src=url; pics.appendChild(img); });
+    reader.classList.add('open');
   });
-
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape" && $("#storyModal").classList.contains("open")) {
-      closeStory();
-    }
+});
+document.getElementById('rx').onclick=function(){reader.classList.remove('open');};
+reader.addEventListener('click', function(e){ if(e.target===reader) reader.classList.remove('open'); });
+var lb=document.getElementById('lb');
+var lbimg=document.getElementById('lbimg');
+var open=document.getElementById('open');
+var save=document.getElementById('save');
+var current='';
+document.querySelectorAll('.pin').forEach(function(pin){
+  pin.addEventListener('click', function(e){
+    if(e.target.closest('.dl')) return;
+    var img=pin.querySelector('img');
+    current=img.src; lbimg.src=current; open.href=current; save.href=current; lb.classList.add('open');
   });
-
-  $("#copyStory").addEventListener("click", () => {
-    if (activeStory) {
-      copyText(activeStory.title + "\n\n" + activeStory.body);
-    }
-  });
-
-  $("#shareStory").addEventListener("click", async () => {
-    if (!activeStory) return;
-
-    const url = location.href.split("#")[0] +
-      "#story=" + encodeURIComponent(activeStory.id);
-
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: activeStory.title,
-          text: activeStory.short,
-          url
-        });
-      } catch (error) {
-        if (error.name !== "AbortError") copyText(url);
-      }
-    } else {
-      await copyText(url);
-    }
-  });
-
-  $("#themeToggle").addEventListener("click", () => {
-    document.body.classList.toggle("light");
-
-    const light = document.body.classList.contains("light");
-    $("#themeToggle").textContent = light ? "☼" : "◐";
-    document.querySelector('meta[name="theme-color"]').content =
-      light ? "#f1f0e8" : "#10120f";
-
-    try {
-      localStorage.setItem("sobuj-theme", light ? "light" : "dark");
-    } catch {}
-  });
-
-  try {
-    if (localStorage.getItem("sobuj-theme") === "light") {
-      document.body.classList.add("light");
-      $("#themeToggle").textContent = "☼";
-      document.querySelector('meta[name="theme-color"]').content = "#f1f0e8";
-    }
-  } catch {}
-
-  $("#year").textContent = new Date().getFullYear();
-  renderStories();
-
-  if (location.hash.startsWith("#story=")) {
-    const id = decodeURIComponent(location.hash.slice(7));
-    const story = stories.find(item => item.id === id);
-    if (story) openStory(id);
-  }
+});
+document.getElementById('lbx').onclick=function(){lb.classList.remove('open');};
+lb.addEventListener('click', function(e){ if(e.target===lb) lb.classList.remove('open'); });
+document.getElementById('copy').onclick=function(){
+  if(navigator.clipboard){ navigator.clipboard.writeText(current); this.textContent='Copied'; var b=this; setTimeout(function(){b.textContent='Copy link';},1200); }
+  else { prompt('Copy this link', current); }
+};
 </script>
 </body>
 </html>
