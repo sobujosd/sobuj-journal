@@ -11,7 +11,7 @@
 :root{--bg:#07080d;--text:#f6f2ea;--muted:#9a948a;--accent:#d7c4a8;--line:rgba(246,242,234,.1);--glass:rgba(255,255,255,.045);--glass-border:rgba(255,255,255,.12)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:radial-gradient(900px 500px at 12% -10%, rgba(215,196,168,.16), transparent 55%),radial-gradient(700px 420px at 100% 8%, rgba(90,120,180,.16), transparent 50%),var(--bg);color:var(--text);font-family:'Outfit',system-ui,sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+body{background:radial-gradient(900px 500px at 12% -10%, rgba(215,196,168,.16), transparent 55%),radial-gradient(700px 420px at 100% 8%, rgba(90,120,180,.16), transparent 50%),var(--bg);color:var(--text);font-family:'Outfit',system-ui,sans-serif;font-weight:300;line-height:1.75;overflow-x:hidden}
 #dust{position:fixed;inset:0;z-index:0;pointer-events:none}
 .glow{position:fixed;width:42vw;height:42vw;border-radius:50%;filter:blur(70px);opacity:.35;pointer-events:none;z-index:0}
 .glow.a{background:#c8b8a0;top:-12vw;left:-10vw;animation:drift 14s ease-in-out infinite}
@@ -26,42 +26,49 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(920px,
 .nav-links{display:flex;gap:1.1rem}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
 main{position:relative;z-index:1}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 7vw 5rem}
-.hero-fill{margin-bottom:2.2rem}
-.quote{font-family:'Instrument Serif',serif;font-size:clamp(2.4rem,7vw,4.4rem);line-height:.95}
-.hero-note{margin-top:.8rem;color:var(--muted);max-width:22rem}
-.kicker{color:var(--accent);letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;margin-bottom:1rem;animation:up 1s .1s both}
-h1{font-family:'Instrument Serif',serif;font-weight:400;line-height:.9;font-size:clamp(4.2rem,12vw,9rem);animation:up 1.1s .25s both}
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 7vw 4.5rem}
+.quote{font-family:'Instrument Serif',serif;font-size:clamp(2.6rem,7vw,4.6rem);line-height:.95;animation:up 1s both}
+.hero-note{margin-top:.8rem;color:var(--muted);max-width:24rem;animation:up 1s .2s both}
+.kicker{color:var(--accent);letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;margin:1.6rem 0 .8rem;animation:up 1s .3s both}
+h1{font-family:'Instrument Serif',serif;font-weight:400;line-height:.9;font-size:clamp(4.2rem,12vw,9rem);animation:up 1.1s .4s both}
 h1 span{display:inline-block;animation:shine 4s linear infinite;background:linear-gradient(90deg,#f6f2ea 20%,#d7c4a8 40%,#f6f2ea 60%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
 @keyframes shine{to{background-position:-200% 0}}
-.sub{max-width:34rem;margin-top:1.3rem;color:var(--muted);font-size:1.08rem;animation:up 1s .45s both}
+.sub{max-width:34rem;margin-top:1.2rem;color:var(--muted);animation:up 1s .55s both}
 @keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
-section{padding:5.5rem 7vw}
+section{padding:5rem 7vw}
 .sec-label{color:var(--accent);letter-spacing:.18em;text-transform:uppercase;font-size:.72rem;margin-bottom:.6rem}
 h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(2.4rem,5vw,4rem);line-height:.95;margin-bottom:.7rem}
 .lead{color:var(--muted);max-width:32rem;margin-bottom:2rem}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
-.card,.note{background:var(--glass);border:1px solid var(--glass-border);border-radius:22px;padding:1.3rem;backdrop-filter:blur(12px);transition:transform .4s}
-.card:hover,.note:hover,.pin:hover{transform:translateY(-8px);border-color:rgba(255,255,255,.22)}
-.card h3{font-size:1.15rem;font-weight:500;margin:.35rem 0 .4rem}
+.card,.note{background:var(--glass);border:1px solid var(--glass-border);border-radius:22px;padding:1.3rem;backdrop-filter:blur(12px);transition:transform .45s,border-color .45s,box-shadow .45s;cursor:pointer}
+.card:hover,.note:hover,.pin:hover{transform:translateY(-8px);border-color:rgba(255,255,255,.24);box-shadow:0 18px 40px rgba(0,0,0,.28)}
+.card h3{font-size:1.2rem;font-weight:500;margin:.35rem 0 .4rem}
 .card p,.note p{color:rgba(246,242,234,.72);font-size:.95rem}
 .date{margin-top:.8rem;color:var(--muted);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}
+.read{display:inline-block;margin-top:.8rem;color:var(--accent);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}
 .pin-grid{columns:3 220px;column-gap:1rem}
 .pin{break-inside:avoid;margin-bottom:1rem;position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#141820;cursor:pointer}
-.pin img{width:100%;display:block;min-height:190px;object-fit:cover}
+.pin img{width:100%;display:block;min-height:190px;object-fit:cover;transition:transform .6s}
+.pin:hover img{transform:scale(1.06)}
 .pin figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;gap:.6rem;padding:.7rem .8rem;background:linear-gradient(transparent,rgba(0,0,0,.78))}
 .dl{border:0;border-radius:999px;padding:.38rem .7rem;background:#fff;color:#111;font-size:.72rem;text-decoration:none}
 .notes{display:flex;flex-direction:column;gap:.9rem;max-width:46rem}
+.note{cursor:default}
 .note h3{font-weight:500;margin-bottom:.25rem}
 footer{padding:3rem 7vw 2.4rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:end}
 .socials{display:flex;gap:1.1rem;flex-wrap:wrap}
 .socials a{color:var(--muted);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;font-size:.75rem}
-.lb{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;padding:1rem}
-.lb.open{display:flex}
+.lb,.reader{position:fixed;inset:0;z-index:50;background:rgba(5,6,10,.9);display:none;padding:1rem}
+.lb.open,.reader.open{display:flex;align-items:center;justify-content:center}
 .lb img{max-width:100%;max-height:78vh;border-radius:16px}
 .lb-bar{position:absolute;left:0;right:0;bottom:0;display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;padding:1rem}
-.lb-bar button,.lb-bar a{border:0;border-radius:999px;padding:.55rem .9rem;background:#fff;color:#111;font-size:.78rem;text-decoration:none;font-family:inherit;cursor:pointer}
-.lb-x{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.9);cursor:pointer}
+.lb-bar button,.lb-bar a,.xbtn{border:0;border-radius:999px;padding:.55rem .9rem;background:#fff;color:#111;font-size:.78rem;text-decoration:none;font-family:inherit;cursor:pointer}
+.sheet{width:min(760px,100%);margin:auto;max-height:92vh;overflow:auto;background:rgba(16,18,26,.92);border:1px solid var(--glass-border);border-radius:24px;padding:1.4rem 1.2rem 2rem;backdrop-filter:blur(16px)}
+.reader-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.sheet h3{font-family:'Instrument Serif',serif;font-size:clamp(2rem,5vw,3rem);line-height:1;margin:.3rem 0 .8rem}
+.story-pics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.6rem;margin:1rem 0}
+.story-pics img{width:100%;border-radius:14px;display:block}
+.story-body p{margin:.8rem 0;color:rgba(246,242,234,.86)}
 @media(max-width:700px){nav{top:8px;border-radius:18px}.nav-links{gap:.65rem}.hero,section{padding-left:1.1rem;padding-right:1.1rem}.hero{padding-top:7rem}.pin-grid{columns:2 140px}.live{display:none}}
 </style>
 </head>
@@ -80,23 +87,21 @@ footer{padding:3rem 7vw 2.4rem;border-top:1px solid var(--line);display:flex;jus
 </nav>
 <main id="top">
   <header class="hero">
-    <div class="hero-fill">
-      <p class="quote">Not loud.<br>Just steady.</p>
-      <p class="hero-note">Stories, pictures, and notes from a quiet life.</p>
-    </div>
+    <p class="quote">Not loud.<br>Just steady.</p>
+    <p class="hero-note">Stories, pictures, and notes from a quiet life.</p>
     <div class="kicker">Issue 01 · October 2026</div>
     <h1><span>Men Are</span><br>Brave.</h1>
-    <p class="sub">Stories, pictures, and quiet notes on the chain. Written slowly. Not loud. Just steady.</p>
+    <p class="sub">Tap a story to read the full piece, with its pictures.</p>
   </header>
   <section id="stories">
     <div class="sec-label">Story</div>
     <h2>Own writing</h2>
-    <p class="lead">Personal stories. Short, quiet, and kept as they were written.</p>
+    <p class="lead">Personal stories. Tap a card to open the full writing.</p>
     <div class="cards">
-      <article class="card"><div class="sec-label">Story</div><h3>সন্ধ্যা</h3><p>তিনটা ছবি। সন্ধ্যার আলো, রেলিং, আর একটা শহর যেটা কথা বলে না।</p><div class="date">9 Oct 2026</div></article>
-      <article class="card"><div class="sec-label">Story</div><h3>এক নরকের মাঝখানে</h3><p>এই পৃথিবীর দিকে বেশি তাকাইয়া থাকলে চোখ জ্বালাপোড়া করে। তবু ফুল ফোটে, মেঘ উড়ে।</p><div class="date">12 Sep 2026</div></article>
-      <article class="card"><div class="sec-label">Story</div><h3>রাতের শহর</h3><p>রাত বারোটার পরে একটা ছোট শহর, রিকশা, সোডিয়াম আলো, আর খালি রাস্তা।</p><div class="date">12 Aug 2026</div></article>
-      <article class="card"><div class="sec-label">Story</div><h3>নিজের জন্য একটা গোলাপ</h3><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময়। শেষবার কেনা হয়েছিল লাবণ্যর জন্য।</p><div class="date">27 Jul 2026</div></article>
+      <article class="card" data-story="sandhya"><div class="sec-label">Story</div><h3>সন্ধ্যা</h3><p>তিনটা ছবি। সন্ধ্যার আলো, রেলিং, আর একটা শহর যেটা কথা বলে না।</p><div class="date">9 Oct 2026</div><div class="read">Read →</div></article>
+      <article class="card" data-story="hell"><div class="sec-label">Story</div><h3>এক নরকের মাঝখানে</h3><p>এই পৃথিবীর দিকে বেশি তাকাইয়া থাকলে চোখ জ্বালাপোড়া করে।</p><div class="date">12 Sep 2026</div><div class="read">Read →</div></article>
+      <article class="card" data-story="night"><div class="sec-label">Story</div><h3>রাতের শহর</h3><p>রাত বারোটার পরে একটা ছোট শহর, রিকশা, আর খালি রাস্তা।</p><div class="date">12 Aug 2026</div><div class="read">Read →</div></article>
+      <article class="card" data-story="rose"><div class="sec-label">Story</div><h3>নিজের জন্য একটা গোলাপ</h3><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময়।</p><div class="date">27 Jul 2026</div><div class="read">Read →</div></article>
     </div>
   </section>
   <section id="pinterest">
@@ -133,23 +138,72 @@ footer{padding:3rem 7vw 2.4rem;border-top:1px solid var(--line);display:flex;jus
     <a href="https://pin.it/3yqjH6Rz0">Pinterest</a>
   </div>
 </footer>
+<div class="reader" id="reader">
+  <div class="sheet">
+    <div class="reader-top"><div class="sec-label" id="rdate"></div><button class="xbtn" id="rx">Close</button></div>
+    <h3 id="rtitle"></h3>
+    <div class="story-pics" id="rpics"></div>
+    <div class="story-body" id="rbody"></div>
+  </div>
+</div>
 <div class="lb" id="lb">
-  <button class="lb-x" id="lbx">×</button>
   <img id="lbimg" alt="">
   <div class="lb-bar">
     <button id="copy">Copy link</button>
     <a id="open" href="#" target="_blank">Open</a>
     <a id="save" href="#" download>Download</a>
+    <button id="lbx">Close</button>
   </div>
+</div>
+<div id="stories-data" hidden>
+  <article id="story-sandhya" data-title="সন্ধ্যা" data-date="9 Oct 2026" data-pics="https://x0.at/J9rT.jpg|https://x0.at/E0mn.jpg|https://x0.at/NU1W.jpg">
+    <p>সন্ধ্যা। তিনটা ছবি। আলো নরম। রেলিং। একটা শহর যেটা কথা বলে না।</p>
+  </article>
+  <article id="story-hell" data-title="এক নরকের মাঝখানে" data-date="12 Sep 2026">
+    <p>এই পৃথিবীর দিকে বেশি তাকাইয়া থাকলে আমার চোখ জ্বালাপোড়া করে, মন খারাপ হয়। মনে হয়, কী অদ্ভুত সুন্দর এক নরকের মাঝখানে দাঁড়াইয়া আছি!</p>
+    <p>এই দুনিয়ার মতো এত বিভৎস জায়গায় কেমনে ফুল ফোটে, কেমনে আকাশে মেঘ উড়ে, কেমনে বৃষ্টি নামে?</p>
+    <p>কেউ হারাইলো তার সন্তানরে, কেউ হারাইলো তার প্রিয় মানুষরে। এত কিছুর পরেও এই পৃথিবী সুন্দর কেমনে হয়?</p>
+    <p>মাথা ভার হয়ে আসে। খালি মনে হয়, একটা কেয়ামত হোক। পৃথিবীটা ওলট-পালট হইয়া সব ফুরাইয়া যাক।</p>
+  </article>
+  <article id="story-night" data-title="রাতের শহর" data-date="12 Aug 2026" data-pics="https://x0.at/gvVW.jpg">
+    <p>রাত ১২ টারও বেশি। এই ছোট্ট শহরটা অনেক আগেই শান্ত হয়ে গেছে। সোডিয়াম আলো আর আমি।</p>
+    <p>রিকশাওয়ালা মামা জিজ্ঞেস করছিল, কই যাইবেন? আমি জানি না কোথায় যাব। কোনো গন্তব্য নেই।</p>
+    <p>বর্ডার গার্ড স্কুলের দিকে। লাবণ্য পড়ত এখানে। বহুদিন এই রাস্তাটা দিয়ে আসা-যাওয়া হয়েছে।</p>
+    <p>ফুলের দোকান বন্ধ। শেষে স্টেশনের দিকে। আকাশে তারা। জ্যোৎস্না থাকলে ভালো হতো।</p>
+    <p>এই ফিকে হয়ে যাওয়া ভালোবাসার যুগে আমার মতো মানুষেরা বোধহয় কেবল বিলীন হয়ে যাওয়ার জন্যই এসেছে।</p>
+  </article>
+  <article id="story-rose" data-title="নিজের জন্য একটা গোলাপ" data-date="27 Jul 2026" data-pics="https://x0.at/ohUg.jpg">
+    <p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময় মনে পড়ল, বহুদিন কারও জন্য ফুল কেনা হয়নি। শেষবার লাবণ্যর জন্য।</p>
+    <p>আজ নিজের জন্য একটা গোলাপ কিনেছি। গোলাপ আমার পছন্দ নয়। পছন্দ বেলিফুল। নিজেকে বললাম, তোমার নিজেকে ভালোবাসা উচিত, সবুজ। তারপর গোলাপটা ছুড়ে ফেলে দিলাম।</p>
+    <p>যার জন্য আগে মরে যাওয়ার কথা ভাবতাম, আজ আর খারাপ লাগে না। না ভালোবাসা, না ঘৃণা।</p>
+    <p>সবুজ, তুই কী ভীষণ বোকা। একটা মানুষ এতবার ছেড়ে দেওয়ার পরেও তাকে কেউ ফিরিয়ে নেয়?</p>
+  </article>
 </div>
 <script>
 var c=document.getElementById('dust');var x=c.getContext('2d');var dots=[];
 function size(){c.width=innerWidth;c.height=innerHeight;}
 size();
-for(var i=0;i<70;i++) dots.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.4+.3,s:Math.random()*.35+.08});
+for(var i=0;i<80;i++) dots.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.4+.3,s:Math.random()*.35+.08});
 function draw(){x.clearRect(0,0,c.width,c.height);for(var i=0;i<dots.length;i++){var d=dots[i];d.y-=d.s;if(d.y<-4)d.y=c.height+4;x.beginPath();x.fillStyle='rgba(215,196,168,.45)';x.arc(d.x,d.y,d.r,0,6.28);x.fill();}requestAnimationFrame(draw);}
 draw();
 addEventListener('resize',size);
+var reader=document.getElementById('reader');
+document.querySelectorAll('.card[data-story]').forEach(function(card){
+  card.addEventListener('click', function(){
+    var id=card.getAttribute('data-story');
+    var src=document.getElementById('story-'+id);
+    document.getElementById('rtitle').textContent=src.getAttribute('data-title');
+    document.getElementById('rdate').textContent=src.getAttribute('data-date');
+    document.getElementById('rbody').innerHTML=src.innerHTML;
+    var pics=document.getElementById('rpics');
+    pics.innerHTML='';
+    var list=(src.getAttribute('data-pics')||'').split('|');
+    list.forEach(function(url){ if(!url) return; var img=document.createElement('img'); img.src=url; pics.appendChild(img); });
+    reader.classList.add('open');
+  });
+});
+document.getElementById('rx').onclick=function(){reader.classList.remove('open');};
+reader.addEventListener('click', function(e){ if(e.target===reader) reader.classList.remove('open'); });
 var lb=document.getElementById('lb');
 var lbimg=document.getElementById('lbimg');
 var open=document.getElementById('open');
@@ -159,11 +213,7 @@ document.querySelectorAll('.pin').forEach(function(pin){
   pin.addEventListener('click', function(e){
     if(e.target.closest('.dl')) return;
     var img=pin.querySelector('img');
-    current=img.src;
-    lbimg.src=current;
-    open.href=current;
-    save.href=current;
-    lb.classList.add('open');
+    current=img.src; lbimg.src=current; open.href=current; save.href=current; lb.classList.add('open');
   });
 });
 document.getElementById('lbx').onclick=function(){lb.classList.remove('open');};
