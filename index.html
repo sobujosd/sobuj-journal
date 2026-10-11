@@ -27,6 +27,9 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(920px,
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
 main{position:relative;z-index:1}
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 7vw 5rem}
+.hero-fill{margin-bottom:2.2rem}
+.quote{font-family:'Instrument Serif',serif;font-size:clamp(2.4rem,7vw,4.4rem);line-height:.95}
+.hero-note{margin-top:.8rem;color:var(--muted);max-width:22rem}
 .kicker{color:var(--accent);letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;margin-bottom:1rem;animation:up 1s .1s both}
 h1{font-family:'Instrument Serif',serif;font-weight:400;line-height:.9;font-size:clamp(4.2rem,12vw,9rem);animation:up 1.1s .25s both}
 h1 span{display:inline-block;animation:shine 4s linear infinite;background:linear-gradient(90deg,#f6f2ea 20%,#d7c4a8 40%,#f6f2ea 60%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -38,7 +41,7 @@ section{padding:5.5rem 7vw}
 h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(2.4rem,5vw,4rem);line-height:.95;margin-bottom:.7rem}
 .lead{color:var(--muted);max-width:32rem;margin-bottom:2rem}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
-.card,.note{background:var(--glass);border:1px solid var(--glass-border);border-radius:22px;padding:1.3rem;backdrop-filter:blur(12px);transition:transform .4s;animation:up .8s both}
+.card,.note{background:var(--glass);border:1px solid var(--glass-border);border-radius:22px;padding:1.3rem;backdrop-filter:blur(12px);transition:transform .4s}
 .card:hover,.note:hover,.pin:hover{transform:translateY(-8px);border-color:rgba(255,255,255,.22)}
 .card h3{font-size:1.15rem;font-weight:500;margin:.35rem 0 .4rem}
 .card p,.note p{color:rgba(246,242,234,.72);font-size:.95rem}
@@ -51,7 +54,7 @@ h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(2.4rem,5
 .notes{display:flex;flex-direction:column;gap:.9rem;max-width:46rem}
 .note h3{font-weight:500;margin-bottom:.25rem}
 footer{padding:3rem 7vw 2.4rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:end}
-.socials{display:flex;gap:1.1rem}
+.socials{display:flex;gap:1.1rem;flex-wrap:wrap}
 .socials a{color:var(--muted);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;font-size:.75rem}
 .lb{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;padding:1rem}
 .lb.open{display:flex}
@@ -77,6 +80,10 @@ footer{padding:3rem 7vw 2.4rem;border-top:1px solid var(--line);display:flex;jus
 </nav>
 <main id="top">
   <header class="hero">
+    <div class="hero-fill">
+      <p class="quote">Not loud.<br>Just steady.</p>
+      <p class="hero-note">Stories, pictures, and notes from a quiet life.</p>
+    </div>
     <div class="kicker">Issue 01 · October 2026</div>
     <h1><span>Men Are</span><br>Brave.</h1>
     <p class="sub">Stories, pictures, and quiet notes on the chain. Written slowly. Not loud. Just steady.</p>
@@ -123,6 +130,7 @@ footer{padding:3rem 7vw 2.4rem;border-top:1px solid var(--line);display:flex;jus
     <a href="https://www.instagram.com/sobuj_nothing">Instagram</a>
     <a href="https://x.com/Robiulislam796">X</a>
     <a href="https://www.facebook.com/share/1CJnpbYL1G/">Facebook</a>
+    <a href="https://pin.it/3yqjH6Rz0">Pinterest</a>
   </div>
 </footer>
 <div class="lb" id="lb">
