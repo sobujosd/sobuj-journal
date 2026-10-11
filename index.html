@@ -51,8 +51,6 @@ h1, h2 { font-family: 'Instrument Serif', serif; font-weight: 400; line-height: 
 .meta { margin-top: 1.6rem; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 .scroll-cue { position: absolute; bottom: 2.5rem; left: 7vw; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); animation: pulse 2.6s ease-in-out infinite; }
 @keyframes pulse { 0%,100% { opacity: 0.35; } 50% { opacity: 1; } }
-
-/* Grid sections */
 .grid-section { padding: 6rem 7vw 4rem; }
 .grid-section h2 { font-size: clamp(2.2rem, 5vw, 3.5rem); margin-bottom: 0.6rem; }
 .section-desc { color: var(--muted); margin-bottom: 2.5rem; max-width: 28rem; }
@@ -62,22 +60,101 @@ h1, h2 { font-family: 'Instrument Serif', serif; font-weight: 400; line-height: 
 }
 .gallery-item {
   aspect-ratio: 1; background: #16161c; border: 1px solid var(--line);
-  border-radius: 4px; display: flex; align-items: center; justify-content: center;
-  color: var(--muted); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
-  overflow: hidden; position: relative;
+  border-radius: 4px; overflow: hidden; position: relative; color: var(--text); text-decoration: none;
 }
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.gallery-item:hover img { transform: scale(1.04); }
+.gallery-item span {
+  position: absolute; left: 10px; bottom: 10px;
+  background: rgba(11,11,16,.55); backdrop-filter: blur(8px);
+  padding: 4px 8px; border-radius: 999px; font-size: 0.7rem; letter-spacing: .08em;
+}
 .posts { display: flex; flex-direction: column; gap: 1.8rem; max-width: 42rem; }
-.post {
-  border-left: 1px solid var(--line); padding-left: 1.4rem;
-}
+.post { border-left: 1px solid var(--line); padding-left: 1.4rem; color: inherit; text-decoration: none; display: block; }
 .post h3 { font-family: 'Outfit', sans-serif; font-weight: 400; font-size: 1.15rem; margin-bottom: 0.4rem; }
 .post p { font-size: 0.95rem; color: rgba(244,241,234,0.7); }
 .post .date { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.5rem; }
-
 footer {
   padding: 5rem 7vw 3rem; border-top: 1px solid var(--line);
   display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem;
 }
-.socials { dis
-...
+.socials { display: flex; gap: 1.8rem; }
+.socials a { color: var(--muted); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.3s; }
+.socials a:hover { color: var(--text); }
+@media (max-width: 700px) {
+  nav { padding: 1.1rem 1.2rem; }
+  .nav-links { gap: 1rem; font-size: 0.7rem; }
+  .chapter { padding: 6.5rem 1.2rem 4rem; }
+  .grid-section { padding: 4rem 1.2rem 3rem; }
+  footer { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+<canvas id="gl"></canvas>
+<div class="overlay"></div>
+<nav>
+  <a href="#hero">Sobuj</a>
+  <div class="nav-links">
+    <a href="#stories">Stories</a>
+    <a href="#pinterest">Pinterest</a>
+    <a href="#blockchain">Blockchain</a>
+  </div>
+</nav>
+<div class="content">
+  <section class="chapter hero" id="hero">
+    <div class="issue-label">Issue 01 · October 2026</div>
+    <h1>Men Are<br>Brave.</h1>
+    <p class="sub">Stories, visuals, and quiet notes on the chain.<br>Written slowly. Not loud. Just steady.</p>
+    <div class="scroll-cue">Scroll</div>
+  </section>
+  <section class="grid-section" id="stories">
+    <div class="chapter-num">Stories</div>
+    <h2>Own writing</h2>
+    <p class="section-desc">Personal stories. Short, quiet, and unfinished in the best way.</p>
+    <div class="posts">
+      <a class="post" href="story-sandhya.html"><h3>সন্ধ্যা</h3><p>তিনটা ছবি।</p><div class="date">9 Oct</div></a>
+      <a class="post" href="story-hell.html"><h3>এক নরকের মাঝখানে</h3><p>পৃথিবীর দিকে বেশি তাকালে চোখ জ্বালাপোড়া করে।</p><div class="date">12 Sep</div></a>
+      <a class="post" href="story-night.html"><h3>রাতের শহর</h3><p>রাত বারোটার পরে একটা ছোট শহর, রিকশা, আর খালি রাস্তা।</p><div class="date">12 Aug</div></a>
+      <a class="post" href="story-rose.html"><h3>নিজের জন্য একটা গোলাপ</h3><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময়।</p><div class="date">27 Jul</div></a>
+    </div>
+  </section>
+  <section class="grid-section" id="pinterest">
+    <div class="chapter-num">Pinterest</div>
+    <h2>Visuals</h2>
+    <p class="section-desc">Pictures collected and made.</p>
+    <div class="gallery">
+      <div class="gallery-item"><span>সন্ধ্যা</span></div>
+      <div class="gallery-item"><span>সন্ধ্যা</span></div>
+      <div class="gallery-item"><span>সন্ধ্যা</span></div>
+    </div>
+  </section>
+  <section class="grid-section" id="blockchain">
+    <div class="chapter-num">Blockchain</div>
+    <h2>Notes for X</h2>
+    <p class="section-desc">Short thoughts written for the timeline. On trust, copies, and what a chain is actually for.</p>
+    <div class="posts">
+      <div class="post"><h3>A ledger is a promise</h3><p>Trust, copies, and what a chain is actually for. Not loud. Just a record that holds.</p><div class="date">Blockchain</div></div>
+      <div class="post"><h3>Seen by all. Known by one.</h3><p>Some things stay encrypted on purpose. The public sees the mark. Only the holder sees the essence.</p><div class="date">Note</div></div>
+    </div>
+  </section>
+  <section class="chapter" id="about">
+    <div class="chapter-num">—</div>
+    <h2>Not loud.<br>Just steady.</h2>
+    <p>Stories, pictures, and notes. Written and collected slowly.</p>
+    <div class="meta">Sobuj Islam</div>
+  </section>
+  <footer>
+    <div>
+      <div style="font-family: 'Instrument Serif', serif; font-size: 1.3rem; margin-bottom: 0.3rem;">Sobuj</div>
+      <div style="font-size: 0.75rem; color: var(--muted);">© 2026 · Men Are Brave</div>
+    </div>
+    <div class="socials">
+      <a href="https://www.instagram.com/sobuj_nothing">Instagram</a>
+      <a href="https://x.com/Robiulislam796">X</a>
+      <a href="https://www.facebook.com/share/1CJnpbYL1G/">Facebook</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
