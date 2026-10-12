@@ -8,33 +8,37 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#c9d8c4;--ink:#1a241c;--muted:#4e5d54;--accent:#24382c}
+:root{--bg:#eef3ea;--panel:#e4eee0;--panel2:#d2e0cc;--ink:#1a241c;--muted:#4e5d54;--accent:#24382c;--card:rgba(255,255,255,.58);--nav:rgba(247,250,245,.82);--title:#f7faf5;--line:rgba(26,36,28,.08)}
+html[data-theme="dark"]{--bg:#0c0f12;--panel:#14181c;--panel2:#101418;--ink:#f3efe6;--muted:#a39b90;--accent:#d7c4a8;--card:rgba(255,255,255,.045);--nav:rgba(16,18,22,.72);--title:#f6f2ea;--line:rgba(243,239,230,.1)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:#eef3ea;color:var(--ink);font-family:'Outfit',system-ui,sans-serif;font-weight:300;line-height:1.7}
-nav{position:sticky;top:12px;z-index:20;width:min(1120px,calc(100% - 24px));margin:12px auto 0;display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;background:rgba(247,250,245,.82);border:1px solid rgba(255,255,255,.8);border-radius:16px;backdrop-filter:blur(16px)}
+body{background:var(--bg);color:var(--ink);font-family:'Outfit',system-ui,sans-serif;font-weight:300;line-height:1.7;transition:background .35s,color .35s}
+#dust{position:fixed;inset:0;z-index:0;pointer-events:none}
+nav{position:sticky;top:12px;z-index:20;width:min(1120px,calc(100% - 24px));margin:12px auto 0;display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;background:var(--nav);border:1px solid var(--line);border-radius:16px;backdrop-filter:blur(16px)}
 .brand{font-family:'Instrument Serif',serif;font-size:1.3rem;letter-spacing:.1em;text-decoration:none;color:var(--ink)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.theme{border:0;background:transparent;color:var(--accent);font-family:inherit;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
 .nav-links{display:flex;gap:1.15rem}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
-main{width:min(1120px,calc(100% - 24px));margin:14px auto 3rem;background:linear-gradient(180deg,#e4eee0,#d2e0cc);border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.6);box-shadow:0 24px 60px rgba(30,50,35,.1)}
+main{position:relative;z-index:1;width:min(1120px,calc(100% - 24px));margin:14px auto 3rem;background:linear-gradient(180deg,var(--panel),var(--panel2));border-radius:28px;overflow:hidden;border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.12)}
 .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;padding:4.5rem 7vw 3.5rem}
 .kicker{letter-spacing:.22em;text-transform:uppercase;font-size:.68rem;color:var(--accent);margin-bottom:.8rem}
-h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(3.6rem,8vw,7.2rem);line-height:.88;color:#f7faf5}
+h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(3.6rem,8vw,7.2rem);line-height:.88;color:var(--title)}
 .sub{max-width:26rem;margin-top:1.1rem;color:var(--accent);font-size:1.05rem}
 .hero-meta{margin-top:1.4rem;display:flex;gap:.5rem;flex-wrap:wrap}
-.pill{background:rgba(255,255,255,.62);border-radius:999px;padding:.4rem .75rem;font-size:.72rem;color:var(--accent)}
-.hero-pic{width:min(340px,100%);aspect-ratio:4/5;object-fit:cover;object-position:center 18%;border-radius:28px;justify-self:end;box-shadow:0 24px 50px rgba(30,50,35,.18);border:5px solid rgba(255,255,255,.75)}
+.pill{background:var(--card);border-radius:999px;padding:.4rem .75rem;font-size:.72rem;color:var(--accent)}
+.hero-pic{width:min(340px,100%);aspect-ratio:4/5;object-fit:cover;object-position:center 18%;border-radius:28px;justify-self:end;box-shadow:0 24px 50px rgba(0,0,0,.18);border:5px solid rgba(255,255,255,.2)}
 section{padding:3.6rem 7vw}
 .sec-label{color:var(--accent);letter-spacing:.18em;text-transform:uppercase;font-size:.68rem;margin-bottom:.45rem}
 h2{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:.95;margin-bottom:.5rem}
 .lead{color:var(--muted);max-width:32rem;margin-bottom:1.4rem}
-.featured{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.75);border-radius:24px;padding:1.4rem;display:grid;grid-template-columns:160px 1fr;gap:1.1rem;align-items:center;cursor:pointer;margin-bottom:1rem;transition:transform .3s}
+.featured{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:1.4rem;display:grid;grid-template-columns:160px 1fr;gap:1.1rem;align-items:center;cursor:pointer;margin-bottom:1rem;transition:transform .3s}
 .featured:hover,.card:hover{transform:translateY(-4px)}
 .featured img{width:100%;height:180px;object-fit:cover;object-position:center 18%;border-radius:16px}
 .featured h3{font-family:'Instrument Serif',serif;font-size:clamp(1.6rem,3vw,2.3rem);line-height:1.05;margin:.25rem 0 .4rem}
 .featured p{color:var(--muted)}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.8rem}
-.card,.note{background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:1.1rem}
+.card,.note{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.1rem}
 .card{cursor:pointer}
 .card h3{font-size:1.08rem;font-weight:500;margin:.25rem 0 .3rem}
 .card p,.note p{color:var(--muted);font-size:.94rem}
@@ -47,7 +51,7 @@ h2{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);lin
 .dl{background:#fff;color:#111;border:0;border-radius:999px;padding:.32rem .6rem;font-size:.68rem;text-decoration:none}
 .notes{display:flex;flex-direction:column;gap:.7rem;max-width:44rem}
 .note h3{font-weight:500;margin-bottom:.15rem}
-footer{padding:1.8rem 7vw 2rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:end;border-top:1px solid rgba(26,36,28,.08)}
+footer{padding:1.8rem 7vw 2rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:end;border-top:1px solid var(--line)}
 .socials{display:flex;gap:.9rem;flex-wrap:wrap}
 .socials a{color:var(--accent);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;font-size:.72rem}
 .lb,.reader{position:fixed;inset:0;z-index:40;background:rgba(20,30,24,.72);display:none;padding:1rem}
@@ -66,12 +70,16 @@ footer{padding:1.8rem 7vw 2rem;display:flex;justify-content:space-between;gap:1r
 </style>
 </head>
 <body>
+<canvas id="dust"></canvas>
 <nav>
   <a class="brand" href="#top">SOBUJ</a>
-  <div class="nav-links">
-    <a href="#stories">Story</a>
-    <a href="#pinterest">Pinterest</a>
-    <a href="#chain">Chain</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#stories">Story</a>
+      <a href="#pinterest">Pinterest</a>
+      <a href="#chain">Chain</a>
+    </div>
+    <button class="theme" id="theme" type="button">Dark</button>
   </div>
 </nav>
 <main id="top">
@@ -175,6 +183,39 @@ footer{padding:1.8rem 7vw 2rem;display:flex;justify-content:space-between;gap:1r
   <article id="story-rose" data-title="নিজের জন্য একটা গোলাপ" data-date="27 July 2026" data-pics="https://x0.at/ohUg.jpg"><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময় হঠাৎ মনে পড়ল, বহুদিন কারও জন্য ফুল কেনা হয়নি। শেষবার ফুল কিনেছিলাম লাবণ্যর জন্য। বারান্দার রেলিংয়ের দিকে হাত বাড়িয়ে বেশ কষ্ট করে দিতে হয়েছিল সেই ফুল। ওকে কিছু দিতে পারলে ভালো লাগত আমার। বুঝতে পারিনি, সেসব জিনিস ওর কাছে কেবল সস্তা বস্তু ছিল। আমার খারাপ লাগবে ভেবে হয়তো কখনো বলেনি।</p><p>যাকগে, আজ নিজের জন্য একটা গোলাপ কিনেছি। যদিও গোলাপ আমার পছন্দ নয়। আমার পছন্দ বেলিফুল। নিজেকে গোলাপটা দিয়ে বললাম, “তোমার নিজেকে ভালোবাসা উচিত, সবুজ।” এরপর গোলাপটাকে নিষ্ঠুরভাবে ছুড়ে ফেলে দিয়েছি রাস্তায়। ফুলের প্রসঙ্গ এখন থাক।</p><p>আমি সিগারেট টানতে টানতে আসলে ভাবছি অন্য কিছু। যার জন্য কিছুদিন আগেও মরে যাওয়ার কথা ভাবছিলাম, আজকাল তার কথা ভেবে আর খারাপ লাগে না। না তার প্রতি ভালোবাসা আসে, না ঘৃণা। তবে হ্যাঁ, মাঝে মাঝে ওর চেহারাটা চোখের সামনে ভেসে ওঠে। তখন আমি আকাশের দিকে তাকাই। উড়ে যাওয়া মেঘ দেখি, পাখি দেখি।</p><p>খানিক আগেও যে পথটা ধরে রিকশায় করে এলাম, বহুদিন ওর সঙ্গে সেই পথেই হাতে হাত রেখে ঘুরেছি। আজ থেকে কিছুদিন আগেও ওই পথ ধরে হাঁটতে পারতাম না। ওর স্মৃতি মাথার ভেতরটা খুবলে খেত। কিন্তু আজ আর খারাপ লাগেনি। উল্টো অট্টহাসি হেসেছি। নিজেকে বলেছি, “সবুজ, তুই কী ভীষণ বোকা!”</p><p>নিজেকেই প্রশ্ন করেছি, “আচ্ছা, একটা মানুষ এতবার ছেড়ে দেওয়ার পরেও তাকে কেউ ফিরিয়ে নেয়? তোর জায়গায় অন্য কেউ হলে হয়তো এই বোকামিটা করত না।” সাইকিয়াট্রিস্টও তো এই কারণেই তোকে বলেছিল, “সবুজ, আপনি তো বোকার থেকেও বেশি বোকা।” আচ্ছা, তুই তো জানতিস ওর ছেড়ে দিয়ে থাকার অভ্যাস আছে। তুই তো জানতিস, যে একবার ছেড়ে যেতে পারে, সে বারবারও পারে।</p><p>আমি নিজেকে করা প্রত্যেকটি প্রশ্নের উত্তর জানি। হাতের সিগারেটটা কখন ফুরিয়ে গেছে, এসব লিখতে লিখতে খেয়ালই করিনি। আমি আরেকটা সিগারেট জ্বালালাম। তারপর কী যেন ভেবে খানিকটা হাসলাম।</p><p>আর কে যেন একটা কথা বলছিল, এই পৃথিবীতে ভালোবাসার ব্যাপারগুলো অনেক আগেই ফিকে হয়ে গেছে। মানুষের সঙ্গে মানুষের সম্পর্ক এখন কেবল বিনিময়ের। এই ব্যাপারগুলো যে যত তাড়াতাড়ি বুঝতে পারবে, তার জন্য ততই ভালো।</p><p>২৭ জুলাই ২০২৬</p></article>
 </div>
 <script>
+var themeBtn=document.getElementById('theme');
+var saved=localStorage.getItem('sobuj-theme')||'light';
+function applyTheme(mode){
+  document.documentElement.setAttribute('data-theme', mode);
+  themeBtn.textContent = mode==='dark' ? 'Light' : 'Dark';
+  localStorage.setItem('sobuj-theme', mode);
+}
+applyTheme(saved);
+themeBtn.onclick=function(){
+  applyTheme(document.documentElement.getAttribute('data-theme')==='dark' ? 'light' : 'dark');
+};
+var c=document.getElementById('dust');
+var x=c.getContext('2d');
+var dots=[];
+function size(){c.width=innerWidth;c.height=innerHeight;}
+size();
+for(var i=0;i<50;i++) dots.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.3+.2,s:Math.random()*.28+.05});
+function draw(){
+  x.clearRect(0,0,c.width,c.height);
+  var dark=document.documentElement.getAttribute('data-theme')==='dark';
+  for(var i=0;i<dots.length;i++){
+    var d=dots[i];
+    d.y-=d.s;
+    if(d.y<-4) d.y=c.height+4;
+    x.beginPath();
+    x.fillStyle=dark?'rgba(215,196,168,.4)':'rgba(36,56,44,.22)';
+    x.arc(d.x,d.y,d.r,0,6.28);
+    x.fill();
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+addEventListener('resize',size);
 var reader=document.getElementById('reader');
 document.querySelectorAll('[data-story]').forEach(function(card){
   card.addEventListener('click', function(){
