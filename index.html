@@ -8,53 +8,53 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#d7e3d2;--ink:#1d2a22;--muted:#5d6b62;--accent:#2f4a3a}
+:root{--bg:#c9d8c4;--ink:#1a241c;--muted:#4e5d54;--accent:#24382c}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:radial-gradient(1200px 700px at 50% -10%, #eef6ea, #d7e3d2 55%);color:var(--ink);font-family:'Outfit',system-ui,sans-serif;font-weight:300;line-height:1.7}
-nav{position:sticky;top:14px;z-index:20;width:min(1180px,calc(100% - 28px));margin:14px auto 0;display:flex;justify-content:space-between;align-items:center;padding:.85rem 1.1rem;background:rgba(247,250,245,.72);border:1px solid rgba(255,255,255,.7);border-radius:18px;backdrop-filter:blur(16px)}
-.brand{font-family:'Instrument Serif',serif;font-size:1.35rem;letter-spacing:.08em;text-decoration:none;color:var(--ink)}
-.nav-links{display:flex;gap:1.2rem}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
-main{width:min(1180px,calc(100% - 28px));margin:18px auto 4rem;background:linear-gradient(180deg,#e7f0e2,#d5e2d0);border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.5);box-shadow:0 30px 80px rgba(40,60,45,.12)}
-.hero{min-height:86vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:6.2rem 1.4rem 4rem}
-.hero-pic{width:min(220px,42vw);height:min(280px,52vw);object-fit:cover;object-position:center 20%;border-radius:28px;margin-bottom:1.2rem;box-shadow:0 20px 40px rgba(40,60,45,.18);border:4px solid rgba(255,255,255,.7)}
-.kicker{letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;color:var(--accent);margin-bottom:1rem}
-h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(4.6rem,14vw,10.5rem);line-height:.86;color:#fff;text-shadow:0 10px 40px rgba(40,70,50,.18)}
-.sub{max-width:28rem;margin-top:1.4rem;color:var(--accent);font-size:1.05rem}
-.visits{margin-top:1rem;border:0;background:rgba(255,255,255,.6);border-radius:999px;padding:.45rem .8rem;color:var(--accent);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;font-family:inherit;cursor:pointer}
-.hero-meta{margin-top:1.2rem;display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center}
-.pill{background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.7);border-radius:999px;padding:.45rem .8rem;font-size:.75rem;color:var(--accent)}
-section{padding:4.5rem 7vw}
-.sec-label{color:var(--accent);letter-spacing:.18em;text-transform:uppercase;font-size:.72rem;margin-bottom:.5rem}
-h2{font-family:'Instrument Serif',serif;font-size:clamp(2.4rem,5vw,4rem);line-height:.95;margin-bottom:.6rem}
-.lead{color:var(--muted);max-width:32rem;margin-bottom:1.6rem}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
-.card,.note{background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.7);border-radius:22px;padding:1.2rem;transition:transform .35s}
+body{background:#eef3ea;color:var(--ink);font-family:'Outfit',system-ui,sans-serif;font-weight:300;line-height:1.7}
+nav{position:sticky;top:12px;z-index:20;width:min(1120px,calc(100% - 24px));margin:12px auto 0;display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;background:rgba(247,250,245,.82);border:1px solid rgba(255,255,255,.8);border-radius:16px;backdrop-filter:blur(16px)}
+.brand{font-family:'Instrument Serif',serif;font-size:1.3rem;letter-spacing:.1em;text-decoration:none;color:var(--ink)}
+.nav-links{display:flex;gap:1.15rem}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+main{width:min(1120px,calc(100% - 24px));margin:14px auto 3rem;background:linear-gradient(180deg,#e4eee0,#d2e0cc);border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.6);box-shadow:0 24px 60px rgba(30,50,35,.1)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;padding:4.5rem 7vw 3.5rem}
+.kicker{letter-spacing:.22em;text-transform:uppercase;font-size:.68rem;color:var(--accent);margin-bottom:.8rem}
+h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(3.6rem,8vw,7.2rem);line-height:.88;color:#f7faf5}
+.sub{max-width:26rem;margin-top:1.1rem;color:var(--accent);font-size:1.05rem}
+.hero-meta{margin-top:1.4rem;display:flex;gap:.5rem;flex-wrap:wrap}
+.pill{background:rgba(255,255,255,.62);border-radius:999px;padding:.4rem .75rem;font-size:.72rem;color:var(--accent)}
+.hero-pic{width:min(340px,100%);aspect-ratio:4/5;object-fit:cover;object-position:center 18%;border-radius:28px;justify-self:end;box-shadow:0 24px 50px rgba(30,50,35,.18);border:5px solid rgba(255,255,255,.75)}
+section{padding:3.6rem 7vw}
+.sec-label{color:var(--accent);letter-spacing:.18em;text-transform:uppercase;font-size:.68rem;margin-bottom:.45rem}
+h2{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:.95;margin-bottom:.5rem}
+.lead{color:var(--muted);max-width:32rem;margin-bottom:1.4rem}
+.featured{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.75);border-radius:24px;padding:1.4rem;display:grid;grid-template-columns:160px 1fr;gap:1.1rem;align-items:center;cursor:pointer;margin-bottom:1rem;transition:transform .3s}
+.featured:hover,.card:hover{transform:translateY(-4px)}
+.featured img{width:100%;height:180px;object-fit:cover;object-position:center 18%;border-radius:16px}
+.featured h3{font-family:'Instrument Serif',serif;font-size:clamp(1.6rem,3vw,2.3rem);line-height:1.05;margin:.25rem 0 .4rem}
+.featured p{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.8rem}
+.card,.note{background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:1.1rem}
 .card{cursor:pointer}
-.card:hover{transform:translateY(-6px)}
-.card h3{font-size:1.15rem;font-weight:500;margin:.3rem 0 .35rem}
-.card p,.note p{color:var(--muted);font-size:.95rem}
-.date{margin-top:.7rem;color:var(--accent);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}
-.read{margin-top:.7rem;color:var(--accent);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}
-.pin-grid{columns:3 210px;column-gap:.9rem}
-.pin{break-inside:avoid;margin-bottom:.9rem;position:relative;border-radius:20px;overflow:hidden;background:#fff;cursor:pointer}
+.card h3{font-size:1.08rem;font-weight:500;margin:.25rem 0 .3rem}
+.card p,.note p{color:var(--muted);font-size:.94rem}
+.date{margin-top:.65rem;color:var(--accent);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}
+.read{margin-top:.55rem;color:var(--accent);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+.pin-grid{columns:3 200px;column-gap:.8rem}
+.pin{break-inside:avoid;margin-bottom:.8rem;position:relative;border-radius:18px;overflow:hidden;background:#fff;cursor:pointer}
 .pin img{width:100%;display:block}
-.pin figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:.65rem .75rem;background:linear-gradient(transparent,rgba(20,30,22,.7));color:#fff}
-.dl{background:#fff;color:#111;border:0;border-radius:999px;padding:.35rem .65rem;font-size:.7rem;text-decoration:none}
-.notes{display:flex;flex-direction:column;gap:.8rem;max-width:46rem}
-.note h3{font-weight:500;margin-bottom:.2rem}
-footer{padding:2rem 7vw 2.4rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:end}
-.socials{display:flex;gap:1rem;flex-wrap:wrap}
-.socials a{color:var(--accent);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;font-size:.75rem}
-.dock{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:25;width:min(680px,calc(100% - 24px));background:#fff;border-radius:18px;display:flex;align-items:center;justify-content:space-between;padding:.55rem .7rem .55rem 1rem;box-shadow:0 12px 40px rgba(20,40,30,.18)}
-.dock span{font-family:'Instrument Serif',serif;font-size:1.15rem}
-.dock a{background:#1d2a22;color:#fff;text-decoration:none;border-radius:12px;padding:.55rem .8rem;font-size:.78rem}
+.pin figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:.6rem .7rem;background:linear-gradient(transparent,rgba(20,30,22,.72));color:#fff;font-size:.85rem}
+.dl{background:#fff;color:#111;border:0;border-radius:999px;padding:.32rem .6rem;font-size:.68rem;text-decoration:none}
+.notes{display:flex;flex-direction:column;gap:.7rem;max-width:44rem}
+.note h3{font-weight:500;margin-bottom:.15rem}
+footer{padding:1.8rem 7vw 2rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:end;border-top:1px solid rgba(26,36,28,.08)}
+.socials{display:flex;gap:.9rem;flex-wrap:wrap}
+.socials a{color:var(--accent);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;font-size:.72rem}
 .lb,.reader{position:fixed;inset:0;z-index:40;background:rgba(20,30,24,.72);display:none;padding:1rem}
 .lb.open,.reader.open{display:flex;align-items:center;justify-content:center}
 .lb img{max-width:100%;max-height:78vh;border-radius:16px}
 .lb-bar{position:absolute;left:0;right:0;bottom:0;display:flex;gap:.5rem;justify-content:center;padding:1rem;flex-wrap:wrap}
-.lb-bar button,.lb-bar a,.xbtn{border:0;border-radius:999px;padding:.5rem .85rem;background:#1d2a22;color:#fff;font-size:.78rem;text-decoration:none;font-family:inherit;cursor:pointer}
+.lb-bar button,.lb-bar a,.xbtn{border:0;border-radius:999px;padding:.5rem .85rem;background:#1a241c;color:#fff;font-size:.78rem;text-decoration:none;font-family:inherit;cursor:pointer}
 .sheet{width:min(680px,100%);max-height:94vh;overflow:auto;background:#f7f3eb;color:#1c1915;border-radius:28px;padding:1.5rem 1.3rem 2.2rem}
 .reader-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
 .sheet h3{font-family:'Instrument Serif',serif;font-size:clamp(2rem,6vw,3.1rem);line-height:1.05;margin:.2rem 0 1rem}
@@ -62,7 +62,7 @@ footer{padding:2rem 7vw 2.4rem;display:flex;justify-content:space-between;gap:1r
 .story-pics img{width:100%;border-radius:16px;display:block}
 .story-body{font-family:'Instrument Serif',serif;font-size:1.18rem;line-height:1.9}
 .story-body p{margin:0 0 1.1rem}
-@media(max-width:700px){.nav-links{gap:.65rem}.hero{padding-top:5.5rem}.pin-grid{columns:2 140px}}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding:5rem 1.1rem 2.5rem;text-align:center}.hero-pic{justify-self:center;width:min(240px,70vw)}.hero-meta{justify-content:center}section{padding-left:1.1rem;padding-right:1.1rem}.featured{grid-template-columns:1fr}.pin-grid{columns:2 140px}.nav-links{gap:.65rem}}
 </style>
 </head>
 <body>
@@ -76,19 +76,28 @@ footer{padding:2rem 7vw 2.4rem;display:flex;justify-content:space-between;gap:1r
 </nav>
 <main id="top">
   <header class="hero">
+    <div>
+      <div class="kicker">Issue 01 · October 2026</div>
+      <h1>Men Are<br>Brave</h1>
+      <p class="sub">Stories, pictures, and quiet notes. Not loud. Just steady.</p>
+      <div class="hero-meta"><span class="pill">Story</span><span class="pill">Pinterest</span><span class="pill">Blockchain</span></div>
+    </div>
     <img class="hero-pic" src="https://x0.at/pdkv.jpg" alt="Sobuj">
-    <div class="kicker">Issue 01 · October 2026</div>
-    <h1>Men Are<br>Brave</h1>
-    <p class="sub">Stories, pictures, and quiet notes. Not loud. Just steady.</p>
-    <button class="visits" id="visits" type="button">Visitors · …</button>
-    <div class="hero-meta"><span class="pill">Story</span><span class="pill">Pinterest</span><span class="pill">Blockchain</span></div>
   </header>
   <section id="stories">
     <div class="sec-label">Story</div>
     <h2>Own writing</h2>
     <p class="lead">Tap a card. The full piece opens like a magazine page.</p>
+    <article class="featured" data-story="mirror">
+      <img src="https://x0.at/pdkv.jpg" alt="আয়নার সামনে">
+      <div>
+        <div class="sec-label">Featured · 2 Sep 2026</div>
+        <h3>আয়নার সামনে</h3>
+        <p>নিজের সঙ্গে কথা বলা আমার বেশ পুরনো দিনের অভ্যাস।</p>
+        <div class="read">Read the story →</div>
+      </div>
+    </article>
     <div class="cards">
-      <article class="card" data-story="mirror"><div class="sec-label">Story</div><h3>আয়নার সামনে</h3><p>নিজের সঙ্গে কথা বলা আমার বেশ পুরনো দিনের অভ্যাস।</p><div class="date">2 Sep 2026</div><div class="read">Read →</div></article>
       <article class="card" data-story="sandhya"><div class="sec-label">Story</div><h3>সন্ধ্যা</h3><p>তিনটা ছবি। সন্ধ্যার আলো, রেলিং, আর একটা শহর যেটা কথা বলে না।</p><div class="date">9 Oct 2026</div><div class="read">Read →</div></article>
       <article class="card" data-story="hell"><div class="sec-label">Story</div><h3>এক নরকের মাঝখানে</h3><p>এই পৃথিবীর দিকে বেশি তাকাইয়া থাকলে চোখ জ্বালাপোড়া করে।</p><div class="date">12 Sep 2026</div><div class="read">Read →</div></article>
       <article class="card" data-story="night"><div class="sec-label">Story</div><h3>রাতের শহর</h3><p>রাত বারোটার পরে একটা ছোট শহর, রিকশা, আর খালি রাস্তা।</p><div class="date">12 Aug 2026</div><div class="read">Read →</div></article>
@@ -118,8 +127,8 @@ footer{padding:2rem 7vw 2.4rem;display:flex;justify-content:space-between;gap:1r
   </section>
   <footer>
     <div>
-      <div style="font-family:'Instrument Serif',serif;font-size:1.4rem">Sobuj</div>
-      <div style="color:var(--muted);font-size:.78rem">© 2026 · Men Are Brave</div>
+      <div style="font-family:'Instrument Serif',serif;font-size:1.35rem">Sobuj</div>
+      <div style="color:var(--muted);font-size:.75rem">© 2026 · Men Are Brave</div>
     </div>
     <div class="socials">
       <a href="https://www.instagram.com/sobuj_nothing">Instagram</a>
@@ -129,7 +138,6 @@ footer{padding:2rem 7vw 2.4rem;display:flex;justify-content:space-between;gap:1r
     </div>
   </footer>
 </main>
-<div class="dock"><span>Men Are Brave</span><a href="#stories">Read stories</a></div>
 <div class="reader" id="reader">
   <div class="sheet">
     <div class="reader-top"><div class="sec-label" id="rdate"></div><button class="xbtn" id="rx">Close</button></div>
@@ -167,16 +175,8 @@ footer{padding:2rem 7vw 2.4rem;display:flex;justify-content:space-between;gap:1r
   <article id="story-rose" data-title="নিজের জন্য একটা গোলাপ" data-date="27 July 2026" data-pics="https://x0.at/ohUg.jpg"><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময় হঠাৎ মনে পড়ল, বহুদিন কারও জন্য ফুল কেনা হয়নি। শেষবার ফুল কিনেছিলাম লাবণ্যর জন্য। বারান্দার রেলিংয়ের দিকে হাত বাড়িয়ে বেশ কষ্ট করে দিতে হয়েছিল সেই ফুল। ওকে কিছু দিতে পারলে ভালো লাগত আমার। বুঝতে পারিনি, সেসব জিনিস ওর কাছে কেবল সস্তা বস্তু ছিল। আমার খারাপ লাগবে ভেবে হয়তো কখনো বলেনি।</p><p>যাকগে, আজ নিজের জন্য একটা গোলাপ কিনেছি। যদিও গোলাপ আমার পছন্দ নয়। আমার পছন্দ বেলিফুল। নিজেকে গোলাপটা দিয়ে বললাম, “তোমার নিজেকে ভালোবাসা উচিত, সবুজ।” এরপর গোলাপটাকে নিষ্ঠুরভাবে ছুড়ে ফেলে দিয়েছি রাস্তায়। ফুলের প্রসঙ্গ এখন থাক।</p><p>আমি সিগারেট টানতে টানতে আসলে ভাবছি অন্য কিছু। যার জন্য কিছুদিন আগেও মরে যাওয়ার কথা ভাবছিলাম, আজকাল তার কথা ভেবে আর খারাপ লাগে না। না তার প্রতি ভালোবাসা আসে, না ঘৃণা। তবে হ্যাঁ, মাঝে মাঝে ওর চেহারাটা চোখের সামনে ভেসে ওঠে। তখন আমি আকাশের দিকে তাকাই। উড়ে যাওয়া মেঘ দেখি, পাখি দেখি।</p><p>খানিক আগেও যে পথটা ধরে রিকশায় করে এলাম, বহুদিন ওর সঙ্গে সেই পথেই হাতে হাত রেখে ঘুরেছি। আজ থেকে কিছুদিন আগেও ওই পথ ধরে হাঁটতে পারতাম না। ওর স্মৃতি মাথার ভেতরটা খুবলে খেত। কিন্তু আজ আর খারাপ লাগেনি। উল্টো অট্টহাসি হেসেছি। নিজেকে বলেছি, “সবুজ, তুই কী ভীষণ বোকা!”</p><p>নিজেকেই প্রশ্ন করেছি, “আচ্ছা, একটা মানুষ এতবার ছেড়ে দেওয়ার পরেও তাকে কেউ ফিরিয়ে নেয়? তোর জায়গায় অন্য কেউ হলে হয়তো এই বোকামিটা করত না।” সাইকিয়াট্রিস্টও তো এই কারণেই তোকে বলেছিল, “সবুজ, আপনি তো বোকার থেকেও বেশি বোকা।” আচ্ছা, তুই তো জানতিস ওর ছেড়ে দিয়ে থাকার অভ্যাস আছে। তুই তো জানতিস, যে একবার ছেড়ে যেতে পারে, সে বারবারও পারে।</p><p>আমি নিজেকে করা প্রত্যেকটি প্রশ্নের উত্তর জানি। হাতের সিগারেটটা কখন ফুরিয়ে গেছে, এসব লিখতে লিখতে খেয়ালই করিনি। আমি আরেকটা সিগারেট জ্বালালাম। তারপর কী যেন ভেবে খানিকটা হাসলাম।</p><p>আর কে যেন একটা কথা বলছিল, এই পৃথিবীতে ভালোবাসার ব্যাপারগুলো অনেক আগেই ফিকে হয়ে গেছে। মানুষের সঙ্গে মানুষের সম্পর্ক এখন কেবল বিনিময়ের। এই ব্যাপারগুলো যে যত তাড়াতাড়ি বুঝতে পারবে, তার জন্য ততই ভালো।</p><p>২৭ জুলাই ২০২৬</p></article>
 </div>
 <script>
-fetch('https://countapi.mileshilliard.com/api/v1/hit/sobuj-journal-visits').then(function(r){return r.json();}).then(function(d){
-  var n = d && d.value ? d.value : '—';
-  var el = document.getElementById('visits');
-  el.textContent = 'Visitors · ' + n;
-  el.onclick = function(){ alert('Total visits: ' + n); };
-}).catch(function(){
-  document.getElementById('visits').textContent = 'Visitors';
-});
 var reader=document.getElementById('reader');
-document.querySelectorAll('.card[data-story]').forEach(function(card){
+document.querySelectorAll('[data-story]').forEach(function(card){
   card.addEventListener('click', function(){
     var id=card.getAttribute('data-story');
     var src=document.getElementById('story-'+id);
