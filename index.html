@@ -4,322 +4,262 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sobuj — Men Are Brave</title>
-<meta name="description" content="Stories, pictures, and quiet notes by Sobuj Islam.">
+<meta name="description" content="Stories, pictures, and notes by Sobuj Islam.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #e4dfd9;
-  --ink: #171717;
-  --muted: #5c5752;
-  --accent: #ff6a1f;
-  --card: #ffffff;
-  --line: rgba(23,23,23,0.08);
-  --shadow: 0 6px 27px rgba(0,0,0,0.07);
+:root{
+  --bg:#e4dfd9;--ink:#050505;--muted:#737373;--line:#c7c7c7;
+  --graphite:#171717;--ember:#ff6a1f;--white:#ffffff;--stone:#999694;
+  --card:#ffffff;--nav:rgba(228,223,217,.88)
 }
-[data-theme="dark"] {
-  --bg: #0f0f0f;
-  --ink: #f4f1ea;
-  --muted: #a39e96;
-  --card: #1a1a1a;
-  --line: rgba(244,241,234,0.1);
-  --shadow: 0 6px 27px rgba(0,0,0,0.35);
+html[data-theme="dark"]{
+  --bg:#0c0c0c;--ink:#f4efe6;--muted:#b0a99e;--line:rgba(244,239,230,.12);
+  --graphite:#e8e4de;--ember:#ff8a4c;--white:#1a1a1a;--stone:#a39b90;
+  --card:rgba(255,255,255,.06);--nav:rgba(12,12,12,.82)
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: 'Outfit', system-ui, sans-serif;
-  font-weight: 400;
-  line-height: 1.6;
-  letter-spacing: -0.01em;
-  transition: background 0.5s ease, color 0.5s ease;
-}
-img { filter: none !important; mix-blend-mode: normal !important; }
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 1.1rem 2.5rem;
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--line);
-  font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
-}
-nav a { color: var(--ink); text-decoration: none; opacity: 0.65; transition: opacity 0.3s, color 0.3s; }
-nav a:hover { opacity: 1; color: var(--accent); }
-.nav-links { display: flex; gap: 2rem; }
-.theme-btn {
-  background: none; border: 1px solid var(--line); color: var(--ink);
-  padding: 0.4rem 0.9rem; border-radius: 999px; cursor: pointer;
-  font-size: 0.78rem; letter-spacing: 0.06em; transition: all 0.3s;
-}
-.theme-btn:hover { border-color: var(--accent); color: var(--accent); transform: scale(1.05); }
-
-.hero {
-  min-height: 100vh; display: flex; align-items: center; justify-content: center;
-  text-align: center; position: relative; overflow: hidden;
-}
-.hero video {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;
-}
-.hero::before {
-  content: ''; position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.65) 100%);
-}
-.hero-content { position: relative; z-index: 2; color: #fff; padding: 2rem; }
-.hero h1 {
-  font-family: 'Instrument Serif', serif;
-  font-size: clamp(3.8rem, 9vw, 6.8rem);
-  font-weight: 400; line-height: 0.92; letter-spacing: -0.03em;
-  animation: fadeInUp 1.2s ease-out;
-}
-.hero h1 .dot { color: var(--accent); animation: pulse 2.4s infinite; }
-.hero p { margin-top: 1.4rem; font-size: 1.1rem; opacity: 0.9; max-width: 480px; margin-left: auto; margin-right: auto; font-weight: 300; animation: fadeInUp 1.4s ease-out 0.2s both; }
-
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
-@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.55; } }
-
-section { padding: 7.5rem 2rem; max-width: 1120px; margin: 0 auto; }
-h2 {
-  font-family: 'Instrument Serif', serif;
-  font-size: clamp(2.4rem, 4.5vw, 3.4rem);
-  font-weight: 400; margin-bottom: 2.8rem; letter-spacing: -0.02em;
-  opacity: 0; transform: translateY(20px);
-}
-h2.visible { opacity: 1; transform: none; transition: all 0.8s cubic-bezier(0.22,1,0.36,1); }
-h2 .dot { color: var(--accent); }
-
-.stories { display: grid; gap: 1.4rem; }
-.story-card {
-  background: var(--card); border-radius: 20px; padding: 2rem 2.2rem;
-  box-shadow: var(--shadow); cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s, border-color 0.3s;
-  border: 1px solid transparent;
-  opacity: 0; transform: translateY(28px);
-}
-.story-card.visible { opacity: 1; transform: none; transition: all 0.85s cubic-bezier(0.22,1,0.36,1); }
-.story-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); border-color: var(--accent); }
-.story-card h3 { font-family: 'Instrument Serif', serif; font-size: 1.7rem; margin-bottom: 0.35rem; font-weight: 400; }
-.meta { color: var(--muted); font-size: 0.84rem; margin-bottom: 0.5rem; letter-spacing: 0.02em; }
-.excerpt { color: var(--muted); font-size: 0.98rem; }
-
-.feed { display: grid; gap: 3.2rem; }
-.feed-item { opacity: 0; transform: translateY(40px); }
-.feed-item.visible { opacity: 1; transform: none; transition: all 1s cubic-bezier(0.22,1,0.36,1); }
-.feed-item img { width: 100%; border-radius: 20px; display: block; box-shadow: var(--shadow); transition: transform 0.5s; }
-.feed-item:hover img { transform: scale(1.02); }
-.caption { margin-top: 1rem; text-align: center; color: var(--muted); font-size: 1.02rem; }
-
-.pins { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.4rem; }
-.pin {
-  background: var(--card); border-radius: 20px; overflow: hidden;
-  box-shadow: var(--shadow); transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
-  opacity: 0; transform: translateY(24px);
-}
-.pin.visible { opacity: 1; transform: none; transition: all 0.8s cubic-bezier(0.22,1,0.36,1); }
-.pin:hover { transform: translateY(-6px) scale(1.02); }
-.pin img { width: 100%; display: block; transition: transform 0.6s ease; }
-.pin:hover img { transform: scale(1.06); }
-.pin figcaption { padding: 1rem 1.2rem; font-size: 0.92rem; }
-
-.chain { display: grid; gap: 1.2rem; }
-.note {
-  background: var(--card); border-radius: 20px; padding: 1.8rem 2rem;
-  box-shadow: var(--shadow); transition: transform 0.35s;
-  opacity: 0; transform: translateY(20px);
-}
-.note.visible { opacity: 1; transform: none; transition: all 0.75s cubic-bezier(0.22,1,0.36,1); }
-.note:hover { transform: translateY(-4px); }
-.note h3 { font-family: 'Instrument Serif', serif; font-size: 1.4rem; margin-bottom: 0.4rem; font-weight: 400; }
-
-footer {
-  text-align: center; padding: 5rem 2rem; color: var(--muted);
-  font-size: 0.88rem; border-top: 1px solid var(--line);
-}
-
-.modal {
-  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.68);
-  z-index: 200; align-items: center; justify-content: center; padding: 1.5rem;
-  backdrop-filter: blur(8px);
-}
-.modal.open { display: flex; }
-.modal-content {
-  background: var(--card); max-width: 760px; width: 100%; max-height: 88vh;
-  overflow-y: auto; padding: 2.8rem; border-radius: 24px; position: relative;
-  box-shadow: 0 24px 70px rgba(0,0,0,0.3);
-  animation: modalIn 0.4s cubic-bezier(0.22,1,0.36,1);
-}
-@keyframes modalIn { from { opacity: 0; transform: scale(0.96) translateY(20px); } to { opacity: 1; transform: none; } }
-.modal-content h3 { font-family: 'Instrument Serif', serif; font-size: 2.1rem; margin-bottom: 0.4rem; font-weight: 400; }
-.close {
-  position: absolute; top: 1.2rem; right: 1.4rem; background: none; border: none;
-  font-size: 1.8rem; cursor: pointer; color: var(--ink); opacity: 0.6; transition: opacity 0.2s, transform 0.2s;
-}
-.close:hover { opacity: 1; transform: scale(1.1); }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Outfit',system-ui,sans-serif;font-weight:400;line-height:1.55}
+nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1rem 4vw;background:var(--nav);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.brand{font-family:'Instrument Serif',serif;font-size:1.5rem;letter-spacing:-.02em;text-decoration:none;color:var(--ink)}
+.nav-right{display:flex;align-items:center;gap:1.2rem}
+.nav-links{display:flex;gap:1.3rem}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:500}
+.nav-links a:hover{color:var(--ink)}
+.theme{border:0;background:var(--graphite);color:var(--bg);font-family:inherit;font-size:.78rem;font-weight:500;padding:.5rem .9rem;border-radius:8px;cursor:pointer}
+.hero{position:relative;height:100vh;min-height:640px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;color:#fff}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:rgba(23,23,23,.45)}
+.hero-inner{position:relative;z-index:2;max-width:820px;padding:0 1.5rem}
+.kicker{letter-spacing:.18em;text-transform:uppercase;font-size:.72rem;margin-bottom:1rem;opacity:.85}
+h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(3.4rem,8vw,5.6rem);line-height:1.05;letter-spacing:-.02em}
+h1 span{color:var(--ember)}
+.sub{margin-top:1.1rem;font-size:1.15rem;max-width:36rem;margin-left:auto;margin-right:auto;opacity:.92}
+.hero-cta{margin-top:1.8rem;display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:#171717;text-decoration:none;padding:.75rem 1.3rem;border-radius:8px;font-weight:500;font-size:.95rem}
+.wrap{width:min(1120px,100%);margin:0 auto;padding:0 4vw}
+section{padding:5rem 0}
+.sec-label{color:var(--ember);letter-spacing:.14em;text-transform:uppercase;font-size:.7rem;margin-bottom:.45rem;font-weight:500}
+h2{font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,2.8rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:.5rem}
+.lead{color:var(--muted);max-width:34rem;margin-bottom:1.6rem;font-size:1.05rem}
+.featured{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.2rem;display:grid;grid-template-columns:1.15fr 1fr;gap:1.4rem;align-items:center;cursor:pointer;margin-bottom:1rem;box-shadow:0 6px 27px rgba(0,0,0,.07)}
+.featured img{width:100%;height:280px;object-fit:cover;object-position:center 15%;border-radius:12px}
+.featured h3{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,3vw,2.3rem);line-height:1.05;margin:.2rem 0 .45rem}
+.featured p{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.card,.note{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.4rem;box-shadow:0 6px 27px rgba(0,0,0,.06)}
+.card{cursor:pointer}
+.card h3{font-size:1.15rem;font-weight:500;margin:.2rem 0 .35rem}
+.card p,.note p{color:var(--muted);font-size:.98rem}
+.date{margin-top:.7rem;color:var(--ember);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.read{margin-top:.55rem;color:var(--ink);font-size:.82rem;font-weight:500}
+.pin-grid{columns:3 210px;column-gap:.9rem}
+.pin{break-inside:avoid;margin-bottom:.9rem;position:relative;border-radius:16px;overflow:hidden;background:#111;cursor:pointer}
+.pin img{width:100%;display:block}
+.pin figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:.6rem .7rem;background:linear-gradient(transparent,rgba(23,23,23,.7));color:#fff;font-size:.84rem}
+.dl{background:#fff;color:#171717;border-radius:999px;padding:.3rem .55rem;font-size:.66rem;text-decoration:none}
+.notes{display:flex;flex-direction:column;gap:.8rem;max-width:42rem}
+.note h3{font-weight:500;margin-bottom:.15rem}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:2.2rem;align-items:center}
+.about img{width:100%;height:360px;object-fit:cover;object-position:center 12%;border-radius:20px}
+.about p{color:var(--muted);margin-top:.5rem}
+footer{background:var(--graphite);color:#f4efe6;padding:2.4rem 4vw;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:end}
+.socials{display:flex;gap:1rem;flex-wrap:wrap}
+.socials a{color:#f4efe6;text-decoration:none;font-size:.82rem}
+.lb,.reader{position:fixed;inset:0;z-index:60;background:rgba(5,5,5,.72);display:none;padding:1rem}
+.lb.open,.reader.open{display:flex;align-items:center;justify-content:center}
+.lb img{max-width:100%;max-height:78vh;border-radius:12px}
+.lb-bar{position:absolute;left:0;right:0;bottom:0;display:flex;gap:.5rem;justify-content:center;padding:1rem;flex-wrap:wrap}
+.lb-bar button,.lb-bar a,.xbtn{border:0;border-radius:8px;padding:.5rem .8rem;background:#171717;color:#fff;font-size:.76rem;text-decoration:none;font-family:inherit;cursor:pointer}
+.sheet{width:min(700px,100%);max-height:94vh;overflow:auto;background:#f7f3eb;color:#050505;border-radius:20px;padding:1.8rem 1.5rem 2.2rem}
+.reader-top{display:flex;justify-content:space-between;align-items:center}
+.sheet h3{font-family:'Instrument Serif',serif;font-size:clamp(2rem,5vw,2.8rem);line-height:1.05;margin:.3rem 0 1rem}
+.story-pics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.6rem;margin-bottom:1rem}
+.story-pics img{width:100%;border-radius:12px}
+.story-body{font-family:'Instrument Serif',serif;font-size:1.18rem;line-height:1.9}
+.story-body p{margin:0 0 1rem}
+img{filter:none !important;mix-blend-mode:normal !important}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+.reveal.show{opacity:1;transform:none}
+@media(max-width:760px){.featured,.about{grid-template-columns:1fr}.featured img,.about img{height:220px}.pin-grid{columns:2 140px}.nav-links{gap:.7rem}.hero{min-height:80vh}}
 </style>
 </head>
 <body>
 <nav>
-  <a href="#top">Sobuj</a>
-  <div class="nav-links">
-    <a href="#stories">Stories</a>
-    <a href="#feed">সন্ধ্যা</a>
-    <a href="#pins">Visuals</a>
-    <a href="#chain">Blockchain</a>
+  <a class="brand" href="#top">SOBUJ</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#stories">Story</a>
+      <a href="#pinterest">Pinterest</a>
+      <a href="#chain">Chain</a>
+    </div>
+    <button class="theme" id="theme" type="button">Dark</button>
   </div>
-  <button class="theme-btn" id="themeBtn">Dark</button>
 </nav>
-
 <header class="hero" id="top">
-  <video autoplay muted loop playsinline poster="https://kappa.lol/ujORf0">
-    <source src="https://cdn.pixabay.com/video/2020/07/30/46026-447087782_large.mp4" type="video/mp4">
+  <video autoplay muted loop playsinline poster="https://x0.at/pdkv.jpg">
+    <source src="https://cdn.pixabay.com/video/2020/05/25/40130-424930032_large.mp4" type="video/mp4">
   </video>
-  <div class="hero-content">
-    <h1>Sobuj<span class="dot">.</span></h1>
-    <p>Men Are Brave<br>Stories, pictures, and quiet notes. Not loud. Just steady.</p>
+  <div class="hero-inner">
+    <div class="kicker">Issue 01 · October 2026</div>
+    <h1>Men Are Brave<span>.</span></h1>
+    <p class="sub">Stories, pictures, and quiet notes. Not loud. Just steady.</p>
+    <a class="hero-cta" href="#stories">Read stories</a>
   </div>
 </header>
-
-<section id="stories">
-  <h2>Stories<span class="dot">.</span></h2>
-  <div class="stories">
-    <div class="story-card" data-story="rose">
-      <h3>নিজের জন্য একটা গোলাপ</h3>
-      <div class="meta">Story · 27 July 2026</div>
-      <p class="excerpt">ফুলের দোকানের সামনে দিয়ে যাওয়ার সময়।</p>
+<main class="wrap">
+  <section class="reveal">
+    <div class="sec-label">The journal</div>
+    <h2>A quiet place for writing</h2>
+    <p class="lead">This is not a loud site. It holds stories, a few pictures, and notes on the chain. Read slowly. Leave when you want.</p>
+  </section>
+  <section id="stories" class="reveal">
+    <div class="sec-label">Story</div>
+    <h2>Own writing</h2>
+    <p class="lead">Tap a card. The full piece opens like a magazine page.</p>
+    <article class="featured" data-story="mirror">
+      <img src="https://x0.at/pdkv.jpg" alt="আয়নার সামনে">
+      <div>
+        <div class="sec-label">Featured · 2 Sep 2026</div>
+        <h3>আয়নার সামনে</h3>
+        <p>নিজের সঙ্গে কথা বলা আমার বেশ পুরনো দিনের অভ্যাস।</p>
+        <div class="read">Read the story →</div>
+      </div>
+    </article>
+    <div class="cards">
+      <article class="card" data-story="sandhya"><div class="sec-label">Story</div><h3>সন্ধ্যা</h3><p>তিনটা ছবি। সন্ধ্যার আলো, রেলিং, আর একটা শহর যেটা কথা বলে না।</p><div class="date">9 Oct 2026</div><div class="read">Read →</div></article>
+      <article class="card" data-story="hell"><div class="sec-label">Story</div><h3>এক নরকের মাঝখানে</h3><p>এই পৃথিবীর দিকে বেশি তাকাইয়া থাকলে চোখ জ্বালাপোড়া করে।</p><div class="date">12 Sep 2026</div><div class="read">Read →</div></article>
+      <article class="card" data-story="night"><div class="sec-label">Story</div><h3>রাতের শহর</h3><p>রাত বারোটার পরে একটা ছোট শহর, রিকশা, আর খালি রাস্তা।</p><div class="date">12 Aug 2026</div><div class="read">Read →</div></article>
+      <article class="card" data-story="rose"><div class="sec-label">Story</div><h3>নিজের জন্য একটা গোলাপ</h3><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময়।</p><div class="date">27 Jul 2026</div><div class="read">Read →</div></article>
     </div>
-    <div class="story-card" data-story="mirror">
-      <h3>আয়নার সামনে</h3>
-      <div class="meta">Story · 2 September 2026</div>
-      <p class="excerpt">আয়নার সামনে দাঁড়িয়ে নিজের সঙ্গে কথা বলা।</p>
+  </section>
+  <section id="pinterest" class="reveal">
+    <div class="sec-label">Pinterest</div>
+    <h2>Visuals</h2>
+    <p class="lead">Tap for full view. Copy the link if you want to share.</p>
+    <div class="pin-grid">
+      <figure class="pin"><img src="https://x0.at/u6Gm.jpg" alt="Emerald Veil"><figcaption><span>Emerald Veil</span><a class="dl" href="https://x0.at/u6Gm.jpg" download>Download</a></figcaption></figure>
+      <figure class="pin"><img src="https://x0.at/HeCC.jpg" alt="Charcoal Bloom"><figcaption><span>Charcoal Bloom</span><a class="dl" href="https://x0.at/HeCC.jpg" download>Download</a></figcaption></figure>
+      <figure class="pin"><img src="https://x0.at/Qi1Z.jpg" alt="Lime Fracture"><figcaption><span>Lime Fracture</span><a class="dl" href="https://x0.at/Qi1Z.jpg" download>Download</a></figcaption></figure>
+      <figure class="pin"><img src="https://x0.at/sHIO.jpg" alt="Copper Tide"><figcaption><span>Copper Tide</span><a class="dl" href="https://x0.at/sHIO.jpg" download>Download</a></figcaption></figure>
     </div>
-    <div class="story-card" data-story="night">
-      <h3>রাতের গভীরে</h3>
-      <div class="meta">Story · 12 August 2026</div>
-      <p class="excerpt">রাত ১২ টারও বেশি। এই ছোট্ট শহরটা অনেক আগেই শান্ত হয়ে গেছে।</p>
+  </section>
+  <section id="chain" class="reveal">
+    <div class="sec-label">Blockchain</div>
+    <h2>Notes for the chain</h2>
+    <p class="lead">Trust, copies, and what a ledger is actually for.</p>
+    <div class="notes">
+      <article class="note"><h3>A ledger is a promise</h3><p>Trust, copies, and what a chain is actually for. Not loud. Just a record that holds.</p></article>
+      <article class="note"><h3>Seen by all. Known by one.</h3><p>Some things stay encrypted on purpose. The public sees the mark. Only the holder sees the essence.</p></article>
+      <article class="note"><h3>Slow chain</h3><p>Not everything needs to be fast. Some records are meant to sit quietly and still be true.</p></article>
     </div>
-    <div class="story-card" data-story="hell">
-      <h3>নরকের মাঝে</h3>
-      <div class="meta">Story · 12 September 2026</div>
-      <p class="excerpt">এই পৃথিবীর দিকে বেশি তাকিয়ে থাকলে আমার চোখ জ্বালাপোড়া করে।</p>
+  </section>
+  <section class="about reveal">
+    <img src="https://x0.at/pdkv.jpg" alt="Sobuj">
+    <div>
+      <div class="sec-label">About</div>
+      <h2>Sobuj</h2>
+      <p>Writing from a small city. Stories about nights, flowers, and the quiet after. Pictures when words are not enough. Notes on the chain when a record should stay.</p>
+      <p>Men Are Brave. Not loud. Just steady.</p>
     </div>
-  </div>
-</section>
-
-<section id="feed">
-  <h2>সন্ধ্যা<span class="dot">.</span></h2>
-  <div class="feed">
-    <div class="feed-item">
-      <img src="https://kappa.lol/zoGNhs" alt="">
-      <p class="caption">ঘাসের উপর আলো। রাত নামছে।</p>
-    </div>
-    <div class="feed-item">
-      <img src="https://kappa.lol/kSAFq0" alt="">
-      <p class="caption">গাছের গোড়ায় দাঁড়িয়ে। সিগারেটের ধোঁয়া।</p>
-    </div>
-    <div class="feed-item">
-      <img src="https://kappa.lol/0gH20a" alt="">
-      <p class="caption">মাথা নামিয়ে। একটা সিগারেট, আর চিন্তা।</p>
-    </div>
-    <div class="feed-item">
-      <img src="https://kappa.lol/Ht5RvN" alt="">
-      <p class="caption">সবুজ ঘাস, কালো আকাশ। দূরে তাকিয়ে।</p>
-    </div>
-  </div>
-</section>
-
-<section id="pins">
-  <h2>Visuals<span class="dot">.</span></h2>
-  <div class="pins">
-    <figure class="pin">
-      <img src="https://kappa.lol/Xqptuj" alt="Emerald Veil">
-      <figcaption>Emerald Veil</figcaption>
-    </figure>
-    <figure class="pin">
-      <img src="https://kappa.lol/u6vrmC" alt="Charcoal Bloom">
-      <figcaption>Charcoal Bloom</figcaption>
-    </figure>
-    <figure class="pin">
-      <img src="https://kappa.lol/f47jkd" alt="Lime Fracture">
-      <figcaption>Lime Fracture</figcaption>
-    </figure>
-    <figure class="pin">
-      <img src="https://kappa.lol/50sgks" alt="Copper Tide">
-      <figcaption>Copper Tide</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section id="chain">
-  <h2>Blockchain<span class="dot">.</span></h2>
-  <div class="chain">
-    <div class="note">
-      <h3>A ledger is a promise</h3>
-      <p>Trust, copies, and what a chain is actually for.</p>
-    </div>
-    <div class="note">
-      <h3>Seen by all. Known by one.</h3>
-      <p>Public verification, private keys.</p>
-    </div>
-  </div>
-</section>
-
+  </section>
+</main>
 <footer>
-  The theme is Men Are Brave. Not loud. Just steady.<br>
-  @Robiulislam796
+  <div>
+    <div style="font-family:'Instrument Serif',serif;font-size:1.4rem">Sobuj</div>
+    <div style="opacity:.7;font-size:.8rem;margin-top:.2rem">© 2026 · Men Are Brave</div>
+  </div>
+  <div class="socials">
+    <a href="https://www.instagram.com/sobuj_nothing">Instagram</a>
+    <a href="https://x.com/Robiulislam796">X</a>
+    <a href="https://www.facebook.com/share/1CJnpbYL1G/">Facebook</a>
+    <a href="https://pin.it/3yqjH6Rz0">Pinterest</a>
+  </div>
 </footer>
-
-<div class="modal" id="storyModal">
-  <div class="modal-content">
-    <button class="close" onclick="closeModal()">×</button>
-    <h3 id="modalTitle"></h3>
-    <div class="meta" id="modalMeta"></div>
-    <div id="modalBody" style="margin-top:1.2rem; line-height:1.75;"></div>
+<div class="reader" id="reader">
+  <div class="sheet">
+    <div class="reader-top"><div class="sec-label" id="rdate"></div><button class="xbtn" id="rx">Close</button></div>
+    <h3 id="rtitle"></h3>
+    <div class="story-pics" id="rpics"></div>
+    <div class="story-body" id="rbody"></div>
   </div>
 </div>
-
+<div class="lb" id="lb">
+  <img id="lbimg" alt="">
+  <div class="lb-bar">
+    <button id="copy">Copy link</button>
+    <a id="open" href="#" target="_blank">Open</a>
+    <a id="save" href="#" download>Download</a>
+    <button id="lbx">Close</button>
+  </div>
+</div>
+<div id="stories-data" hidden>
+  <article id="story-mirror" data-title="আয়নার সামনে" data-date="2 September 2026" data-pics="https://x0.at/pdkv.jpg">
+    <p>আয়নার সামনে দাঁড়িয়ে নিজের সঙ্গে কথা বলা আমার বেশ পুরনো দিনের অভ্যাস। কিংবা যতবারই আমি কোনো অনাকাঙ্ক্ষিত মৃত্যু সংবাদ শুনি, পরক্ষণেই আয়নার সামনে গিয়ে দাঁড়াই। নিজেকে হাতড়ে হাতড়ে দেখি আর অসংখ্য কথা বলি।</p>
+    <p>ক্ষানিক আগেই আয়নার সামনে দাঁড়িয়ে নিজেকে প্রশ্ন করছিলাম, আচ্ছা, নিজে নিজে মরে যাওয়ার জন্য ঠিক কতটা সাহসের প্রয়োজন?</p>
+    <p>আয়নার ওপাশে দাঁড়িয়ে থাকা আমি অট্টহাসি হেসে নিজেকে করা প্রশ্নের উত্তর দেই। মরে যাওয়ার জন্য এতটাই সাহস প্রয়োজন যে, অনেকে দড়ি ঝুলিয়েও মরতে পারে না, ঘর ছেড়ে পালিয়ে যায়। আবার কেউ কেউ দড়িতে ঝুলে পড়েও বেঁচে যায়। তারা আর কোনোদিন মরে যাওয়ার কথা মুখেও আনে না।</p>
+    <p>অবশ্য আমি এমন গল্পও জানি—কেউ একজন একে একে দুইবার মরে যাওয়ার চেষ্টা করেও বেঁচে যায়। যে মেয়েটার জন্য মরতে বসেছিল সে, আমি তার ছবি দেখেছি। মেয়েটা আহামরি কিছুই নয়। মানুষ কত কত কারণে আত্মহত্যা করে, কখনো কখনো বা কিছু কারণ ভীষণ ক্ষুদ্র।</p>
+    <p>আজ মেডিসিন নিয়েছি বেশ অনেকক্ষণ হলো। এখনো ঘুম আসছে না। লাবণ্যকে মনে পড়ছে। মনে পড়ছে আমার মুখ ডুবিয়ে রাখা ওর কোমর অবধি লম্বা চুলগুলোকে, ওর বিষণ্ন চোখ, হাতে হাত রাখা নরম হাত, আমার ঠোঁটে মিলিয়ে যাওয়া ওর ভেজা ঠোঁট।</p>
+    <p>আয়নার ওপাশে দাঁড়িয়ে থাকা আমাকে আমি প্রশ্ন করি, আচ্ছা, কী এমন হইত যদি ও থেকে যাইত? যদি সংসারটা হইত ওর সঙ্গে আমার?</p>
+    <p>মুহূর্তেই ধূলিসাৎ হয়ে যাওয়া মানুষ, অ্যাম্বুলেন্সের বেডে শুয়ে ফুরিয়ে যাওয়া জীবন—হাতে গোনা কয়দিনেরই বা! চাইলেই একটু কষ্ট করে থেকে যাইতে পারতো।</p>
+    <p>আয়নার ওপাশ থেকে উত্তর ভেসে আসে, সবুজ, তোকে তো ও চায়ই না। চাইলে হয়তো ঠিকই থেকে যাইতো।</p>
+    <p>আমি বহুক্ষণ আয়নার সামনে দাঁড়িয়ে নিজেকে খুঁটিয়ে খুঁটিয়ে দেখি আর খিলখিল করে অট্টহাসি হাসি। এই হাসির গভীরে থাকে না বলা অসংখ্য কথা। আমি জানি, এসবের কেউই কিছু বুঝবে না। তাই আর আমি বলিও না।</p>
+    <p>আমার হাসির শব্দ আরও জোরালো হয়। মনে হয়, এই ঘরটায় যেন বহুদিন বন্দী থাকা কোনো পাগল—হা হা করে হাসছে।</p>
+    <p>২ সেপ্টেম্বর ২০২৬</p>
+  </article>
+  <article id="story-sandhya" data-title="সন্ধ্যা" data-date="9 October 2026" data-pics="https://x0.at/J9rT.jpg|https://x0.at/E0mn.jpg|https://x0.at/NU1W.jpg"><p>সন্ধ্যা। তিনটা ছবি। আলো নরম। রেলিং। একটা শহর যেটা কথা বলে না।</p><p>কিছু লেখার দরকার ছিল না। ছবিগুলোই যথেষ্ট।</p></article>
+  <article id="story-hell" data-title="এক নরকের মাঝখানে" data-date="12 September 2026"><p>এই পৃথিবীর দিকে বেশি তাকাইয়া থাকলে আমার চোখ জ্বালাপোড়া করে, মন খারাপ হয়। মনে হয়, কী অদ্ভুত সুন্দর এক নরকের মাঝখানে দাঁড়াইয়া আছি!</p><p>আমি ভেবে কূল পাই না, এই দুনিয়ার মতো এত বিভৎস জায়গায় কেমনে ফুল ফোটার মতো সুন্দর ব্যাপার ঘটে, কেমনে আকাশে মেঘ উইড়া বেড়ায়, কেমনে বৃষ্টি নামে?!</p><p>এই যে কেউ হারাইলো তার সন্তানরে, কেউ হারাইলো তার প্রিয় মানুষরে। এই যে পৃথিবীর প্রত্যেকটা বিন্দুতে বিন্দুতে লুকাইয়া আছে প্রতারণা। এত কিছুর পরেও এই পৃথিবী সুন্দর কেমনে হয়?</p><p>আমার এই নরকের মাঝে দাঁড়াইয়া থাকতে থাকতে মাথা ভার হয়ে আসে। কিছুই ভালো লাগে না। খালি মনে হয়, একটা কেয়ামত হোক। পৃথিবীটা ওলট-পালট হইয়া সব ফুরাইয়া যাক।</p><p>১২ সেপ্টেম্বর ২০২৬</p></article>
+  <article id="story-night" data-title="রাতের শহর" data-date="12 August 2026" data-pics="https://x0.at/gvVW.jpg"><p>রাত ১২ টারও বেশি। এই ছোট্ট শহরটা অনেক আগেই শান্ত হয়ে গেছে। কোথাও কোথাও দু-একজন মানুষ, মাথার ওপর সোডিয়াম আলো আর আমি। যে এমন নিস্তব্ধ শহরে অন্ধকারের বুক চিড়ে পথ হাঁটেনি, সে কোনো দিন জানতে পারবে না রাতের আসল সৌন্দর্য কী।</p><p>আমি অনেকক্ষণ যাবৎ হাঁটছি। কখনো সঙ্গী হিসেবে পেয়েছি নিজের ছায়াটাকে, গভীর অন্ধকারে সেটাও নেই। ঠোঁটে অসংখ্য সিগারেট পোড়ানোর পরেও এখনো পকেটে ছয়টা সিগারেট বাকি। এগুলোও শেষ করতে হবে।</p><p>রাত গভীর থেকে আরও গভীরে চলে যাচ্ছে। ভাবছি, ঘরে ফেরার আগে শেষ সময়টুকু রিকশায় ঘুরব। বহু খুঁজে একটা রিকশা পাওয়া গেল। রিকশাওয়ালা মামা জিজ্ঞেস করছিল, কই যাইবেন, মামা? আমি আদতে জানি না, কোথায় যাব আমি। আমার কোনো গন্তব্য নেই। ভাবলাম, কিছুটা স্মৃতি রোমন্থন করা যাক আজ।</p><p>রিকশাওয়ালাকে বললাম, মামা, বর্ডার গার্ড স্কুলের দিকে চলেন। ঠিক স্কুলের গেটের সামনে গিয়ে দাঁড়াবেন। রিকশা চলছে। আমি একটা সিগারেট ধরালাম। রিকশা স্কুলের সামনে গিয়ে দাঁড়াল। স্কুলের দিকে তাকিয়ে রইলাম খানিকক্ষণ। নিজে নিজে বিড়বিড় করে বললাম, লাবণ্য পড়ত এখানে। বহুদিন এই রাস্তাটা দিয়ে ওর আর আমার আসা-যাওয়া হয়েছে।</p><p>রিকশাওয়ালাকে জিজ্ঞেস করলাম, মামা, এত রাতে কি ফুলের দোকান খোলা আছে? ফুলের দোকান বন্ধ ছিল। পকেটে তখনো দুইটা সিগারেট। আমি একটা জ্বালালাম। আকাশে অসংখ্য তারা মিটমিট করে জ্বলছে। তবে এমন রাতে জ্যোৎস্না থাকলে ভালো হতো।</p><p>জ্যোৎস্নার কথা মনে পড়তেই একটা গানের দুটো লাইন গুনগুন করে গাইতে লাগলাম, “ঘর খুলিয়া বাহির হইয়া জোছনা ধরতে যাই, হাত ভরতি চান্দের আলো ধরতে গেলে নাই।”</p><p>আমি রিকশা থেকে নেমে পড়লাম। শেষ সিগারেটটা জ্বালিয়ে হাঁটতে শুরু করলাম। স্টেশন পর্যন্ত হেঁটে যাব। এই রাস্তাটা ভীষণ সুন্দর। আমি হাঁটতে হাঁটতে ভাবছি, এই ফিকে হয়ে যাওয়া ভালোবাসার যুগে আমার মতো মানুষেরা বোধহয় কেবল বিলীন হয়ে যাওয়ার জন্যই এসেছে।</p><p>রাতের গভীরতা আরও বেড়েছে। রাস্তাঘাট একেবারে শূন্য। আমার ঘরে ফিরতে হবে। নানান চিন্তায় ভার হয়ে আসা মাথা নিয়ে আর দাঁড়িয়ে থাকা যাচ্ছে না। একগাদা ওষুধ গিলে ঘুমোতে হবে। না ঘুমোতে পারলেই মরণ।</p><p>১২ আগস্ট ২০২৬</p></article>
+  <article id="story-rose" data-title="নিজের জন্য একটা গোলাপ" data-date="27 July 2026" data-pics="https://x0.at/ohUg.jpg"><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময় হঠাৎ মনে পড়ল, বহুদিন কারও জন্য ফুল কেনা হয়নি। শেষবার ফুল কিনেছিলাম লাবণ্যর জন্য। বারান্দার রেলিংয়ের দিকে হাত বাড়িয়ে বেশ কষ্ট করে দিতে হয়েছিল সেই ফুল। ওকে কিছু দিতে পারলে ভালো লাগত আমার। বুঝতে পারিনি, সেসব জিনিস ওর কাছে কেবল সস্তা বস্তু ছিল। আমার খারাপ লাগবে ভেবে হয়তো কখনো বলেনি।</p><p>যাকগে, আজ নিজের জন্য একটা গোলাপ কিনেছি। যদিও গোলাপ আমার পছন্দ নয়। আমার পছন্দ বেলিফুল। নিজেকে গোলাপটা দিয়ে বললাম, “তোমার নিজেকে ভালোবাসা উচিত, সবুজ।” এরপর গোলাপটাকে নিষ্ঠুরভাবে ছুড়ে ফেলে দিয়েছি রাস্তায়। ফুলের প্রসঙ্গ এখন থাক।</p><p>আমি সিগারেট টানতে টানতে আসলে ভাবছি অন্য কিছু। যার জন্য কিছুদিন আগেও মরে যাওয়ার কথা ভাবছিলাম, আজকাল তার কথা ভেবে আর খারাপ লাগে না। না তার প্রতি ভালোবাসা আসে, না ঘৃণা। তবে হ্যাঁ, মাঝে মাঝে ওর চেহারাটা চোখের সামনে ভেসে ওঠে। তখন আমি আকাশের দিকে তাকাই। উড়ে যাওয়া মেঘ দেখি, পাখি দেখি।</p><p>খানিক আগেও যে পথটা ধরে রিকশায় করে এলাম, বহুদিন ওর সঙ্গে সেই পথেই হাতে হাত রেখে ঘুরেছি। আজ থেকে কিছুদিন আগেও ওই পথ ধরে হাঁটতে পারতাম না। ওর স্মৃতি মাথার ভেতরটা খুবলে খেত। কিন্তু আজ আর খারাপ লাগেনি। উল্টো অট্টহাসি হেসেছি। নিজেকে বলেছি, “সবুজ, তুই কী ভীষণ বোকা!”</p><p>নিজেকেই প্রশ্ন করেছি, “আচ্ছা, একটা মানুষ এতবার ছেড়ে দেওয়ার পরেও তাকে কেউ ফিরিয়ে নেয়? তোর জায়গায় অন্য কেউ হলে হয়তো এই বোকামিটা করত না।” সাইকিয়াট্রিস্টও তো এই কারণেই তোকে বলেছিল, “সবুজ, আপনি তো বোকার থেকেও বেশি বোকা।” আচ্ছা, তুই তো জানতিস ওর ছেড়ে দিয়ে থাকার অভ্যাস আছে। তুই তো জানতিস, যে একবার ছেড়ে যেতে পারে, সে বারবারও পারে।</p><p>আমি নিজেকে করা প্রত্যেকটি প্রশ্নের উত্তর জানি। হাতের সিগারেটটা কখন ফুরিয়ে গেছে, এসব লিখতে লিখতে খেয়ালই করিনি। আমি আরেকটা সিগারেট জ্বালালাম। তারপর কী যেন ভেবে খানিকটা হাসলাম।</p><p>আর কে যেন একটা কথা বলছিল, এই পৃথিবীতে ভালোবাসার ব্যাপারগুলো অনেক আগেই ফিকে হয়ে গেছে। মানুষের সঙ্গে মানুষের সম্পর্ক এখন কেবল বিনিময়ের। এই ব্যাপারগুলো যে যত তাড়াতাড়ি বুঝতে পারবে, তার জন্য ততই ভালো।</p><p>২৭ জুলাই ২০২৬</p></article>
+</div>
 <script>
-const stories = {
-  rose: { title: "নিজের জন্য একটা গোলাপ", meta: "Story · 27 July 2026", body: `<p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময় হঠাৎ মনে পড়ল, বহুদিন কারও জন্য ফুল কেনা হয়নি। শেষবার ফুল কিনেছিলাম লাবন্যর জন্য। বারান্দার রেলিংয়ের দিকে হাত বাড়িয়ে বেশ কষ্ট করে দিতে হয়েছিল সেই ফুল। ওকে কিছু দিতে পারলে ভালো লাগত আমার। বুঝতে পারিনি, সেসব জিনিস ওর কাছে কেবল সস্তা বস্তু ছিল। আমার খারাপ লাগবে ভেবে হয়তো কখনো বলেনি।</p><p>যাকগে, আজ নিজের জন্য একটা গোলাপ কিনেছি। যদিও গোলাপ আমার পছন্দ নয়। আমার পছন্দ বেলিফুল। নিজেকে গোলাপটা দিয়ে বললাম, "তোমার নিজেকে ভালোবাসা উচিত, সবুজ।" এরপর গোলাপটাকে নিষ্ঠুরভাবে ছুড়ে ফেলে দিয়েছি রাস্তায়। ফুলের প্রসঙ্গ এখন থাক।</p><p>আমি সিগারেট টানতে টানতে আসলে ভাবছি অন্য কিছু। যার জন্য কিছুদিন আগেও মরে যাওয়ার কথা ভাবছিলাম, আজকাল তার কথা ভেবে আর খারাপ লাগে না। না তার প্রতি ভালোবাসা আসে, না ঘৃণা। তবে হ্যাঁ, মাঝে মাঝে ওর চেহারাটা চোখের সামনে ভেসে ওঠে। তখন আমি আকাশের দিকে তাকাই। উড়ে যাওয়া মেঘ দেখি, পাখি দেখি।</p><p>খানিক আগেও যে পথটা ধরে রিকশায় করে এলাম, বহুদিন ওর সঙ্গে সেই পথেই হাতে হাত রেখে ঘুরেছি। আজ থেকে কিছুদিন আগেও ওই পথ ধরে হাঁটতে পারতাম না। ওর স্মৃতি মাথার ভেতরটা খুবলে খেত। কিন্তু আজ আর খারাপ লাগেনি। উল্টো অট্টহাসি হেসেছি। নিজেকে বলেছি, "সবুজ, তুই কী ভীষণ বোকা!"</p><p>নিজেকেই প্রশ্ন করেছি, "আচ্ছা, একটা মানুষ এতবার ছেড়ে দেওয়ার পরেও তাকে কেউ ফিরিয়ে নেয়? তোর জায়গায় অন্য কেউ হলে হয়তো এই বোকামিটা করত না।"</p><p>সাইকিয়াট্রিস্টও তো এই কারণেই তোকে বলেছিল, "সবুজ, আপনি তো বোকার থেকেও বেশি বোকা।"</p><p>আচ্ছা, তুই তো জানতিস ওর ছেড়ে দিয়ে থাকার অভ্যাস আছে। তুই তো জানতিস, যে একবার ছেড়ে যেতে পারে, সে বারবারও পারে। বল, জানতিস কি না?</p><p>আমি নিজেকে করা প্রত্যেকটি প্রশ্নের উত্তর জানি।</p><p>হাতের সিগারেটটা কখন ফুরিয়ে গেছে, এসব লিখতে লিখতে খেয়ালই করিনি। আমি আরেকটা সিগারেট জ্বালালাম। তারপর কী যেন ভেবে খানিকটা হাসলাম।</p><p>আর কে যেন একটা কথা বলছিল, এই পৃথিবীতে ভালোবাসার ব্যাপারগুলো অনেক আগেই ফিকে হয়ে গেছে। মানুষের সঙ্গে মানুষের সম্পর্ক এখন কেবল বিনিময়ের। এই ব্যাপারগুলো যে যত তাড়াতাড়ি বুঝতে পারবে, তার জন্য ততই ভালো।</p>` },
-  mirror: { title: "আয়নার সামনে", meta: "Story · 2 September 2026", body: `<p>আয়নার সামনে দাঁড়িয়ে নিজের সঙ্গে কথা বলা আমার বেশ পুরনো দিনের অভ্যাস। কিংবা যতবারই আমি কোনো অনাকাঙ্ক্ষিত মৃত্যু সংবাদ শুনি, পরক্ষণেই আয়নার সামনে গিয়ে দাঁড়াই। নিজেকে হাতড়ে হাতড়ে দেখি আর অসংখ্য কথা বলি।</p><p>ক্ষানিক আগেই আয়নার সামনে দাঁড়িয়ে নিজেকে প্রশ্ন করছিলাম, আচ্ছা, নিজে নিজে মরে যাওয়ার জন্য ঠিক কতটা সাহসের প্রয়োজন?</p><p>আয়নার ওপাশে দাঁড়িয়ে থাকা আমি অট্টহাসি হেসে নিজেকে করা প্রশ্নের উত্তর দেই। মরে যাওয়ার জন্য এতটাই সাহস প্রয়োজন যে, অনেকে দড়ি ঝুলিয়েও মরতে পারে না, ঘর ছেড়ে পালিয়ে যায়। আবার কেউ কেউ দড়িতে ঝুলে পড়েও বেঁচে যায়। তারা আর কোনোদিন মরে যাওয়ার কথা মুখেও আনে না।</p><p>অবশ্য আমি এমন গল্পও জানি—কেউ একজন একে একে দুইবার মরে যাওয়ার চেষ্টা করেও বেঁচে যায়। যে মেয়েটার জন্য মরতে বসেছিল সে, আমি তার ছবি দেখেছি। মেয়েটা আহামরি কিছুই নয়। মানুষ কত কত কারণে আত্নহত্যা করে, কখনো কখনো বা কিছু কারণ ভীষণ ক্ষুদ্র।</p><p>আজ মেডিসিন নিয়েছি বেশ অনেকক্ষণ হলো। এখনো ঘুম আসছে না। লাবন্যকে মনে পড়ছে। মনে পড়ছে আমার মুখ ডুবিয়ে রাখা ওর কোমর অবধি লম্বা চুলগুলোকে, ওর বিষণ্ন চোখ, হাতে হাত রাখা নরম হাত, আমার ঠোঁটে মিলিয়ে যাওয়া ওর ভেজা ঠোঁট।</p><p>আয়নার ওপাশে দাঁড়িয়ে থাকা আমাকে আমি প্রশ্ন করি, আচ্ছা, কী এমন হইত যদি ও থেকে যাইত? যদি সংসারটা হইত ওর সঙ্গে আমার?</p><p>মুহূর্তেই ধূলিসাৎ হয়ে যাওয়া মানুষ, অ্যাম্বুলেন্সের বেডে শুয়ে ফুরিয়ে যাওয়া জীবন—হাতে গোনা কয়দিনেরই বা! চাইলেই একটু কষ্ট করে থেকে যাইতে পারতো।</p><p>আয়নার ওপাশ থেকে উত্তর ভেসে আসে, সবুজ, তোকে তো ও চায়ই না। চাইলে হয়তো ঠিকই থেকে যাইতো।</p><p>আমি বহুক্ষণ আয়নার সামনে দাঁড়িয়ে নিজেকে খুঁটিয়ে খুঁটিয়ে দেখি আর খিলখিল করে অট্টহাসি হাসি। এই হাসির গভীরে থাকে না বলা অসংখ্য কথা। আমি জানি, এসবের কেউই কিছু বুঝবে না। তাই আর আমি বলিও না।</p><p>আমার হাসির শব্দ আরও জোরালো হয়। মনে হয়, এই ঘরটায় যেন বহুদিন বন্দী থাকা কোনো পাগল—হা হা করে হাসছে।</p>` },
-  night: { title: "রাতের গভীরে", meta: "Story · 12 August 2026", body: `<p>রাত ১২ টারও বেশি। এই ছোট্ট শহরটা অনেক আগেই শান্ত হয়ে গেছে। কোথাও কোথাও দু-একজন মানুষ, মাথার ওপর সোডিয়াম আলো আর আমি। যে এমন নিস্তব্ধ শহরে অন্ধকারের বুক চিড়ে পথ হাঁটেনি, সে কোনো দিন জানতে পারবে না রাতের আসল সৌন্দর্য কী।</p><p>আমি অনেকক্ষণ যাবৎ হাঁটছি। কখনো সঙ্গী হিসেবে পেয়েছি নিজের ছায়াটাকে, গভীর অন্ধকারে সেটাও নেই।</p><p>ঠোঁটে অসংখ্য সিগারেট পোড়ানোর পরেও এখনো পকেটে ছয়টা সিগারেট বাকি। এগুলোও শেষ করতে হবে।</p><p>রাত গভীর থেকে আরও গভীরে চলে যাচ্ছে। ভাবছি, ঘরে ফেরার আগে শেষ সময়টুকু রিকশায় ঘুরব। অনেক দিন রিকশায় ঘোরা হয় না। বহু খুঁজে একটা রিকশা পাওয়া গেল।</p><p>রিকশাওয়ালা মামা জিজ্ঞেস করছিল, কই যাইবেন, মামা? আমি আদতে জানি না, কোথায় যাব আমি। আমার কোনো গন্তব্য নেই। ভাবলাম, কিছুটা স্মৃতি রোমন্থন করা যাক আজ।</p><p>রিকশাওয়ালাকে বললাম, মামা, বর্ডার গার্ড স্কুলের দিকে চলেন। ঠিক স্কুলের গেটের সামনে গিয়ে দাঁড়াবেন।</p><p>রিকশা চলছে। আমি একটা সিগারেট ধরালাম। খানিক বাদেই এই চমৎকার রাতটাকে বিভীষিকাময় করে তুলব হয়তো।</p><p>রিকশা স্কুলের সামনে গিয়ে দাঁড়াল। আমি আরেকটা সিগারেট জ্বালালাম। স্কুলের দিকে তাকিয়ে রইলাম খানিকক্ষণ, তারপর সামনের রাস্তাটার দিকে।</p><p>রিকশাওয়ালা, কী দেখেন অমনে, মামা? আমি বললাম, কিছু না। আপনি কি এইখানে পড়তেন? আমি বললাম, না। নিজে নিজে বিড়বিড় করে বললাম, লাবণ্য পড়ত এখানে। বহুদিন এই রাস্তাটা দিয়ে ওর আর আমার আসা-যাওয়া হয়েছে।</p><p>সিগারেটের এখনো খানিকটা বাকি। আমি আর দাঁড়িয়ে না থেকে রিকশায় উঠে বসলাম। নানান স্মৃতি মাথায় ভর করতে শুরু করেছে।</p><p>রিকশাওয়ালাকে জিজ্ঞেস করলাম, মামা, এত রাতে কি ফুলের দোকান খোলা আছে? থাকলে একটা ফুল কিনে ক্যান্টের সামনে গিয়ে দাঁড়াতাম। ফুলের দোকান বন্ধ ছিল।</p><p>আমার সব ভাবনার অবসান ঘটল রিকশাওয়ালা মামার ডাকে। বলছিলেন, মামা রাত তো অনেক হইলো। আর কি কোথাও যাইবেন আপনি? আমি বললাম, হ্যাঁ, যাব। রংপুর ডক্টরস ক্লিনিকের মস্ত বড় বিল্ডিংটার সামনে। আমি কিছুক্ষণ দাঁড়িয়ে থাকব সেখানে। ওখানে একজন পড়ে, যে আমার কেউ না।</p><p>রিকশাওয়ালাটা বোধহয় আমার কথা শুনে কিছুটা ভ্যাবাচ্যাকা খেয়ে গিয়েছিল। হয়তো ভাবছিলেন, এ রাতের বেলায় কোন পাগলের পাল্লায় পড়লাম!</p><p>ওনাকে আর বেশি ভাববার সুযোগ না দিয়ে বললাম, মামা, থাক। রংপুর যাইতে হবে না। আমার কোথাও শান্তি নাই। আপনি বরং স্টেশনের দিকে যান।</p><p>পকেটে তখনো দুইটা সিগারেট। আমি একটা জ্বালালাম। রিকশা চলছে। সিগারেটের ধোঁয়াগুলো ঠিকমতো কুণ্ডলী পাকানোর সুযোগ পাচ্ছে না বাতাসের কারণে। আকাশে অসংখ্য তারা মিটমিট করে জ্বলছে। তবে এমন রাতে জ্যোৎস্না থাকলে ভালো হতো।</p><p>জ্যোৎস্নার কথা মনে পড়তেই একটা গানের দুটো লাইন গুনগুন করে গাইতে লাগলাম, “ঘর খুলিয়া বাহির হইয়া জোছনা ধরতে যাই, হাত ভরতি চান্দের আলো ধরতে গেলে নাই।”</p><p>আমি রিকশা থেকে নেমে পড়লাম। রিকশাওয়ালাকে বিদায় দিয়ে শেষ সিগারেটটা জ্বালিয়ে হাঁটতে শুরু করলাম। স্টেশন পর্যন্ত হেঁটে যাব। এই রাস্তাটা ভীষণ সুন্দর।</p><p>আমি হাঁটতে হাঁটতে ভাবছি, এই ফিকে হয়ে যাওয়া ভালোবাসার যুগে আমার মতো মানুষেরা বোধহয় কেবল বিলীন হয়ে যাওয়ার জন্যই এসেছে।</p><p>রাতের গভীরতা আরও বেড়েছে। রাস্তাঘাট একেবারে শূন্য বললেই চলে। আমার ঘরে ফিরতে হবে। নানান চিন্তায় ভার হয়ে আসা মাথা নিয়ে আর দাঁড়িয়ে থাকা যাচ্ছে না। একগাদা ওষুধ গিলে ঘুমোতে হবে। না ঘুমোতে পারলেই মরণ।</p>` },
-  hell: { title: "নরকের মাঝে", meta: "Story · 12 September 2026", body: `<p>এই পৃথিবীর দিকে বেশি তাকাইয়া থাকলে আমার চোখ জ্বালাপোড়া করে, মন খারাপ হয়। মনে হয়, কী অদ্ভুত সুন্দর এক নরকের মাঝখানে দাঁড়াইয়া আছি!</p><p>আমি ভেবে কূল পাই না, এই দুনিয়ার মতো এত বিভৎস জায়গায় কেমনে ফুল ফোটার মতো সুন্দর ব্যাপার ঘটে, কেমনে আকাশে মেঘ উইড়া বেড়ায়, কেমনে বৃষ্টি নামে?!</p><p>এই যে কেউ হারাইলো তার সন্তানরে, কেউ হারাইলো তার প্রিয় মানুষরে। এই যে পৃথিবীর প্রত্যেকটা বিন্দুতে বিন্দুতে লুকাইয়া আছে প্রতারণা। এত কিছুর পরেও এই পৃথিবী সুন্দর কেমনে হয়?</p><p>আমার এই নরকের মাঝে দাঁড়াইয়া থাকতে থাকতে মাথা ভার হয়ে আসে। কিছুই ভালো লাগে না। খালি মনে হয়, একটা কেয়ামত হোক। পৃথিবীটা ওলট-পালট হইয়া সব ফুরাইয়া যাক।</p>` }
+var themeBtn=document.getElementById('theme');
+var saved=localStorage.getItem('sobuj-theme')||'light';
+function applyTheme(mode){
+  document.documentElement.setAttribute('data-theme', mode);
+  themeBtn.textContent = mode==='dark' ? 'Light' : 'Dark';
+  localStorage.setItem('sobuj-theme', mode);
+}
+applyTheme(saved);
+themeBtn.onclick=function(){ applyTheme(document.documentElement.getAttribute('data-theme')==='dark' ? 'light' : 'dark'); };
+document.querySelectorAll('.reveal').forEach(function(el){
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('show'); });
+  },{threshold:.15});
+  io.observe(el);
+});
+var reader=document.getElementById('reader');
+document.querySelectorAll('[data-story]').forEach(function(card){
+  card.addEventListener('click', function(){
+    var id=card.getAttribute('data-story');
+    var src=document.getElementById('story-'+id);
+    document.getElementById('rtitle').textContent=src.getAttribute('data-title');
+    document.getElementById('rdate').textContent=src.getAttribute('data-date');
+    document.getElementById('rbody').innerHTML=src.innerHTML;
+    var pics=document.getElementById('rpics'); pics.innerHTML='';
+    (src.getAttribute('data-pics')||'').split('|').forEach(function(url){ if(!url) return; var img=document.createElement('img'); img.src=url; pics.appendChild(img); });
+    reader.classList.add('open');
+  });
+});
+document.getElementById('rx').onclick=function(){reader.classList.remove('open');};
+reader.addEventListener('click', function(e){ if(e.target===reader) reader.classList.remove('open'); });
+var lb=document.getElementById('lb');
+var lbimg=document.getElementById('lbimg');
+var open=document.getElementById('open');
+var save=document.getElementById('save');
+var current='';
+document.querySelectorAll('.pin').forEach(function(pin){
+  pin.addEventListener('click', function(e){
+    if(e.target.closest('.dl')) return;
+    var img=pin.querySelector('img'); current=img.src; lbimg.src=current; open.href=current; save.href=current; lb.classList.add('open');
+  });
+});
+document.getElementById('lbx').onclick=function(){lb.classList.remove('open');};
+lb.addEventListener('click', function(e){ if(e.target===lb) lb.classList.remove('open'); });
+document.getElementById('copy').onclick=function(){
+  if(navigator.clipboard){ navigator.clipboard.writeText(current); this.textContent='Copied'; var b=this; setTimeout(function(){b.textContent='Copy link';},1200); }
+  else { prompt('Copy this link', current); }
 };
-
-document.querySelectorAll('.story-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const id = card.dataset.story;
-    const s = stories[id];
-    document.getElementById('modalTitle').textContent = s.title;
-    document.getElementById('modalMeta').textContent = s.meta;
-    document.getElementById('modalBody').innerHTML = s.body;
-    document.getElementById('storyModal').classList.add('open');
-  });
-});
-
-function closeModal() { document.getElementById('storyModal').classList.remove('open'); }
-document.getElementById('storyModal').addEventListener('click', e => { if (e.target.id === 'storyModal') closeModal(); });
-
-const themeBtn = document.getElementById('themeBtn');
-const html = document.documentElement;
-if (localStorage.getItem('theme') === 'dark') { html.setAttribute('data-theme', 'dark'); themeBtn.textContent = 'Light'; }
-themeBtn.addEventListener('click', () => {
-  const isDark = html.getAttribute('data-theme') === 'dark';
-  html.setAttribute('data-theme', isDark ? '' : 'dark');
-  themeBtn.textContent = isDark ? 'Dark' : 'Light';
-  localStorage.setItem('theme', isDark ? '' : 'dark');
-});
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 80);
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-document.querySelectorAll('h2, .story-card, .feed-item, .pin, .note').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
