@@ -6,94 +6,138 @@
 <title>Sobuj — Men Are Brave</title>
 <meta name="description" content="Stories, pictures, and quiet notes by Sobuj Islam.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f2f0eb;
-  --ink: #1a1a1a;
-  --muted: #6b6560;
-  --accent: #d94f2a;
+  --bg: #e4dfd9;
+  --ink: #171717;
+  --muted: #5c5752;
+  --accent: #ff6a1f;
   --card: #ffffff;
-  --line: rgba(26,26,26,0.08);
+  --line: rgba(23,23,23,0.08);
+  --shadow: 0 6px 27px rgba(0,0,0,0.07);
 }
 [data-theme="dark"] {
-  --bg: #0e1017;
+  --bg: #0f0f0f;
   --ink: #f4f1ea;
-  --muted: #8a857c;
-  --accent: #ff6a1f;
-  --card: #1a1c29;
-  --line: rgba(244,241,234,0.08);
+  --muted: #a39e96;
+  --card: #1a1a1a;
+  --line: rgba(244,241,234,0.1);
+  --shadow: 0 6px 27px rgba(0,0,0,0.3);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--ink);
   font-family: 'Outfit', system-ui, sans-serif;
-  font-weight: 300;
-  line-height: 1.7;
-  transition: background 0.4s, color 0.4s;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; justify-content: space-between; align-items: center;
-  padding: 1.2rem 2rem; background: color-mix(in srgb, var(--bg) 85%, transparent);
-  backdrop-filter: blur(12px); border-bottom: 1px solid var(--line);
-  font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 1.1rem 2.5rem;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
 }
-nav a { color: var(--ink); text-decoration: none; opacity: 0.7; transition: opacity 0.3s; }
+nav a { color: var(--ink); text-decoration: none; opacity: 0.65; transition: opacity 0.25s; }
 nav a:hover { opacity: 1; }
-.nav-links { display: flex; gap: 1.6rem; }
-.theme-btn { background: none; border: none; color: var(--ink); cursor: pointer; font-size: 0.8rem; letter-spacing: 0.1em; }
+.nav-links { display: flex; gap: 2rem; }
+.theme-btn {
+  background: none; border: 1px solid var(--line); color: var(--ink);
+  padding: 0.4rem 0.9rem; border-radius: 999px; cursor: pointer;
+  font-size: 0.78rem; letter-spacing: 0.06em; transition: all 0.25s;
+}
+.theme-btn:hover { border-color: var(--accent); color: var(--accent); }
 
 .hero {
   min-height: 100vh; display: flex; align-items: center; justify-content: center;
-  text-align: center; padding: 8rem 2rem 4rem; position: relative;
+  text-align: center; position: relative; overflow: hidden;
   background: url('https://kappa.lol/ujORf0') center/cover no-repeat;
 }
 .hero::before {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
+  background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.62) 100%);
 }
-.hero-content { position: relative; z-index: 2; color: #fff; }
-.hero h1 { font-family: 'Instrument Serif', serif; font-size: clamp(3.2rem, 8vw, 6.5rem); font-weight: 400; line-height: 0.95; }
-.hero p { margin-top: 1.2rem; font-size: 1.05rem; opacity: 0.85; max-width: 520px; margin-left: auto; margin-right: auto; }
+.hero-content { position: relative; z-index: 2; color: #fff; padding: 2rem; }
+.hero h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(3.8rem, 9vw, 6.8rem);
+  font-weight: 400; line-height: 0.92; letter-spacing: -0.03em;
+}
+.hero h1 .dot { color: var(--accent); }
+.hero p { margin-top: 1.4rem; font-size: 1.1rem; opacity: 0.88; max-width: 480px; margin-left: auto; margin-right: auto; font-weight: 300; }
 
-section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
-h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 2.5rem; }
+section { padding: 7rem 2rem; max-width: 1120px; margin: 0 auto; }
+h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+  font-weight: 400; margin-bottom: 2.8rem; letter-spacing: -0.02em;
+}
+h2 .dot { color: var(--accent); }
 
-.stories { display: grid; gap: 1.5rem; }
+.stories { display: grid; gap: 1.4rem; }
 .story-card {
-  background: var(--card); border: 1px solid var(--line); padding: 1.8rem 2rem;
-  border-radius: 12px; cursor: pointer; transition: transform 0.3s, border-color 0.3s;
+  background: var(--card); border-radius: 20px; padding: 2rem 2.2rem;
+  box-shadow: var(--shadow); cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s;
 }
-.story-card:hover { transform: translateY(-4px); border-color: var(--accent); }
-.story-card h3 { font-family: 'Instrument Serif', serif; font-size: 1.6rem; margin-bottom: 0.4rem; }
-.meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.6rem; }
-.excerpt { color: var(--muted); }
+.story-card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(0,0,0,0.1); }
+.story-card h3 { font-family: 'Instrument Serif', serif; font-size: 1.7rem; margin-bottom: 0.35rem; font-weight: 400; }
+.meta { color: var(--muted); font-size: 0.84rem; margin-bottom: 0.5rem; letter-spacing: 0.02em; }
+.excerpt { color: var(--muted); font-size: 0.98rem; }
 
-.feed { display: grid; gap: 2.5rem; margin-top: 1rem; }
-.feed-item img { width: 100%; border-radius: 12px; display: block; }
-.caption { margin-top: 0.8rem; font-size: 1rem; color: var(--muted); text-align: center; }
+.feed { display: grid; gap: 3rem; }
+.feed-item { opacity: 0; transform: translateY(30px); }
+.feed-item.visible { opacity: 1; transform: none; transition: all 0.9s cubic-bezier(0.22,1,0.36,1); }
+.feed-item img { width: 100%; border-radius: 20px; display: block; box-shadow: var(--shadow); }
+.caption { margin-top: 1rem; text-align: center; color: var(--muted); font-size: 1.02rem; }
 
-.pins { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
-.pin { border-radius: 12px; overflow: hidden; background: var(--card); border: 1px solid var(--line); }
-.pin img { width: 100%; display: block; transition: transform 0.4s; }
-.pin:hover img { transform: scale(1.04); }
-.pin figcaption { padding: 0.8rem 1rem; font-size: 0.9rem; }
+.pins { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.4rem; }
+.pin {
+  background: var(--card); border-radius: 20px; overflow: hidden;
+  box-shadow: var(--shadow); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+.pin:hover { transform: translateY(-5px); }
+.pin img { width: 100%; display: block; transition: transform 0.5s ease; }
+.pin:hover img { transform: scale(1.05); }
+.pin figcaption { padding: 1rem 1.2rem; font-size: 0.92rem; }
 
 .chain { display: grid; gap: 1.2rem; }
-.note { background: var(--card); border: 1px solid var(--line); padding: 1.5rem; border-radius: 10px; }
+.note {
+  background: var(--card); border-radius: 20px; padding: 1.8rem 2rem;
+  box-shadow: var(--shadow); transition: transform 0.3s;
+}
+.note:hover { transform: translateY(-3px); }
+.note h3 { font-family: 'Instrument Serif', serif; font-size: 1.4rem; margin-bottom: 0.4rem; font-weight: 400; }
 
-footer { text-align: center; padding: 4rem 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--line); }
+footer {
+  text-align: center; padding: 5rem 2rem; color: var(--muted);
+  font-size: 0.88rem; border-top: 1px solid var(--line);
+}
 
-.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; align-items: center; justify-content: center; padding: 2rem; }
+.modal {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65);
+  z-index: 200; align-items: center; justify-content: center; padding: 1.5rem;
+  backdrop-filter: blur(6px);
+}
 .modal.open { display: flex; }
-.modal-content { background: var(--card); max-width: 720px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 2.5rem; border-radius: 16px; position: relative; }
-.modal-content h3 { font-family: 'Instrument Serif', serif; font-size: 2rem; margin-bottom: 0.5rem; }
-.close { position: absolute; top: 1rem; right: 1.2rem; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--ink); }
-
-.fade-up { opacity: 0; transform: translateY(24px); animation: fadeUp 0.8s ease forwards; }
-@keyframes fadeUp { to { opacity: 1; transform: none; } }
+.modal-content {
+  background: var(--card); max-width: 760px; width: 100%; max-height: 88vh;
+  overflow-y: auto; padding: 2.8rem; border-radius: 24px; position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+.modal-content h3 { font-family: 'Instrument Serif', serif; font-size: 2.1rem; margin-bottom: 0.4rem; font-weight: 400; }
+.close {
+  position: absolute; top: 1.2rem; right: 1.4rem; background: none; border: none;
+  font-size: 1.8rem; cursor: pointer; color: var(--ink); opacity: 0.6;
+}
+.close:hover { opacity: 1; }
 </style>
 </head>
 <body>
@@ -110,13 +154,13 @@ footer { text-align: center; padding: 4rem 2rem; color: var(--muted); font-size:
 
 <header class="hero" id="top">
   <div class="hero-content">
-    <h1>Sobuj</h1>
+    <h1>Sobuj<span class="dot">.</span></h1>
     <p>Men Are Brave<br>Stories, pictures, and quiet notes. Not loud. Just steady.</p>
   </div>
 </header>
 
 <section id="stories">
-  <h2>Stories</h2>
+  <h2>Stories<span class="dot">.</span></h2>
   <div class="stories">
     <div class="story-card" data-story="rose">
       <h3>নিজের জন্য একটা গোলাপ</h3>
@@ -142,21 +186,21 @@ footer { text-align: center; padding: 4rem 2rem; color: var(--muted); font-size:
 </section>
 
 <section id="feed">
-  <h2>সন্ধ্যা</h2>
+  <h2>সন্ধ্যা<span class="dot">.</span></h2>
   <div class="feed">
-    <div class="feed-item fade-up">
+    <div class="feed-item">
       <img src="https://kappa.lol/zoGNhs" alt="">
       <p class="caption">ঘাসের উপর আলো। রাত নামছে।</p>
     </div>
-    <div class="feed-item fade-up">
+    <div class="feed-item">
       <img src="https://kappa.lol/kSAFq0" alt="">
       <p class="caption">গাছের গোড়ায় দাঁড়িয়ে। সিগারেটের ধোঁয়া।</p>
     </div>
-    <div class="feed-item fade-up">
+    <div class="feed-item">
       <img src="https://kappa.lol/0gH20a" alt="">
       <p class="caption">মাথা নামিয়ে। একটা সিগারেট, আর চিন্তা।</p>
     </div>
-    <div class="feed-item fade-up">
+    <div class="feed-item">
       <img src="https://kappa.lol/Ht5RvN" alt="">
       <p class="caption">সবুজ ঘাস, কালো আকাশ। দূরে তাকিয়ে।</p>
     </div>
@@ -164,7 +208,7 @@ footer { text-align: center; padding: 4rem 2rem; color: var(--muted); font-size:
 </section>
 
 <section id="pins">
-  <h2>Visuals</h2>
+  <h2>Visuals<span class="dot">.</span></h2>
   <div class="pins">
     <figure class="pin">
       <img src="https://kappa.lol/Xqptuj" alt="Emerald Veil">
@@ -186,7 +230,7 @@ footer { text-align: center; padding: 4rem 2rem; color: var(--muted); font-size:
 </section>
 
 <section id="chain">
-  <h2>Blockchain</h2>
+  <h2>Blockchain<span class="dot">.</span></h2>
   <div class="chain">
     <div class="note">
       <h3>A ledger is a promise</h3>
@@ -204,13 +248,12 @@ footer { text-align: center; padding: 4rem 2rem; color: var(--muted); font-size:
   @Robiulislam796
 </footer>
 
-<!-- Story Modal -->
 <div class="modal" id="storyModal">
   <div class="modal-content">
     <button class="close" onclick="closeModal()">×</button>
     <h3 id="modalTitle"></h3>
     <div class="meta" id="modalMeta"></div>
-    <div id="modalBody"></div>
+    <div id="modalBody" style="margin-top:1.2rem; line-height:1.75;"></div>
   </div>
 </div>
 
@@ -304,10 +347,21 @@ if (localStorage.getItem('theme') === 'dark') {
 }
 themeBtn.addEventListener('click', () => {
   const isDark = html.getAttribute('data-theme') === 'dark';
-  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  html.setAttribute('data-theme', isDark ? '' : 'dark');
   themeBtn.textContent = isDark ? 'Dark' : 'Light';
-  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  localStorage.setItem('theme', isDark ? '' : 'dark');
 });
+
+// Scroll animation
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.feed-item').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
