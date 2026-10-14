@@ -98,19 +98,17 @@ body.modal-open{overflow:hidden}
 .sheet.no-pics .mag-body{margin-top:-1px}
 .reader-top{display:block}
 .sheet h3{font-family:'Instrument Serif',serif;font-size:clamp(2rem,5vw,2.9rem);line-height:1.04;margin:.3rem 0 .2rem;color:#292827}
-.story-pics{pointer-events:auto;width:100%;display:grid;gap:6px;margin:12px 0;padding:0}
-.story-pics figure{margin:0;background:#070909}
-.story-pics img{width:100%;height:auto;display:block;border-radius:0}
-.story-pics.n2{width:min(1100px,100%);margin-left:auto;margin-right:auto;grid-template-columns:1fr 1fr}
-.story-pics.n3,.story-pics.n4,.story-pics.many{width:100%;grid-template-columns:1fr 1fr}
-.story-pics.n3 figure:first-child,.story-pics.n4 figure:first-child,.story-pics.many figure:first-child{grid-column:1 / -1}
-.story-pics.many figure:last-child:nth-child(even){grid-column:1 / -1}
+.story-pics{pointer-events:auto;width:min(1040px,100%);margin:14px auto;padding:0;display:flex;flex-direction:column;align-items:center;gap:1.65rem}
+.story-pics figure{width:100%;margin:0;background:transparent}
+.story-pics img{width:100%;height:auto;display:block;border-radius:0;opacity:0;transform:translate3d(0,32px,0);animation:pic-in .95s var(--cine) forwards;animation-delay:calc(var(--i,0) * 120ms)}
+.pic-cap{width:min(36rem,calc(100% - 2rem));margin:.7rem auto 0;padding:0 1rem;text-align:center;font-family:'Outfit',system-ui,sans-serif;font-size:.78rem;font-weight:400;letter-spacing:.06em;line-height:1.55;color:#b7b0a6;opacity:0;transform:translate3d(0,16px,0);animation:pic-in .9s var(--cine) forwards;animation-delay:calc(var(--i,0) * 120ms + 90ms)}
+@keyframes pic-in{to{opacity:1;transform:translate3d(0,0,0)}}
 @media(max-width:760px){
 .mag-col{width:calc(100% - 1.2rem)}
 .mag-head{margin-top:4.6rem;padding:1.2rem 1rem .9rem;border-radius:14px 14px 0 0}
 .mag-body{padding:.2rem 1rem 1.7rem;border-radius:0 0 14px 14px}
-.story-pics,.story-pics.n2,.story-pics.n3,.story-pics.n4,.story-pics.many{grid-template-columns:1fr;width:100%;gap:5px;margin:8px 0}
-.story-pics figure{grid-column:auto !important}
+.story-pics{width:100%;gap:1.25rem;margin:8px auto}
+.pic-cap{font-size:.74rem}
 }
 .story-body{font-family:'Instrument Serif',serif;font-size:1.2rem;line-height:1.92}
 .story-body p{margin:0 0 1.05rem}
@@ -147,7 +145,7 @@ h1 .ch{display:inline-block;transform:translate3d(0,120%,0);animation:glyph 1.05
 }
 @keyframes rise-in{from{opacity:0;transform:translate3d(0,35px,0) scale(.982)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
 @media (prefers-reduced-motion:reduce){
-h1 .line,h1 .ch,.hero-card .kicker,.hero-card .sub,.hero-card .hero-meta,.js .rise{animation:none !important;opacity:1 !important;transform:none !important}
+h1 .line,h1 .ch,.hero-card .kicker,.hero-card .sub,.hero-card .hero-meta,.js .rise,.story-pics img,.pic-cap{animation:none !important;opacity:1 !important;transform:none !important}
 h1 .line{letter-spacing:-.028em}
 .featured,.card,.pin{transition:none}
 }
@@ -307,39 +305,41 @@ applyTheme(saved);
 themeBtn.onclick=function(){ applyTheme(document.documentElement.getAttribute('data-theme')==='dark' ? 'light' : 'dark'); };
 var GALLERIES={
   sandhya:[
-    "https://x0.at/J9rT.jpg",
-    "https://x0.at/E0mn.jpg",
-    "https://x0.at/NU1W.jpg",
-    "https://x0.at/o9gx.jpg",
-    "https://x0.at/Dpj2.jpg",
-    // Add more সন্ধ্যা frames below. Uncomment a line, or paste a new quoted URL.
-    // "https://x0.at/next-frame.jpg",
-    // "https://x0.at/another-frame.jpg",
-    // "https://x0.at/one-more-frame.jpg",
-    // "https://x0.at/last-frame.jpg"
+    {src:"https://x0.at/J9rT.jpg", caption:"সন্ধ্যার আলো"},
+    {src:"https://x0.at/E0mn.jpg", caption:"রেলিং"},
+    {src:"https://x0.at/NU1W.jpg", caption:"একটা শহর যেটা কথা বলে না"},
+    {src:"https://x0.at/o9gx.jpg", caption:"চাঁদের নিচে"},
+    {src:"https://x0.at/Dpj2.jpg", caption:"আলো ও ছায়া"}
   ]
 };
 function storyPics(id, src){
-  var list = (GALLERIES[id] || (src.getAttribute('data-pics')||'').split('|')).filter(function(url){
-    return url && String(url).indexOf('http')===0;
-  });
-  return list;
+  var raw = GALLERIES[id] || (src.getAttribute('data-pics')||'').split('|');
+  return raw.map(function(item){
+    if(typeof item === 'string') return {src:item.trim(), caption:''};
+    return {src:(item.src||item.url||'').trim(), caption:item.caption||''};
+  }).filter(function(item){ return item.src.indexOf('http')===0; });
 }
 function paintPics(id, src){
   var pics=document.getElementById('rpics');
-  var urls=storyPics(id, src);
+  var frames=storyPics(id, src);
   var sheet=document.getElementById('sheet');
-  var n=urls.length;
   pics.innerHTML='';
-  pics.className='story-pics '+(n>4?'many':('n'+Math.max(n,1)));
-  pics.hidden=n===0;
-  sheet.classList.toggle('no-pics', n===0);
-  urls.forEach(function(url){
+  pics.className='story-pics';
+  pics.hidden=frames.length===0;
+  sheet.classList.toggle('no-pics', frames.length===0);
+  frames.forEach(function(frame, i){
     var fig=document.createElement('figure');
+    fig.style.setProperty('--i', i);
     var img=document.createElement('img');
-    img.src=url;
-    img.alt=src.getAttribute('data-title')||'';
+    img.src=frame.src;
+    img.alt=frame.caption || src.getAttribute('data-title') || '';
     fig.appendChild(img);
+    if(frame.caption){
+      var cap=document.createElement('figcaption');
+      cap.className='pic-cap';
+      cap.textContent=frame.caption;
+      fig.appendChild(cap);
+    }
     pics.appendChild(fig);
   });
 }
