@@ -10,6 +10,8 @@
 <style>
 :root{--bg:#f2f0eb;--ink:#292827;--muted:#666;--line:#e3e3e2;--maroon:#421d24;--violet:#714cb6;--lilac:#d4c7ff;--lagoon:#0c4243;--card:rgba(255,255,255,.9);--nav:rgba(242,240,235,.85);--title:#292827}
 html[data-theme="dark"]{--bg:#0c1212;--ink:#f4efe6;--muted:#b7b0a6;--line:rgba(244,239,230,.12);--maroon:#e8d5c4;--violet:#c4b4ff;--lilac:#2a2438;--lagoon:#0c4243;--card:rgba(255,255,255,.06);--nav:rgba(12,18,18,.8);--title:#f7f3eb}
+:root{--glow:0 14px 34px rgba(66,29,36,.10),0 2px 8px rgba(41,40,39,.05),0 0 0 1px rgba(113,76,182,.14);--ease:cubic-bezier(0.16,1,0.3,1)}
+html[data-theme="dark"]{--glow:0 16px 40px rgba(0,0,0,.48),0 0 28px rgba(196,180,255,.16),0 0 0 1px rgba(196,180,255,.20)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:'Outfit',system-ui,sans-serif;font-weight:400;line-height:1.65}
@@ -76,6 +78,23 @@ footer{background:var(--maroon);color:#f7f3eb;padding:2.5rem 5vw;display:flex;ju
 .story-body p{margin:0 0 1.05rem}
 img{filter:none !important;mix-blend-mode:normal !important}
 @media(max-width:760px){.featured,.about{grid-template-columns:1fr}.featured img,.about img{height:220px}.pin-grid{columns:2 140px}.nav-links{gap:.7rem}.hero{min-height:78vh;padding-bottom:1.5rem}}
+
+.hero-card{opacity:0;transform:translate3d(0,28px,0);animation:hero-in .9s var(--ease) .12s forwards}
+@keyframes hero-in{to{opacity:1;transform:translate3d(0,0,0)}}
+.nav-links a,.featured,.card,.pin{transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .45s var(--ease),background-color .45s var(--ease),color .3s var(--ease)}
+.nav-links a{display:inline-block;border-radius:999px;padding:.22em .42em;margin:-.22em -.12em}
+.featured,.card{position:relative}
+@media (hover:hover) and (pointer:fine){
+.nav-links a:hover{transform:scale(1.02);box-shadow:var(--glow);background:color-mix(in srgb,var(--violet) 14%,transparent)}
+.featured:hover,.card:hover,.pin:hover{transform:translate3d(0,-3px,0) scale(1.02);box-shadow:var(--glow);border-color:color-mix(in srgb,var(--violet) 42%,var(--line));z-index:2}
+}
+.nav-links a:focus-visible,.featured:focus-visible,.card:focus-visible,.pin:focus-visible{outline:none;box-shadow:var(--glow)}
+.reveal{opacity:0;transform:translate3d(0,22px,0);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+.hero-card,.reveal{animation:none;opacity:1;transform:none;transition:none}
+.nav-links a,.featured,.card,.pin{transition:none}
+}
 </style>
 </head>
 <body>
@@ -99,20 +118,20 @@ img{filter:none !important;mix-blend-mode:normal !important}
   </div>
 </header>
 <main class="wrap">
-  <section>
+  <section class="reveal">
     <div class="sec-label">The journal</div>
     <h2>A quiet place for writing</h2>
     <p class="lead">This is not a loud site. It holds stories, a few pictures, and notes on the chain. Read slowly. Leave when you want.</p>
   </section>
 </main>
-<section class="darkband">
+<section class="darkband reveal">
   <div class="wrap">
     <div class="sec-label">Theme</div>
     <p class="quote">Men Are Brave. Not loud. Just steady.<small>Sobuj · 2026</small></p>
   </div>
 </section>
 <main class="wrap">
-  <section id="stories">
+  <section id="stories" class="reveal">
     <div class="sec-label">Story</div>
     <h2>Own writing</h2>
     <p class="lead">Tap a card. The full piece opens like a magazine page.</p>
@@ -132,7 +151,7 @@ img{filter:none !important;mix-blend-mode:normal !important}
       <article class="card" data-story="rose"><div class="sec-label">Story</div><h3>নিজের জন্য একটা গোলাপ</h3><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময়।</p><div class="date">27 Jul 2026</div><div class="read">Read →</div></article>
     </div>
   </section>
-  <section id="pinterest">
+  <section id="pinterest" class="reveal">
     <div class="sec-label">Pinterest</div>
     <h2>Visuals</h2>
     <p class="lead">Tap for full view. Copy the link if you want to share.</p>
@@ -143,7 +162,7 @@ img{filter:none !important;mix-blend-mode:normal !important}
       <figure class="pin"><img src="https://x0.at/sHIO.jpg" alt="Copper Tide"><figcaption><span>Copper Tide</span><a class="dl" href="https://x0.at/sHIO.jpg" download>Download</a></figcaption></figure>
     </div>
   </section>
-  <section id="chain">
+  <section id="chain" class="reveal">
     <div class="sec-label">Blockchain</div>
     <h2>Notes for the chain</h2>
     <p class="lead">Trust, copies, and what a ledger is actually for.</p>
@@ -153,7 +172,7 @@ img{filter:none !important;mix-blend-mode:normal !important}
       <article class="note"><h3>Slow chain</h3><p>Not everything needs to be fast. Some records are meant to sit quietly and still be true.</p></article>
     </div>
   </section>
-  <section class="about">
+  <section class="about reveal">
     <img src="https://x0.at/pdkv.jpg" alt="Sobuj">
     <div>
       <div class="sec-label">About</div>
@@ -253,6 +272,26 @@ document.getElementById('copy').onclick=function(){
   if(navigator.clipboard){ navigator.clipboard.writeText(current); this.textContent='Copied'; var b=this; setTimeout(function(){b.textContent='Copy link';},1200); }
   else { prompt('Copy this link', current); }
 };
+</script>
+
+<script>
+(function(){
+  var nodes=document.querySelectorAll(".reveal");
+  if(!nodes.length) return;
+  var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduce || !("IntersectionObserver" in window)){
+    nodes.forEach(function(el){ el.classList.add("is-in"); });
+    return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      entry.target.classList.add("is-in");
+      io.unobserve(entry.target);
+    });
+  },{root:null,rootMargin:"0px 0px -12% 0px",threshold:0});
+  nodes.forEach(function(el){ io.observe(el); });
+})();
 </script>
 </body>
 </html>
