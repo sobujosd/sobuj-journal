@@ -148,7 +148,37 @@ h1 .ch{display:inline-block;transform:translate3d(0,120%,0);animation:glyph 1.05
 h1 .line,h1 .ch,.hero-card .kicker,.hero-card .sub,.hero-card .hero-meta,.js .rise,.story-pics img,.pic-cap{animation:none !important;opacity:1 !important;transform:none !important}
 h1 .line{letter-spacing:-.028em}
 .featured,.card,.pin{transition:none}
+.gate-card.shake{animation:none}
 }
+footer{position:relative}
+.admin-tap{position:absolute;left:0;bottom:0;width:36px;height:36px;opacity:0;border:0;padding:0;background:transparent;cursor:default}
+.gate{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:1rem;background:rgba(12,18,18,.56);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.gate[hidden],.desk[hidden]{display:none !important}
+.gate-card{width:min(380px,100%);background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:18px;padding:1.45rem 1.3rem 1.2rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--glow)}
+.gate-card h3{font-family:'Instrument Serif',serif;font-size:2rem;font-weight:400;line-height:1;margin:.2rem 0 .9rem}
+.gate-card input{width:100%;border:1px solid var(--line);background:transparent;color:var(--ink);font-family:inherit;font-size:1rem;border-radius:12px;padding:.75rem .85rem;outline:none}
+.gate-card input:focus{border-color:var(--violet)}
+.gate-card button{margin-top:.75rem;width:100%;border:0;border-radius:12px;padding:.75rem;background:var(--maroon);color:#fff;font-family:inherit;letter-spacing:.08em;text-transform:uppercase;font-size:.74rem;cursor:pointer}
+.gate-msg{min-height:1.2rem;margin-top:.65rem;color:var(--violet);font-size:.82rem}
+.gate-card.shake{animation:gate-shake .42s var(--cine)}
+@keyframes gate-shake{20%{transform:translate3d(-6px,0,0)}40%{transform:translate3d(6px,0,0)}60%{transform:translate3d(-3px,0,0)}80%{transform:translate3d(3px,0,0)}}
+.desk{position:fixed;left:0;right:0;bottom:0;z-index:70;max-height:min(86vh,760px);overflow:auto;padding:1.15rem 5vw calc(1.3rem + env(safe-area-inset-bottom));background:var(--nav);color:var(--ink);border-top:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 -18px 50px rgba(0,0,0,.18)}
+.desk-top{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:.85rem}
+.desk-top h3{font-family:'Instrument Serif',serif;font-size:1.8rem;font-weight:400;line-height:1}
+.desk-close{border:0;border-radius:999px;padding:.55rem .9rem;background:var(--maroon);color:#fff;font-family:inherit;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.desk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-bottom:.7rem}
+.desk-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1rem}
+.desk-card span{display:block;color:var(--muted);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}
+.desk-card strong{display:block;margin-top:.35rem;font-family:'Instrument Serif',serif;font-size:1.8rem;font-weight:400;line-height:1}
+.desk-note{color:var(--muted);font-size:.84rem;margin-top:.45rem}
+.desk-bar{display:grid;grid-template-columns:minmax(88px,1fr) 2.4fr auto;gap:.55rem;align-items:center;margin-top:.65rem;font-size:.82rem}
+.desk-bar span{display:block;letter-spacing:0;text-transform:none;font-size:.82rem;color:var(--ink)}
+.desk-bar i{display:block;height:7px;border-radius:999px;background:var(--lilac);position:relative}
+.desk-bar i::after{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--w);border-radius:inherit;background:var(--violet)}
+.desk-bar b{font-weight:500}
+.desk-embed{margin-top:.7rem;min-height:180px;border-radius:12px;overflow:hidden;background:rgba(0,0,0,.04)}
+.desk-embed iframe{width:100%;height:320px;border:0;background:#fff}
+@media(max-width:760px){.desk-grid{grid-template-columns:1fr}.desk{padding-left:1rem;padding-right:1rem}}
 </style>
 </head>
 <body>
@@ -250,6 +280,7 @@ h1 .line{letter-spacing:-.028em}
     <a href="https://www.facebook.com/share/1CJnpbYL1G/">Facebook</a>
     <a href="https://pin.it/3yqjH6Rz0">Pinterest</a>
   </div>
+  <button class="admin-tap" id="adminTap" type="button" aria-label="Owner"></button>
 </footer>
 <div class="reader" id="reader">
   <button class="xbtn reader-close" id="rx" type="button">Close</button>
@@ -471,6 +502,168 @@ document.getElementById('copy').onclick=function(){
         el.style.setProperty("--my", "0px");
       });
     });
+  }
+})();
+</script>
+<div class="gate" id="gate" hidden>
+  <form class="gate-card" id="gateForm">
+    <div class="sec-label">Private</div>
+    <h3>Journal desk</h3>
+    <input id="gatePw" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password">
+    <button type="submit">Open</button>
+    <p class="gate-msg" id="gateMsg"></p>
+  </form>
+</div>
+<section class="desk" id="desk" hidden>
+  <div class="desk-top">
+    <div>
+      <div class="sec-label">Private desk</div>
+      <h3>Visitors</h3>
+    </div>
+    <button class="desk-close" id="deskClose" type="button">Close</button>
+  </div>
+  <div class="desk-grid">
+    <article class="desk-card"><span>Page views</span><strong id="finicount_views">—</strong><p class="desk-note">All visitors, counted by domain.</p></article>
+    <article class="desk-card"><span>This visit</span><strong id="deskCountry">—</strong><p class="desk-note">Country of the open session.</p></article>
+    <article class="desk-card"><span>Kept here</span><strong id="deskLocal">0</strong><p class="desk-note">Visits saved in this browser.</p></article>
+  </div>
+  <article class="desk-card">
+    <span>Countries</span>
+    <div id="deskBars"></div>
+  </article>
+  <article class="desk-card">
+    <span>Age and details</span>
+    <p class="desk-note" id="deskEmbedNote">This page does not guess age. Set ADMIN.embed to an https dashboard URL and the report will sit here.</p>
+    <div class="desk-embed" id="deskEmbedSlot"></div>
+  </article>
+</section>
+<script async src="https://finicounter.eu.org/finicounter.js"></script>
+<script>
+(function(){
+  var ADMIN = {
+    password: "menarebrave",
+    embed: ""
+  };
+  var KEY = "sobuj-visits";
+  var gate = document.getElementById("gate");
+  var gateForm = document.getElementById("gateForm");
+  var gatePw = document.getElementById("gatePw");
+  var gateMsg = document.getElementById("gateMsg");
+  var gateCard = gate.querySelector(".gate-card");
+  var desk = document.getElementById("desk");
+  var countryEl = document.getElementById("deskCountry");
+
+  function loadRows(){
+    try { return JSON.parse(localStorage.getItem(KEY) || "[]"); }
+    catch (e) { return []; }
+  }
+  function saveRows(rows){
+    try { localStorage.setItem(KEY, JSON.stringify(rows.slice(-180))); }
+    catch (e) {}
+  }
+  function same(a, b){
+    if (a.length !== b.length) return false;
+    var n = 0;
+    for (var i = 0; i < a.length; i++) n |= a.charCodeAt(i) ^ b.charCodeAt(i);
+    return n === 0;
+  }
+  function renderDesk(){
+    var rows = loadRows();
+    var local = document.getElementById("deskLocal");
+    var bars = document.getElementById("deskBars");
+    local.textContent = String(rows.length);
+    countryEl.textContent = rows.length ? rows[rows.length - 1].c : "—";
+    var counts = {};
+    rows.forEach(function(row){ counts[row.c] = (counts[row.c] || 0) + 1; });
+    var names = Object.keys(counts).sort(function(a, b){ return counts[b] - counts[a]; });
+    var max = names.reduce(function(n, name){ return Math.max(n, counts[name]); }, 1);
+    bars.innerHTML = "";
+    if (!names.length) {
+      bars.textContent = "No country yet.";
+      return;
+    }
+    names.forEach(function(name){
+      var line = document.createElement("div");
+      line.className = "desk-bar";
+      var label = document.createElement("span");
+      label.textContent = name;
+      var meter = document.createElement("i");
+      meter.style.setProperty("--w", Math.round(counts[name] / max * 100) + "%");
+      var num = document.createElement("b");
+      num.textContent = String(counts[name]);
+      line.appendChild(label);
+      line.appendChild(meter);
+      line.appendChild(num);
+      bars.appendChild(line);
+    });
+  }
+  function mountEmbed(){
+    var slot = document.getElementById("deskEmbedSlot");
+    var note = document.getElementById("deskEmbedNote");
+    if (!ADMIN.embed || ADMIN.embed.indexOf("https://") !== 0) return;
+    var frame = document.createElement("iframe");
+    frame.src = ADMIN.embed;
+    frame.title = "External analytics";
+    frame.loading = "lazy";
+    frame.referrerPolicy = "no-referrer";
+    slot.innerHTML = "";
+    slot.appendChild(frame);
+    note.textContent = "External report";
+  }
+  function openGate(){
+    if (!desk.hidden) return;
+    gate.hidden = false;
+    gatePw.value = "";
+    gateMsg.textContent = "";
+    setTimeout(function(){ gatePw.focus(); }, 30);
+  }
+  function closeDesk(){
+    desk.hidden = true;
+    gate.hidden = true;
+  }
+  document.getElementById("adminTap").addEventListener("click", function(){
+    var n = Number(this.dataset.taps || 0) + 1;
+    this.dataset.taps = String(n);
+    clearTimeout(this._t);
+    var self = this;
+    this._t = setTimeout(function(){ self.dataset.taps = "0"; }, 700);
+    if (n >= 3) { this.dataset.taps = "0"; openGate(); }
+  });
+  var buf = "";
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape") { closeDesk(); return; }
+    if (e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")) return;
+    if (!e.key || e.key.length !== 1) return;
+    buf = (buf + e.key.toLowerCase()).slice(-5);
+    if (buf === "sobuj") { buf = ""; openGate(); }
+  });
+  gate.addEventListener("click", function(e){ if (e.target === gate) gate.hidden = true; });
+  gateForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    if (same(gatePw.value, ADMIN.password)) {
+      gate.hidden = true;
+      desk.hidden = false;
+      renderDesk();
+      mountEmbed();
+      return;
+    }
+    gateMsg.textContent = "Not this one.";
+    gateCard.classList.remove("shake");
+    void gateCard.offsetWidth;
+    gateCard.classList.add("shake");
+  });
+  document.getElementById("deskClose").addEventListener("click", closeDesk);
+
+  if (!sessionStorage.getItem("sobuj-seen")) {
+    sessionStorage.setItem("sobuj-seen", "1");
+    fetch("https://ipwho.is/").then(function(r){ return r.json(); }).then(function(data){
+      if (!data || data.success !== true || !data.country) return;
+      var rows = loadRows();
+      rows.push({ c: data.country, k: data.country_code || "", t: Date.now() });
+      saveRows(rows);
+      if (!desk.hidden) renderDesk();
+      else countryEl.textContent = data.country;
+    }).catch(function(){});
   }
 })();
 </script>
