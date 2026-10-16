@@ -57,6 +57,19 @@ h2{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);lin
 .featured h3{font-family:'Instrument Serif',serif;font-size:clamp(2rem,3.5vw,2.7rem);line-height:1.02;margin:.25rem 0 .5rem}
 .featured p{color:var(--muted);font-size:1.05rem}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.evening{margin-top:2.2rem}
+.evening-copy{width:min(680px,100%);margin:0 auto 1.5rem}
+.evening-gallery{width:min(980px,100%);margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:1.7rem}
+.evening-gallery figure{width:100%;margin:0}
+.evening-gallery img,.evening-cap{opacity:1;transform:none}
+.js .evening-gallery img,.js .evening-cap{opacity:0;transform:translate3d(0,32px,0)}
+.js .evening-gallery figure.is-in img,.js .evening-gallery figure.is-in .evening-cap{animation:eve-in .9s cubic-bezier(0.16,1,0.3,1) forwards}
+.evening-gallery figure.is-in img{animation-delay:calc(var(--i,0) * 120ms)}
+.evening-gallery figure.is-in .evening-cap{animation-delay:calc(var(--i,0) * 120ms + 90ms)}
+.evening-gallery img{width:100%;height:auto;display:block}
+.evening-cap{width:min(36rem,calc(100% - 2rem));margin:.7rem auto 0;text-align:center;font-family:'Outfit',system-ui,sans-serif;font-size:.78rem;font-weight:400;letter-spacing:.06em;line-height:1.55;color:var(--muted)}
+@keyframes eve-in{to{opacity:1;transform:translate3d(0,0,0)}}
+@media(max-width:760px){.evening-gallery{width:100%;gap:1.2rem}.evening-cap{font-size:.74rem}}
 .card,.note{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.25rem}
 .card{cursor:pointer}
 .card h3{font-size:1.12rem;font-weight:500;margin:.25rem 0 .35rem}
@@ -114,7 +127,6 @@ body.modal-open{overflow:hidden}
 .story-body p{margin:0 0 1.05rem}
 img{filter:none !important;mix-blend-mode:normal !important}
 @media(max-width:760px){.featured,.about{grid-template-columns:1fr}.featured img,.about img{height:220px}.pin-grid{columns:2 140px}.nav-links{gap:.7rem}.hero{min-height:78vh;padding-bottom:1.5rem}}
-
 h1 .line{display:block;overflow:hidden;line-height:.92;padding:.08em 0 .12em;margin:-.06em 0;letter-spacing:.22em;animation:track 1.45s var(--cine) forwards}
 h1 .line:nth-child(2){animation-delay:.16s}
 h1 .ch{display:inline-block;transform:translate3d(0,120%,0);animation:glyph 1.05s var(--cine) forwards;animation-delay:calc(.2s + var(--d) * 42ms)}
@@ -125,7 +137,6 @@ h1 .ch{display:inline-block;transform:translate3d(0,120%,0);animation:glyph 1.05
 .hero-card .sub{animation-delay:.78s;transform:translate3d(0,14px,0)}
 .hero-card .hero-meta{animation-delay:.94s;transform:translate3d(0,14px,0)}
 @keyframes mist{to{opacity:1;transform:translate3d(0,0,0)}}
-
 .featured,.card,.pin{position:relative;--mx:0px;--my:0px;--gx:50%;--gy:18%;backdrop-filter:blur(0px) saturate(1);-webkit-backdrop-filter:blur(0px) saturate(1);transition:transform .72s var(--spring),box-shadow .85s var(--cine),backdrop-filter .6s var(--cine),-webkit-backdrop-filter .6s var(--cine),border-color .5s var(--cine)}
 .featured::before,.card::before,.pin::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;opacity:0;background:radial-gradient(380px circle at var(--gx) var(--gy),rgba(255,255,255,.34),transparent 46%);transition:opacity .55s var(--cine)}
 .pin figcaption{z-index:3;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:backdrop-filter .6s var(--cine),-webkit-backdrop-filter .6s var(--cine)}
@@ -135,7 +146,6 @@ h1 .ch{display:inline-block;transform:translate3d(0,120%,0);animation:glyph 1.05
 .pin:hover figcaption{backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4)}
 }
 .featured > *,.card > *{position:relative;z-index:1}
-
 .js .rise{animation:rise-in 1.05s var(--cine) var(--d,0ms) both;animation-play-state:paused}
 .js .rise.go{animation-play-state:running}
 .js .rise.shown{opacity:1;transform:none;animation:none}
@@ -145,13 +155,13 @@ h1 .ch{display:inline-block;transform:translate3d(0,120%,0);animation:glyph 1.05
 }
 @keyframes rise-in{from{opacity:0;transform:translate3d(0,35px,0) scale(.982)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
 @media (prefers-reduced-motion:reduce){
-h1 .line,h1 .ch,.hero-card .kicker,.hero-card .sub,.hero-card .hero-meta,.js .rise,.story-pics img,.pic-cap{animation:none !important;opacity:1 !important;transform:none !important}
+h1 .line,h1 .ch,.hero-card .kicker,.hero-card .sub,.hero-card .hero-meta,.js .rise,.story-pics img,.pic-cap,.evening-gallery img,.evening-cap{animation:none !important;opacity:1 !important;transform:none !important}
 h1 .line{letter-spacing:-.028em}
 .featured,.card,.pin{transition:none}
 .gate-card.shake{animation:none}
 }
 footer{position:relative}
-.admin-tap{position:absolute;left:0;bottom:0;width:36px;height:36px;opacity:0;border:0;padding:0;background:transparent;cursor:default}
+.admin-tap{position:absolute;left:0;bottom:0;width:44px;height:44px;opacity:0;border:0;padding:0;background:transparent;cursor:default}
 .gate{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:1rem;background:rgba(12,18,18,.56);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .gate[hidden],.desk[hidden]{display:none !important}
 .gate-card{width:min(380px,100%);background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:18px;padding:1.45rem 1.3rem 1.2rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--glow)}
@@ -162,12 +172,13 @@ footer{position:relative}
 .gate-msg{min-height:1.2rem;margin-top:.65rem;color:var(--violet);font-size:.82rem}
 .gate-card.shake{animation:gate-shake .42s var(--cine)}
 @keyframes gate-shake{20%{transform:translate3d(-6px,0,0)}40%{transform:translate3d(6px,0,0)}60%{transform:translate3d(-3px,0,0)}80%{transform:translate3d(3px,0,0)}}
-.desk{position:fixed;left:0;right:0;bottom:0;z-index:70;max-height:min(86vh,760px);overflow:auto;padding:1.15rem 5vw calc(1.3rem + env(safe-area-inset-bottom));background:var(--nav);color:var(--ink);border-top:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 -18px 50px rgba(0,0,0,.18)}
+.desk{background:var(--bg);color:var(--ink);border-top:1px solid var(--line);padding:2.6rem 5vw 3rem}
 .desk-top{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:.85rem}
 .desk-top h3{font-family:'Instrument Serif',serif;font-size:1.8rem;font-weight:400;line-height:1}
 .desk-close{border:0;border-radius:999px;padding:.55rem .9rem;background:var(--maroon);color:#fff;font-family:inherit;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
 .desk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-bottom:.7rem}
-.desk-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1rem}
+.desk-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1rem;margin-bottom:.7rem}
+.desk-grid .desk-card{margin-bottom:0}
 .desk-card span{display:block;color:var(--muted);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}
 .desk-card strong{display:block;margin-top:.35rem;font-family:'Instrument Serif',serif;font-size:1.8rem;font-weight:400;line-height:1}
 .desk-note{color:var(--muted);font-size:.84rem;margin-top:.45rem}
@@ -176,7 +187,8 @@ footer{position:relative}
 .desk-bar i{display:block;height:7px;border-radius:999px;background:var(--lilac);position:relative}
 .desk-bar i::after{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--w);border-radius:inherit;background:var(--violet)}
 .desk-bar b{font-weight:500}
-.desk-embed{margin-top:.7rem;min-height:180px;border-radius:12px;overflow:hidden;background:rgba(0,0,0,.04)}
+.desk-chart{display:block;width:100%;height:120px;margin-top:.8rem;color:var(--violet)}
+.desk-embed{margin-top:.7rem;min-height:120px;border-radius:12px;overflow:hidden;background:rgba(0,0,0,.04)}
 .desk-embed iframe{width:100%;height:320px;border:0;background:#fff}
 @media(max-width:760px){.desk-grid{grid-template-columns:1fr}.desk{padding-left:1rem;padding-right:1rem}}
 </style>
@@ -232,10 +244,19 @@ footer{position:relative}
       </div>
     </article>
     <div class="cards">
-      <article class="card" data-story="sandhya"><div class="sec-label">Story</div><h3>সন্ধ্যা</h3><p>তিনটা ছবি। সন্ধ্যার আলো, রেলিং, আর একটা শহর যেটা কথা বলে না।</p><div class="date">9 Oct 2026</div><div class="read">Read →</div></article>
       <article class="card" data-story="hell"><div class="sec-label">Story</div><h3>এক নরকের মাঝখানে</h3><p>এই পৃথিবীর দিকে বেশি তাকাইয়া থাকলে চোখ জ্বালাপোড়া করে।</p><div class="date">12 Sep 2026</div><div class="read">Read →</div></article>
       <article class="card" data-story="night"><div class="sec-label">Story</div><h3>রাতের শহর</h3><p>রাত বারোটার পরে একটা ছোট শহর, রিকশা, আর খালি রাস্তা।</p><div class="date">12 Aug 2026</div><div class="read">Read →</div></article>
       <article class="card" data-story="rose"><div class="sec-label">Story</div><h3>নিজের জন্য একটা গোলাপ</h3><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময়।</p><div class="date">27 Jul 2026</div><div class="read">Read →</div></article>
+    </div>
+    <div class="evening">
+      <article class="card evening-copy" data-story="sandhya">
+        <div class="sec-label">Story · সন্ধ্যা</div>
+        <h3>সন্ধ্যা</h3>
+        <p>তিনটা ছবি। সন্ধ্যার আলো, রেলিং, আর একটা শহর যেটা কথা বলে না।</p>
+        <div class="date">9 Oct 2026</div>
+        <div class="read">Read →</div>
+      </article>
+      <div class="evening-gallery" id="eveningGallery"></div>
     </div>
   </section>
   <section id="pinterest" class="reveal">
@@ -323,7 +344,6 @@ footer{position:relative}
   <article id="story-night" data-title="রাতের শহর" data-date="12 August 2026" data-pics="https://x0.at/gvVW.jpg"><p>রাত ১২ টারও বেশি। এই ছোট্ট শহরটা অনেক আগেই শান্ত হয়ে গেছে। কোথাও কোথাও দু-একজন মানুষ, মাথার ওপর সোডিয়াম আলো আর আমি। যে এমন নিস্তব্ধ শহরে অন্ধকারের বুক চিড়ে পথ হাঁটেনি, সে কোনো দিন জানতে পারবে না রাতের আসল সৌন্দর্য কী।</p><p>আমি অনেকক্ষণ যাবৎ হাঁটছি। কখনো সঙ্গী হিসেবে পেয়েছি নিজের ছায়াটাকে, গভীর অন্ধকারে সেটাও নেই। ঠোঁটে অসংখ্য সিগারেট পোড়ানোর পরেও এখনো পকেটে ছয়টা সিগারেট বাকি। এগুলোও শেষ করতে হবে।</p><p>রাত গভীর থেকে আরও গভীরে চলে যাচ্ছে। ভাবছি, ঘরে ফেরার আগে শেষ সময়টুকু রিকশায় ঘুরব। বহু খুঁজে একটা রিকশা পাওয়া গেল। রিকশাওয়ালা মামা জিজ্ঞেস করছিল, কই যাইবেন, মামা? আমি আদতে জানি না, কোথায় যাব আমি। আমার কোনো গন্তব্য নেই। ভাবলাম, কিছুটা স্মৃতি রোমন্থন করা যাক আজ।</p><p>রিকশাওয়ালাকে বললাম, মামা, বর্ডার গার্ড স্কুলের দিকে চলেন। ঠিক স্কুলের গেটের সামনে গিয়ে দাঁড়াবেন। রিকশা চলছে। আমি একটা সিগারেট ধরালাম। রিকশা স্কুলের সামনে গিয়ে দাঁড়াল। স্কুলের দিকে তাকিয়ে রইলাম খানিকক্ষণ। নিজে নিজে বিড়বিড় করে বললাম, লাবণ্য পড়ত এখানে। বহুদিন এই রাস্তাটা দিয়ে ওর আর আমার আসা-যাওয়া হয়েছে।</p><p>রিকশাওয়ালাকে জিজ্ঞেস করলাম, মামা, এত রাতে কি ফুলের দোকান খোলা আছে? ফুলের দোকান বন্ধ ছিল। পকেটে তখনো দুইটা সিগারেট। আমি একটা জ্বালালাম। আকাশে অসংখ্য তারা মিটমিট করে জ্বলছে। তবে এমন রাতে জ্যোৎস্না থাকলে ভালো হতো।</p><p>জ্যোৎস্নার কথা মনে পড়তেই একটা গানের দুটো লাইন গুনগুন করে গাইতে লাগলাম, “ঘর খুলিয়া বাহির হইয়া জোছনা ধরতে যাই, হাত ভরতি চান্দের আলো ধরতে গেলে নাই।”</p><p>আমি রিকশা থেকে নেমে পড়লাম। শেষ সিগারেটটা জ্বালিয়ে হাঁটতে শুরু করলাম। স্টেশন পর্যন্ত হেঁটে যাব। এই রাস্তাটা ভীষণ সুন্দর। আমি হাঁটতে হাঁটতে ভাবছি, এই ফিকে হয়ে যাওয়া ভালোবাসার যুগে আমার মতো মানুষেরা বোধহয় কেবল বিলীন হয়ে যাওয়ার জন্যই এসেছে।</p><p>রাতের গভীরতা আরও বেড়েছে। রাস্তাঘাট একেবারে শূন্য। আমার ঘরে ফিরতে হবে। নানান চিন্তায় ভার হয়ে আসা মাথা নিয়ে আর দাঁড়িয়ে থাকা যাচ্ছে না। একগাদা ওষুধ গিলে ঘুমোতে হবে। না ঘুমোতে পারলেই মরণ।</p><p>১২ আগস্ট ২০২৬</p></article>
   <article id="story-rose" data-title="নিজের জন্য একটা গোলাপ" data-date="27 July 2026" data-pics="https://x0.at/ohUg.jpg"><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময় হঠাৎ মনে পড়ল, বহুদিন কারও জন্য ফুল কেনা হয়নি। শেষবার ফুল কিনেছিলাম লাবণ্যর জন্য। বারান্দার রেলিংয়ের দিকে হাত বাড়িয়ে বেশ কষ্ট করে দিতে হয়েছিল সেই ফুল। ওকে কিছু দিতে পারলে ভালো লাগত আমার। বুঝতে পারিনি, সেসব জিনিস ওর কাছে কেবল সস্তা বস্তু ছিল। আমার খারাপ লাগবে ভেবে হয়তো কখনো বলেনি।</p><p>যাকগে, আজ নিজের জন্য একটা গোলাপ কিনেছি। যদিও গোলাপ আমার পছন্দ নয়। আমার পছন্দ বেলিফুল। নিজেকে গোলাপটা দিয়ে বললাম, “তোমার নিজেকে ভালোবাসা উচিত, সবুজ।” এরপর গোলাপটাকে নিষ্ঠুরভাবে ছুড়ে ফেলে দিয়েছি রাস্তায়। ফুলের প্রসঙ্গ এখন থাক।</p><p>আমি সিগারেট টানতে টানতে আসলে ভাবছি অন্য কিছু। যার জন্য কিছুদিন আগেও মরে যাওয়ার কথা ভাবছিলাম, আজকাল তার কথা ভেবে আর খারাপ লাগে না। না তার প্রতি ভালোবাসা আসে, না ঘৃণা। তবে হ্যাঁ, মাঝে মাঝে ওর চেহারাটা চোখের সামনে ভেসে ওঠে। তখন আমি আকাশের দিকে তাকাই। উড়ে যাওয়া মেঘ দেখি, পাখি দেখি।</p><p>খানিক আগেও যে পথটা ধরে রিকশায় করে এলাম, বহুদিন ওর সঙ্গে সেই পথেই হাতে হাত রেখে ঘুরেছি। আজ থেকে কিছুদিন আগেও ওই পথ ধরে হাঁটতে পারতাম না। ওর স্মৃতি মাথার ভেতরটা খুবলে খেত। কিন্তু আজ আর খারাপ লাগেনি। উল্টো অট্টহাসি হেসেছি। নিজেকে বলেছি, “সবুজ, তুই কী ভীষণ বোকা!”</p><p>নিজেকেই প্রশ্ন করেছি, “আচ্ছা, একটা মানুষ এতবার ছেড়ে দেওয়ার পরেও তাকে কেউ ফিরিয়ে নেয়? তোর জায়গায় অন্য কেউ হলে হয়তো এই বোকামিটা করত না।” সাইকিয়াট্রিস্টও তো এই কারণেই তোকে বলেছিল, “সবুজ, আপনি তো বোকার থেকেও বেশি বোকা।” আচ্ছা, তুই তো জানতিস ওর ছেড়ে দিয়ে থাকার অভ্যাস আছে। তুই তো জানতিস, যে একবার ছেড়ে যেতে পারে, সে বারবারও পারে।</p><p>আমি নিজেকে করা প্রত্যেকটি প্রশ্নের উত্তর জানি। হাতের সিগারেটটা কখন ফুরিয়ে গেছে, এসব লিখতে লিখতে খেয়ালই করিনি। আমি আরেকটা সিগারেট জ্বালালাম। তারপর কী যেন ভেবে খানিকটা হাসলাম।</p><p>আর কে যেন একটা কথা বলছিল, এই পৃথিবীতে ভালোবাসার ব্যাপারগুলো অনেক আগেই ফিকে হয়ে গেছে। মানুষের সঙ্গে মানুষের সম্পর্ক এখন কেবল বিনিময়ের। এই ব্যাপারগুলো যে যত তাড়াতাড়ি বুঝতে পারবে, তার জন্য ততই ভালো।</p><p>২৭ জুলাই ২০২৬</p></article>
 </div>
-
 <script>
 var themeBtn=document.getElementById('theme');
 var saved=localStorage.getItem('sobuj-theme')||'light';
@@ -374,6 +394,28 @@ function paintPics(id, src){
     pics.appendChild(fig);
   });
 }
+function paintEvening(){
+  var box=document.getElementById('eveningGallery');
+  if(!box) return;
+  box.innerHTML='';
+  (GALLERIES.sandhya||[]).forEach(function(frame, i){
+    if(!frame || !frame.src) return;
+    var fig=document.createElement('figure');
+    fig.style.setProperty('--i', i);
+    var img=document.createElement('img');
+    img.src=frame.src;
+    img.alt=frame.caption||'সন্ধ্যা';
+    fig.appendChild(img);
+    if(frame.caption){
+      var cap=document.createElement('figcaption');
+      cap.className='evening-cap';
+      cap.textContent=frame.caption;
+      fig.appendChild(cap);
+    }
+    box.appendChild(fig);
+  });
+}
+paintEvening();
 function openReader(){
   reader.classList.add('open');
   document.body.classList.add('modal-open');
@@ -416,13 +458,11 @@ document.getElementById('copy').onclick=function(){
   else { prompt('Copy this link', current); }
 };
 </script>
-
 <script>
 (function(){
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   var order = 0;
-
   function arm(el){
     el.classList.add("rise");
     el.dataset.i = String(order++);
@@ -431,7 +471,6 @@ document.getElementById('copy').onclick=function(){
       el.classList.add("shown");
     });
   }
-
   function collect(section){
     var list = [];
     if(section.classList.contains("about")){
@@ -444,12 +483,10 @@ document.getElementById('copy').onclick=function(){
     list.forEach(arm);
     return list;
   }
-
   var all = [];
   document.querySelectorAll("section.reveal").forEach(function(section){
     Array.prototype.push.apply(all, collect(section));
   });
-
   if(reduce || !("IntersectionObserver" in window)){
     all.forEach(function(el){ el.classList.add("shown"); });
   } else {
@@ -479,7 +516,22 @@ document.getElementById('copy').onclick=function(){
     }, {root:null, rootMargin:"0px 0px -6% 0px", threshold:0.16});
     all.forEach(function(el){ io.observe(el); });
   }
-
+  var evening = document.getElementById("eveningGallery");
+  if(evening){
+    var frames = evening.querySelectorAll("figure");
+    if(reduce || !("IntersectionObserver" in window)){
+      frames.forEach(function(fig){ fig.classList.add("is-in"); });
+    } else {
+      var eve = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(!entry.isIntersecting) return;
+          frames.forEach(function(fig){ fig.classList.add("is-in"); });
+          eve.disconnect();
+        });
+      }, {root:null, rootMargin:"0px 0px -8% 0px", threshold:0.12});
+      eve.observe(evening);
+    }
+  }
   if(fine && !reduce){
     document.querySelectorAll(".featured, .card, .pin").forEach(function(el){
       var frame = 0;
@@ -532,6 +584,14 @@ document.getElementById('copy').onclick=function(){
     <div id="deskBars"></div>
   </article>
   <article class="desk-card">
+    <span>Detail chart</span>
+    <svg class="desk-chart" viewBox="0 0 320 120" role="img" aria-label="Placeholder chart">
+      <polyline fill="none" stroke="currentColor" stroke-width="2" points="8,92 48,80 88,84 128,58 168,64 208,36 248,42 288,18 312,24"/>
+      <line x1="8" y1="108" x2="312" y2="108" stroke="currentColor" stroke-width="1" opacity=".35"/>
+    </svg>
+    <p class="desk-note">Placeholder. A live report replaces this when ADMIN.embed is set.</p>
+  </article>
+  <article class="desk-card">
     <span>Age and details</span>
     <p class="desk-note" id="deskEmbedNote">This page does not guess age. Set ADMIN.embed to an https dashboard URL and the report will sit here.</p>
     <div class="desk-embed" id="deskEmbedSlot"></div>
@@ -541,7 +601,7 @@ document.getElementById('copy').onclick=function(){
 <script>
 (function(){
   var ADMIN = {
-    password: "menarebrave",
+    password: "admin123",
     embed: ""
   };
   var KEY = "sobuj-visits";
@@ -552,7 +612,6 @@ document.getElementById('copy').onclick=function(){
   var gateCard = gate.querySelector(".gate-card");
   var desk = document.getElementById("desk");
   var countryEl = document.getElementById("deskCountry");
-
   function loadRows(){
     try { return JSON.parse(localStorage.getItem(KEY) || "[]"); }
     catch (e) { return []; }
@@ -645,6 +704,7 @@ document.getElementById('copy').onclick=function(){
       desk.hidden = false;
       renderDesk();
       mountEmbed();
+      desk.scrollIntoView({behavior:"smooth", block:"start"});
       return;
     }
     gateMsg.textContent = "Not this one.";
@@ -653,7 +713,6 @@ document.getElementById('copy').onclick=function(){
     gateCard.classList.add("shake");
   });
   document.getElementById("deskClose").addEventListener("click", closeDesk);
-
   if (!sessionStorage.getItem("sobuj-seen")) {
     sessionStorage.setItem("sobuj-seen", "1");
     fetch("https://ipwho.is/").then(function(r){ return r.json(); }).then(function(data){
