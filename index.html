@@ -157,40 +157,49 @@ h1 .ch{display:inline-block;transform:translate3d(0,120%,0);animation:glyph 1.05
 @media (prefers-reduced-motion:reduce){
 h1 .line,h1 .ch,.hero-card .kicker,.hero-card .sub,.hero-card .hero-meta,.js .rise,.story-pics img,.pic-cap,.evening-gallery img,.evening-cap{animation:none !important;opacity:1 !important;transform:none !important}
 h1 .line{letter-spacing:-.028em}
-.featured,.card,.pin{transition:none}
-.gate-card.shake{animation:none}
+.featured,.card,.pin,.token{transition:none}
 }
 footer{position:relative}
-.admin-tap{position:absolute;left:0;bottom:0;width:44px;height:44px;opacity:0;border:0;padding:0;background:transparent;cursor:default}
-.gate{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:1rem;background:rgba(12,18,18,.56);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.gate[hidden],.desk[hidden]{display:none !important}
-.gate-card{width:min(380px,100%);background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:18px;padding:1.45rem 1.3rem 1.2rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--glow)}
-.gate-card h3{font-family:'Instrument Serif',serif;font-size:2rem;font-weight:400;line-height:1;margin:.2rem 0 .9rem}
-.gate-card input{width:100%;border:1px solid var(--line);background:transparent;color:var(--ink);font-family:inherit;font-size:1rem;border-radius:12px;padding:.75rem .85rem;outline:none}
-.gate-card input:focus{border-color:var(--violet)}
-.gate-card button{margin-top:.75rem;width:100%;border:0;border-radius:12px;padding:.75rem;background:var(--maroon);color:#fff;font-family:inherit;letter-spacing:.08em;text-transform:uppercase;font-size:.74rem;cursor:pointer}
-.gate-msg{min-height:1.2rem;margin-top:.65rem;color:var(--violet);font-size:.82rem}
-.gate-card.shake{animation:gate-shake .42s var(--cine)}
-@keyframes gate-shake{20%{transform:translate3d(-6px,0,0)}40%{transform:translate3d(6px,0,0)}60%{transform:translate3d(-3px,0,0)}80%{transform:translate3d(3px,0,0)}}
-.desk{background:var(--bg);color:var(--ink);border-top:1px solid var(--line);padding:2.6rem 5vw 3rem}
-.desk-top{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:.85rem}
-.desk-top h3{font-family:'Instrument Serif',serif;font-size:1.8rem;font-weight:400;line-height:1}
-.desk-close{border:0;border-radius:999px;padding:.55rem .9rem;background:var(--maroon);color:#fff;font-family:inherit;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
-.desk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-bottom:.7rem}
-.desk-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1rem;margin-bottom:.7rem}
-.desk-grid .desk-card{margin-bottom:0}
-.desk-card span{display:block;color:var(--muted);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}
-.desk-card strong{display:block;margin-top:.35rem;font-family:'Instrument Serif',serif;font-size:1.8rem;font-weight:400;line-height:1}
-.desk-note{color:var(--muted);font-size:.84rem;margin-top:.45rem}
-.desk-bar{display:grid;grid-template-columns:minmax(88px,1fr) 2.4fr auto;gap:.55rem;align-items:center;margin-top:.65rem;font-size:.82rem}
-.desk-bar span{display:block;letter-spacing:0;text-transform:none;font-size:.82rem;color:var(--ink)}
-.desk-bar i{display:block;height:7px;border-radius:999px;background:var(--lilac);position:relative}
-.desk-bar i::after{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--w);border-radius:inherit;background:var(--violet)}
-.desk-bar b{font-weight:500}
-.desk-chart{display:block;width:100%;height:120px;margin-top:.8rem;color:var(--violet)}
-.desk-embed{margin-top:.7rem;min-height:120px;border-radius:12px;overflow:hidden;background:rgba(0,0,0,.04)}
-.desk-embed iframe{width:100%;height:320px;border:0;background:#fff}
-@media(max-width:760px){.desk-grid{grid-template-columns:1fr}.desk{padding-left:1rem;padding-right:1rem}}
+.copyline{position:relative;display:inline-block}
+.admin-tap{position:absolute;left:100%;top:50%;width:10px;height:10px;margin-left:6px;opacity:0;border:0;padding:0;background:transparent}
+.chain-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:1.5rem;align-items:end}
+.chain-title{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.03em;margin:.15rem 0 .7rem}
+.chain-sub{max-width:34rem;color:var(--muted);font-size:1.05rem}
+.chain-cta{display:inline-flex;align-items:center;margin:1.15rem 0 1.5rem;padding:.82rem 1.15rem;border-radius:999px;background:var(--card);color:var(--ink);border:1px solid var(--line);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;font-size:.74rem;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(41,40,39,.06)}
+.token-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+.token{--mx:0px;--my:0px;display:flex;align-items:center;gap:.7rem;width:100%;text-align:left;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:.68rem .75rem;font-family:inherit;cursor:pointer;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:transform .6s cubic-bezier(0.16,1,0.3,1),box-shadow .6s cubic-bezier(0.16,1,0.3,1),border-color .4s}
+.token b{display:block;font-weight:500;font-size:.92rem}
+.token small{color:var(--muted);letter-spacing:.08em}
+.mark{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:.78rem;font-weight:600;flex:none}
+.mark.btc{background:#f7931a}
+.mark.sol{background:#9945ff}
+.mark.near{background:#111}
+.mark.avax{background:#e84142}
+.mark.gram{background:#0098ea}
+.mark.bnb{background:#f3ba2f;color:#1a1a1a}
+.mark.eth{background:#627eea}
+.mark.zec{background:#ecb244;color:#1a1a1a}
+.chain-panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.15rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.chain-panel .note{margin-bottom:.7rem}
+.chain-panel .note:last-child{margin-bottom:0}
+@media (hover:hover) and (pointer:fine){
+.token:hover{transform:translate3d(var(--mx),calc(var(--my) - 6px),0) scale(1.045);box-shadow:var(--glow);border-color:color-mix(in srgb,var(--violet) 46%,var(--line))}
+}
+.js .token.rise.shown{transform:translate3d(var(--mx),var(--my),0)}
+@media (hover:hover) and (pointer:fine){
+.js .token.rise.shown:hover{transform:translate3d(var(--mx),calc(var(--my) - 6px),0) scale(1.045)}
+}
+#admin-dashboard{display:none;padding:2.4rem 5vw 3rem;background:var(--nav);color:var(--ink);border-top:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+#admin-dashboard.open{display:block;animation:eve-in .7s cubic-bezier(0.16,1,0.3,1)}
+.admin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-top:1rem}
+.admin-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1rem;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.admin-card span{display:block;color:var(--muted);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}
+.admin-card strong{display:block;margin-top:.4rem;font-family:'Instrument Serif',serif;font-size:clamp(1.6rem,3vw,2.3rem);font-weight:400;line-height:1}
+.admin-card p{color:var(--muted);margin-top:.45rem;font-size:.9rem}
+.admin-top{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.admin-top h2{margin:0}
+.admin-close{border:0;border-radius:999px;padding:.55rem .9rem;background:var(--maroon);color:#fff;font-family:inherit;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+@media(max-width:760px){.chain-grid,.admin-grid{grid-template-columns:1fr}.token-grid{grid-template-columns:1fr 1fr}#admin-dashboard{padding-left:1rem;padding-right:1rem}}
 </style>
 </head>
 <body>
@@ -271,13 +280,28 @@ footer{position:relative}
     </div>
   </section>
   <section id="chain" class="reveal">
-    <div class="sec-label">Blockchain</div>
-    <h2>Notes for the chain</h2>
-    <p class="lead">Trust, copies, and what a ledger is actually for.</p>
-    <div class="notes">
-      <article class="note"><h3>A ledger is a promise</h3><p>Trust, copies, and what a chain is actually for. Not loud. Just a record that holds.</p></article>
-      <article class="note"><h3>Seen by all. Known by one.</h3><p>Some things stay encrypted on purpose. The public sees the mark. Only the holder sees the essence.</p></article>
-      <article class="note"><h3>Slow chain</h3><p>Not everything needs to be fast. Some records are meant to sit quietly and still be true.</p></article>
+    <div class="chain-grid">
+      <div class="chain-main">
+        <div class="sec-label">Blockchain</div>
+        <h2 class="chain-title">The Future of Chain</h2>
+        <p class="chain-sub">A quiet ledger for records that should stay. Not loud. Open day and night.</p>
+        <a class="chain-cta" href="#chain-notes">Read the notes</a>
+        <div class="token-grid">
+          <button class="token" type="button"><span class="mark btc">₿</span><span><b>Bitcoin</b><small>BTC</small></span></button>
+          <button class="token" type="button"><span class="mark sol">S</span><span><b>Solana</b><small>SOL</small></span></button>
+          <button class="token" type="button"><span class="mark near">N</span><span><b>NEAR Protocol</b><small>NEAR</small></span></button>
+          <button class="token" type="button"><span class="mark avax">A</span><span><b>Avalanche</b><small>AVAX</small></span></button>
+          <button class="token" type="button"><span class="mark gram">G</span><span><b>Toncoin / Gram</b><small>GRAM</small></span></button>
+          <button class="token" type="button"><span class="mark bnb">B</span><span><b>Binance Coin</b><small>BNB</small></span></button>
+          <button class="token" type="button"><span class="mark eth">Ξ</span><span><b>Ethereum</b><small>ETH</small></span></button>
+          <button class="token" type="button"><span class="mark zec">Z</span><span><b>Zcash</b><small>ZEC</small></span></button>
+        </div>
+      </div>
+      <aside class="chain-panel" id="chain-notes">
+        <article class="note"><h3>A ledger is a promise</h3><p>Trust, copies, and what a chain is actually for. Not loud. Just a record that holds.</p></article>
+        <article class="note"><h3>Seen by all. Known by one.</h3><p>Some things stay encrypted on purpose. The public sees the mark. Only the holder sees the essence.</p></article>
+        <article class="note"><h3>Slow chain</h3><p>Not everything needs to be fast. Some records are meant to sit quietly and still be true.</p></article>
+      </aside>
     </div>
   </section>
   <section class="about reveal">
@@ -293,7 +317,7 @@ footer{position:relative}
 <footer>
   <div>
     <div style="font-family:'Instrument Serif',serif;font-size:1.45rem">Sobuj</div>
-    <div style="opacity:.75;font-size:.82rem;margin-top:.25rem">© 2026 · Men Are Brave</div>
+    <div class="copyline" style="opacity:.75;font-size:.82rem;margin-top:.25rem">© 2026 · Men Are Brave<button class="admin-tap" id="admin-tap" type="button" aria-label="Owner"></button></div>
   </div>
   <div class="socials">
     <a href="https://www.instagram.com/sobuj_nothing">Instagram</a>
@@ -301,7 +325,6 @@ footer{position:relative}
     <a href="https://www.facebook.com/share/1CJnpbYL1G/">Facebook</a>
     <a href="https://pin.it/3yqjH6Rz0">Pinterest</a>
   </div>
-  <button class="admin-tap" id="adminTap" type="button" aria-label="Owner"></button>
 </footer>
 <div class="reader" id="reader">
   <button class="xbtn reader-close" id="rx" type="button">Close</button>
@@ -477,6 +500,8 @@ document.getElementById('copy').onclick=function(){
       list = Array.prototype.slice.call(section.querySelectorAll(":scope > img, :scope > div"));
     } else if(section.classList.contains("darkband")){
       list = Array.prototype.slice.call(section.querySelectorAll(".sec-label, .quote"));
+    } else if(section.id === "chain"){
+      list = Array.prototype.slice.call(section.querySelectorAll(".sec-label, .chain-title, .chain-sub, .chain-cta, .token, .chain-panel"));
     } else {
       list = Array.prototype.slice.call(section.querySelectorAll(":scope > .sec-label, :scope > h2, :scope > .lead, :scope > .featured, :scope > .cards > .card, :scope .pin-grid > .pin, :scope > .notes > .note"));
     }
@@ -533,7 +558,7 @@ document.getElementById('copy').onclick=function(){
     }
   }
   if(fine && !reduce){
-    document.querySelectorAll(".featured, .card, .pin").forEach(function(el){
+    document.querySelectorAll(".featured, .card, .pin, .token").forEach(function(el){
       var frame = 0;
       el.addEventListener("pointermove", function(e){
         var cx = e.clientX, cy = e.clientY;
@@ -557,173 +582,61 @@ document.getElementById('copy').onclick=function(){
   }
 })();
 </script>
-<div class="gate" id="gate" hidden>
-  <form class="gate-card" id="gateForm">
-    <div class="sec-label">Private</div>
-    <h3>Journal desk</h3>
-    <input id="gatePw" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password">
-    <button type="submit">Open</button>
-    <p class="gate-msg" id="gateMsg"></p>
-  </form>
-</div>
-<section class="desk" id="desk" hidden>
-  <div class="desk-top">
+<section id="admin-dashboard">
+  <div class="admin-top">
     <div>
-      <div class="sec-label">Private desk</div>
-      <h3>Visitors</h3>
+      <div class="sec-label">Private</div>
+      <h2>Visitors</h2>
     </div>
-    <button class="desk-close" id="deskClose" type="button">Close</button>
+    <button class="admin-close" id="admin-close" type="button">Close</button>
   </div>
-  <div class="desk-grid">
-    <article class="desk-card"><span>Page views</span><strong id="finicount_views">—</strong><p class="desk-note">All visitors, counted by domain.</p></article>
-    <article class="desk-card"><span>This visit</span><strong id="deskCountry">—</strong><p class="desk-note">Country of the open session.</p></article>
-    <article class="desk-card"><span>Kept here</span><strong id="deskLocal">0</strong><p class="desk-note">Visits saved in this browser.</p></article>
+  <div class="admin-grid">
+    <article class="admin-card"><span>Total page views</span><strong id="view-count">0</strong><p>Counted in this browser.</p></article>
+    <article class="admin-card"><span>Top countries</span><strong>3</strong><p>Bangladesh<br>USA<br>UK</p></article>
+    <article class="admin-card"><span>User devices</span><strong id="device-lead">—</strong><div id="device-list"></div></article>
+    <article class="admin-card"><span>Estimated demographics</span><strong>18–34</strong><p>Age range held as a placeholder. This page does not read anyone's age.</p></article>
   </div>
-  <article class="desk-card">
-    <span>Countries</span>
-    <div id="deskBars"></div>
-  </article>
-  <article class="desk-card">
-    <span>Detail chart</span>
-    <svg class="desk-chart" viewBox="0 0 320 120" role="img" aria-label="Placeholder chart">
-      <polyline fill="none" stroke="currentColor" stroke-width="2" points="8,92 48,80 88,84 128,58 168,64 208,36 248,42 288,18 312,24"/>
-      <line x1="8" y1="108" x2="312" y2="108" stroke="currentColor" stroke-width="1" opacity=".35"/>
-    </svg>
-    <p class="desk-note">Placeholder. A live report replaces this when ADMIN.embed is set.</p>
-  </article>
-  <article class="desk-card">
-    <span>Age and details</span>
-    <p class="desk-note" id="deskEmbedNote">This page does not guess age. Set ADMIN.embed to an https dashboard URL and the report will sit here.</p>
-    <div class="desk-embed" id="deskEmbedSlot"></div>
-  </article>
 </section>
-<script async src="https://finicounter.eu.org/finicounter.js"></script>
 <script>
 (function(){
-  var ADMIN = {
-    password: "admin123",
-    embed: ""
-  };
-  var KEY = "sobuj-visits";
-  var gate = document.getElementById("gate");
-  var gateForm = document.getElementById("gateForm");
-  var gatePw = document.getElementById("gatePw");
-  var gateMsg = document.getElementById("gateMsg");
-  var gateCard = gate.querySelector(".gate-card");
-  var desk = document.getElementById("desk");
-  var countryEl = document.getElementById("deskCountry");
-  function loadRows(){
-    try { return JSON.parse(localStorage.getItem(KEY) || "[]"); }
-    catch (e) { return []; }
+  var KEY = "sobuj-views";
+  var DEV = "sobuj-devices";
+  var views = Number(localStorage.getItem(KEY) || "0") + 1;
+  localStorage.setItem(KEY, String(views));
+  if (!sessionStorage.getItem("sobuj-viewed")) {
+    sessionStorage.setItem("sobuj-viewed", "1");
+    var kind = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? "Mobile" : "Desktop";
+    var devices = {};
+    try { devices = JSON.parse(localStorage.getItem(DEV) || "{}"); } catch (e) { devices = {}; }
+    devices[kind] = (devices[kind] || 0) + 1;
+    localStorage.setItem(DEV, JSON.stringify(devices));
   }
-  function saveRows(rows){
-    try { localStorage.setItem(KEY, JSON.stringify(rows.slice(-180))); }
-    catch (e) {}
-  }
-  function same(a, b){
-    if (a.length !== b.length) return false;
-    var n = 0;
-    for (var i = 0; i < a.length; i++) n |= a.charCodeAt(i) ^ b.charCodeAt(i);
-    return n === 0;
-  }
-  function renderDesk(){
-    var rows = loadRows();
-    var local = document.getElementById("deskLocal");
-    var bars = document.getElementById("deskBars");
-    local.textContent = String(rows.length);
-    countryEl.textContent = rows.length ? rows[rows.length - 1].c : "—";
-    var counts = {};
-    rows.forEach(function(row){ counts[row.c] = (counts[row.c] || 0) + 1; });
-    var names = Object.keys(counts).sort(function(a, b){ return counts[b] - counts[a]; });
-    var max = names.reduce(function(n, name){ return Math.max(n, counts[name]); }, 1);
-    bars.innerHTML = "";
-    if (!names.length) {
-      bars.textContent = "No country yet.";
-      return;
-    }
+  function paint(){
+    document.getElementById("view-count").textContent = localStorage.getItem(KEY) || "0";
+    var devices = {};
+    try { devices = JSON.parse(localStorage.getItem(DEV) || "{}"); } catch (e) { devices = {}; }
+    var names = Object.keys(devices);
+    var lead = document.getElementById("device-lead");
+    var list = document.getElementById("device-list");
+    lead.textContent = names.length ? names.join(" · ") : "—";
+    list.innerHTML = "";
     names.forEach(function(name){
-      var line = document.createElement("div");
-      line.className = "desk-bar";
-      var label = document.createElement("span");
-      label.textContent = name;
-      var meter = document.createElement("i");
-      meter.style.setProperty("--w", Math.round(counts[name] / max * 100) + "%");
-      var num = document.createElement("b");
-      num.textContent = String(counts[name]);
-      line.appendChild(label);
-      line.appendChild(meter);
-      line.appendChild(num);
-      bars.appendChild(line);
+      var row = document.createElement("p");
+      row.textContent = name + " · " + devices[name];
+      list.appendChild(row);
     });
   }
-  function mountEmbed(){
-    var slot = document.getElementById("deskEmbedSlot");
-    var note = document.getElementById("deskEmbedNote");
-    if (!ADMIN.embed || ADMIN.embed.indexOf("https://") !== 0) return;
-    var frame = document.createElement("iframe");
-    frame.src = ADMIN.embed;
-    frame.title = "External analytics";
-    frame.loading = "lazy";
-    frame.referrerPolicy = "no-referrer";
-    slot.innerHTML = "";
-    slot.appendChild(frame);
-    note.textContent = "External report";
-  }
-  function openGate(){
-    if (!desk.hidden) return;
-    gate.hidden = false;
-    gatePw.value = "";
-    gateMsg.textContent = "";
-    setTimeout(function(){ gatePw.focus(); }, 30);
-  }
-  function closeDesk(){
-    desk.hidden = true;
-    gate.hidden = true;
-  }
-  document.getElementById("adminTap").addEventListener("click", function(){
-    var n = Number(this.dataset.taps || 0) + 1;
-    this.dataset.taps = String(n);
-    clearTimeout(this._t);
-    var self = this;
-    this._t = setTimeout(function(){ self.dataset.taps = "0"; }, 700);
-    if (n >= 3) { this.dataset.taps = "0"; openGate(); }
+  document.getElementById("admin-tap").addEventListener("click", function(){
+    var pw = prompt("Enter Admin Password:");
+    if (pw === null || pw !== "admin123") return;
+    var dash = document.getElementById("admin-dashboard");
+    paint();
+    dash.classList.add("open");
+    dash.scrollIntoView({behavior:"smooth", block:"start"});
   });
-  var buf = "";
-  document.addEventListener("keydown", function(e){
-    if (e.key === "Escape") { closeDesk(); return; }
-    if (e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")) return;
-    if (!e.key || e.key.length !== 1) return;
-    buf = (buf + e.key.toLowerCase()).slice(-5);
-    if (buf === "sobuj") { buf = ""; openGate(); }
+  document.getElementById("admin-close").addEventListener("click", function(){
+    document.getElementById("admin-dashboard").classList.remove("open");
   });
-  gate.addEventListener("click", function(e){ if (e.target === gate) gate.hidden = true; });
-  gateForm.addEventListener("submit", function(e){
-    e.preventDefault();
-    if (same(gatePw.value, ADMIN.password)) {
-      gate.hidden = true;
-      desk.hidden = false;
-      renderDesk();
-      mountEmbed();
-      desk.scrollIntoView({behavior:"smooth", block:"start"});
-      return;
-    }
-    gateMsg.textContent = "Not this one.";
-    gateCard.classList.remove("shake");
-    void gateCard.offsetWidth;
-    gateCard.classList.add("shake");
-  });
-  document.getElementById("deskClose").addEventListener("click", closeDesk);
-  if (!sessionStorage.getItem("sobuj-seen")) {
-    sessionStorage.setItem("sobuj-seen", "1");
-    fetch("https://ipwho.is/").then(function(r){ return r.json(); }).then(function(data){
-      if (!data || data.success !== true || !data.country) return;
-      var rows = loadRows();
-      rows.push({ c: data.country, k: data.country_code || "", t: Date.now() });
-      saveRows(rows);
-      if (!desk.hidden) renderDesk();
-      else countryEl.textContent = data.country;
-    }).catch(function(){});
-  }
 })();
 </script>
 </body>
