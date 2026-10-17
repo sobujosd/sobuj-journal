@@ -59,17 +59,17 @@ h2{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4.5vw,3.4rem);lin
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
 .evening{margin-top:2.2rem}
 .evening-copy{width:min(680px,100%);margin:0 auto 1.5rem}
-.evening-gallery{width:min(980px,100%);margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:1.7rem}
+.evening-gallery{width:min(1040px,100%);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;align-items:start}
 .evening-gallery figure{width:100%;margin:0}
+.evening-gallery img{width:100%;height:280px;object-fit:cover;display:block;border-radius:16px}
+.evening-cap{width:auto;margin:.7rem .4rem 0;text-align:center;font-family:'Outfit',system-ui,sans-serif;font-size:.78rem;font-weight:400;letter-spacing:.06em;line-height:1.55;color:var(--muted)}
 .evening-gallery img,.evening-cap{opacity:1;transform:none}
 .js .evening-gallery img,.js .evening-cap{opacity:0;transform:translate3d(0,32px,0)}
 .js .evening-gallery figure.is-in img,.js .evening-gallery figure.is-in .evening-cap{animation:eve-in .9s cubic-bezier(0.16,1,0.3,1) forwards}
 .evening-gallery figure.is-in img{animation-delay:calc(var(--i,0) * 120ms)}
 .evening-gallery figure.is-in .evening-cap{animation-delay:calc(var(--i,0) * 120ms + 90ms)}
-.evening-gallery img{width:100%;height:auto;display:block}
-.evening-cap{width:min(36rem,calc(100% - 2rem));margin:.7rem auto 0;text-align:center;font-family:'Outfit',system-ui,sans-serif;font-size:.78rem;font-weight:400;letter-spacing:.06em;line-height:1.55;color:var(--muted)}
 @keyframes eve-in{to{opacity:1;transform:translate3d(0,0,0)}}
-@media(max-width:760px){.evening-gallery{width:100%;gap:1.2rem}.evening-cap{font-size:.74rem}}
+@media(max-width:760px){.evening-gallery{grid-template-columns:1fr;gap:1.1rem}.evening-gallery img{height:240px}.evening-cap{font-size:.74rem}}
 .card,.note{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.25rem}
 .card{cursor:pointer}
 .card h3{font-size:1.12rem;font-weight:500;margin:.25rem 0 .35rem}
@@ -111,16 +111,17 @@ body.modal-open{overflow:hidden}
 .sheet.no-pics .mag-body{margin-top:-1px}
 .reader-top{display:block}
 .sheet h3{font-family:'Instrument Serif',serif;font-size:clamp(2rem,5vw,2.9rem);line-height:1.04;margin:.3rem 0 .2rem;color:#292827}
-.story-pics{pointer-events:auto;width:min(1040px,100%);margin:14px auto;padding:0;display:flex;flex-direction:column;align-items:center;gap:1.65rem}
+.story-pics{pointer-events:auto;width:min(1040px,100%);margin:14px auto;padding:0 1rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem;align-items:start}
 .story-pics figure{width:100%;margin:0;background:transparent}
-.story-pics img{width:100%;height:auto;display:block;border-radius:0;opacity:0;transform:translate3d(0,32px,0);animation:pic-in .95s var(--cine) forwards;animation-delay:calc(var(--i,0) * 120ms)}
+.story-pics img{width:100%;height:280px;object-fit:cover;display:block;border-radius:12px;opacity:0;transform:translate3d(0,32px,0);animation:pic-in .95s var(--cine) forwards;animation-delay:calc(var(--i,0) * 120ms)}
 .pic-cap{width:min(36rem,calc(100% - 2rem));margin:.7rem auto 0;padding:0 1rem;text-align:center;font-family:'Outfit',system-ui,sans-serif;font-size:.78rem;font-weight:400;letter-spacing:.06em;line-height:1.55;color:#b7b0a6;opacity:0;transform:translate3d(0,16px,0);animation:pic-in .9s var(--cine) forwards;animation-delay:calc(var(--i,0) * 120ms + 90ms)}
 @keyframes pic-in{to{opacity:1;transform:translate3d(0,0,0)}}
 @media(max-width:760px){
 .mag-col{width:calc(100% - 1.2rem)}
 .mag-head{margin-top:4.6rem;padding:1.2rem 1rem .9rem;border-radius:14px 14px 0 0}
 .mag-body{padding:.2rem 1rem 1.7rem;border-radius:0 0 14px 14px}
-.story-pics{width:100%;gap:1.25rem;margin:8px auto}
+.story-pics{width:100%;grid-template-columns:1fr;gap:1rem;margin:8px auto}
+.story-pics img{height:220px}
 .pic-cap{font-size:.74rem}
 }
 .story-body{font-family:'Instrument Serif',serif;font-size:1.2rem;line-height:1.92}
@@ -161,7 +162,6 @@ h1 .line{letter-spacing:-.028em}
 }
 footer{position:relative}
 .copyline{position:relative;display:inline-block}
-.admin-tap{position:absolute;left:100%;top:50%;width:10px;height:10px;margin-left:6px;opacity:0;border:0;padding:0;background:transparent}
 .chain-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:1.5rem;align-items:end}
 .chain-title{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.03em;margin:.15rem 0 .7rem}
 .chain-sub{max-width:34rem;color:var(--muted);font-size:1.05rem}
@@ -182,6 +182,15 @@ footer{position:relative}
 .chain-panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.15rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 .chain-panel .note{margin-bottom:.7rem}
 .chain-panel .note:last-child{margin-bottom:0}
+.chain-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-top:1.4rem}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1rem 1.05rem;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.stat b{display:block;font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400;line-height:1}
+.stat span{display:block;margin-top:.4rem;color:var(--muted);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+.protocol{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:.8rem;margin-top:.8rem}
+.protocol article{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.15rem;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.protocol h3{font-family:'Instrument Serif',serif;font-weight:400;font-size:1.45rem;margin:.2rem 0 .4rem}
+.protocol p{color:var(--muted);font-size:.95rem}
+@media(max-width:760px){.chain-stats,.protocol{grid-template-columns:1fr}}
 @media (hover:hover) and (pointer:fine){
 .token:hover{transform:translate3d(var(--mx),calc(var(--my) - 6px),0) scale(1.045);box-shadow:var(--glow);border-color:color-mix(in srgb,var(--violet) 46%,var(--line))}
 }
@@ -256,6 +265,8 @@ footer{position:relative}
       <article class="card" data-story="hell"><div class="sec-label">Story</div><h3>এক নরকের মাঝখানে</h3><p>এই পৃথিবীর দিকে বেশি তাকাইয়া থাকলে চোখ জ্বালাপোড়া করে।</p><div class="date">12 Sep 2026</div><div class="read">Read →</div></article>
       <article class="card" data-story="night"><div class="sec-label">Story</div><h3>রাতের শহর</h3><p>রাত বারোটার পরে একটা ছোট শহর, রিকশা, আর খালি রাস্তা।</p><div class="date">12 Aug 2026</div><div class="read">Read →</div></article>
       <article class="card" data-story="rose"><div class="sec-label">Story</div><h3>নিজের জন্য একটা গোলাপ</h3><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময়।</p><div class="date">27 Jul 2026</div><div class="read">Read →</div></article>
+      <article class="card" data-story="river"><div class="sec-label">Story</div><h3>নদীর ধারে</h3><p>সন্ধ্যার পরে নদীর পাড়, একটা খালি বেঞ্চ, আর যে কথাগুলো বলা হয়নি।</p><div class="date">4 Oct 2026</div><div class="read">Read →</div></article>
+      <article class="card" data-story="room"><div class="sec-label">Story</div><h3>খালি ঘর</h3><p>একটা ঘর যেখানে আলো জ্বলে, কিন্তু কেউ বসে না।</p><div class="date">18 Sep 2026</div><div class="read">Read →</div></article>
     </div>
     <div class="evening">
       <article class="card evening-copy" data-story="sandhya">
@@ -301,7 +312,19 @@ footer{position:relative}
         <article class="note"><h3>A ledger is a promise</h3><p>Trust, copies, and what a chain is actually for. Not loud. Just a record that holds.</p></article>
         <article class="note"><h3>Seen by all. Known by one.</h3><p>Some things stay encrypted on purpose. The public sees the mark. Only the holder sees the essence.</p></article>
         <article class="note"><h3>Slow chain</h3><p>Not everything needs to be fast. Some records are meant to sit quietly and still be true.</p></article>
+        <article class="note"><h3>A story can be sealed</h3><p>One copy on the page. Another copy that does not move when the night is edited. The words stay where they were put.</p></article>
+        <article class="note"><h3>Proof without noise</h3><p>A journal does not need a crowd. It needs a mark that the piece existed, and a quiet way to find it again.</p></article>
       </aside>
+    </div>
+    <div class="chain-stats">
+      <article class="stat"><b>08</b><span>Tokens watched</span></article>
+      <article class="stat"><b>07</b><span>Stories on the page</span></article>
+      <article class="stat"><b>24/7</b><span>Ledger stays open</span></article>
+    </div>
+    <div class="protocol">
+      <article><div class="sec-label">Protocol</div><h3>Sealed pages</h3><p>Each story can keep a quiet mark. The public sees the title. The holder keeps the rest.</p></article>
+      <article><div class="sec-label">Copies</div><h3>Two records</h3><p>One lives here, in the journal. One can sit on a chain when the words should not drift.</p></article>
+      <article><div class="sec-label">Night</div><h3>No rush</h3><p>BTC, SOL, NEAR, AVAX, GRAM, BNB, ETH, ZEC stay in view. The writing does not shout over them.</p></article>
     </div>
   </section>
   <section class="about reveal">
@@ -317,7 +340,7 @@ footer{position:relative}
 <footer>
   <div>
     <div style="font-family:'Instrument Serif',serif;font-size:1.45rem">Sobuj</div>
-    <div class="copyline" style="opacity:.75;font-size:.82rem;margin-top:.25rem">© 2026 · Men Are Brave<button class="admin-tap" id="admin-tap" type="button" aria-label="Owner"></button></div>
+    <div class="copyline" id="admin-tap" style="opacity:.75;font-size:.82rem;margin-top:.25rem">© 2026 · Men Are Brave</div>
   </div>
   <div class="socials">
     <a href="https://www.instagram.com/sobuj_nothing">Instagram</a>
@@ -366,6 +389,8 @@ footer{position:relative}
   <article id="story-hell" data-title="এক নরকের মাঝখানে" data-date="12 September 2026"><p>এই পৃথিবীর দিকে বেশি তাকাইয়া থাকলে আমার চোখ জ্বালাপোড়া করে, মন খারাপ হয়। মনে হয়, কী অদ্ভুত সুন্দর এক নরকের মাঝখানে দাঁড়াইয়া আছি!</p><p>আমি ভেবে কূল পাই না, এই দুনিয়ার মতো এত বিভৎস জায়গায় কেমনে ফুল ফোটার মতো সুন্দর ব্যাপার ঘটে, কেমনে আকাশে মেঘ উইড়া বেড়ায়, কেমনে বৃষ্টি নামে?!</p><p>এই যে কেউ হারাইলো তার সন্তানরে, কেউ হারাইলো তার প্রিয় মানুষরে। এই যে পৃথিবীর প্রত্যেকটা বিন্দুতে বিন্দুতে লুকাইয়া আছে প্রতারণা। এত কিছুর পরেও এই পৃথিবী সুন্দর কেমনে হয়?</p><p>আমার এই নরকের মাঝে দাঁড়াইয়া থাকতে থাকতে মাথা ভার হয়ে আসে। কিছুই ভালো লাগে না। খালি মনে হয়, একটা কেয়ামত হোক। পৃথিবীটা ওলট-পালট হইয়া সব ফুরাইয়া যাক।</p><p>১২ সেপ্টেম্বর ২০২৬</p></article>
   <article id="story-night" data-title="রাতের শহর" data-date="12 August 2026" data-pics="https://x0.at/gvVW.jpg"><p>রাত ১২ টারও বেশি। এই ছোট্ট শহরটা অনেক আগেই শান্ত হয়ে গেছে। কোথাও কোথাও দু-একজন মানুষ, মাথার ওপর সোডিয়াম আলো আর আমি। যে এমন নিস্তব্ধ শহরে অন্ধকারের বুক চিড়ে পথ হাঁটেনি, সে কোনো দিন জানতে পারবে না রাতের আসল সৌন্দর্য কী।</p><p>আমি অনেকক্ষণ যাবৎ হাঁটছি। কখনো সঙ্গী হিসেবে পেয়েছি নিজের ছায়াটাকে, গভীর অন্ধকারে সেটাও নেই। ঠোঁটে অসংখ্য সিগারেট পোড়ানোর পরেও এখনো পকেটে ছয়টা সিগারেট বাকি। এগুলোও শেষ করতে হবে।</p><p>রাত গভীর থেকে আরও গভীরে চলে যাচ্ছে। ভাবছি, ঘরে ফেরার আগে শেষ সময়টুকু রিকশায় ঘুরব। বহু খুঁজে একটা রিকশা পাওয়া গেল। রিকশাওয়ালা মামা জিজ্ঞেস করছিল, কই যাইবেন, মামা? আমি আদতে জানি না, কোথায় যাব আমি। আমার কোনো গন্তব্য নেই। ভাবলাম, কিছুটা স্মৃতি রোমন্থন করা যাক আজ।</p><p>রিকশাওয়ালাকে বললাম, মামা, বর্ডার গার্ড স্কুলের দিকে চলেন। ঠিক স্কুলের গেটের সামনে গিয়ে দাঁড়াবেন। রিকশা চলছে। আমি একটা সিগারেট ধরালাম। রিকশা স্কুলের সামনে গিয়ে দাঁড়াল। স্কুলের দিকে তাকিয়ে রইলাম খানিকক্ষণ। নিজে নিজে বিড়বিড় করে বললাম, লাবণ্য পড়ত এখানে। বহুদিন এই রাস্তাটা দিয়ে ওর আর আমার আসা-যাওয়া হয়েছে।</p><p>রিকশাওয়ালাকে জিজ্ঞেস করলাম, মামা, এত রাতে কি ফুলের দোকান খোলা আছে? ফুলের দোকান বন্ধ ছিল। পকেটে তখনো দুইটা সিগারেট। আমি একটা জ্বালালাম। আকাশে অসংখ্য তারা মিটমিট করে জ্বলছে। তবে এমন রাতে জ্যোৎস্না থাকলে ভালো হতো।</p><p>জ্যোৎস্নার কথা মনে পড়তেই একটা গানের দুটো লাইন গুনগুন করে গাইতে লাগলাম, “ঘর খুলিয়া বাহির হইয়া জোছনা ধরতে যাই, হাত ভরতি চান্দের আলো ধরতে গেলে নাই।”</p><p>আমি রিকশা থেকে নেমে পড়লাম। শেষ সিগারেটটা জ্বালিয়ে হাঁটতে শুরু করলাম। স্টেশন পর্যন্ত হেঁটে যাব। এই রাস্তাটা ভীষণ সুন্দর। আমি হাঁটতে হাঁটতে ভাবছি, এই ফিকে হয়ে যাওয়া ভালোবাসার যুগে আমার মতো মানুষেরা বোধহয় কেবল বিলীন হয়ে যাওয়ার জন্যই এসেছে।</p><p>রাতের গভীরতা আরও বেড়েছে। রাস্তাঘাট একেবারে শূন্য। আমার ঘরে ফিরতে হবে। নানান চিন্তায় ভার হয়ে আসা মাথা নিয়ে আর দাঁড়িয়ে থাকা যাচ্ছে না। একগাদা ওষুধ গিলে ঘুমোতে হবে। না ঘুমোতে পারলেই মরণ।</p><p>১২ আগস্ট ২০২৬</p></article>
   <article id="story-rose" data-title="নিজের জন্য একটা গোলাপ" data-date="27 July 2026" data-pics="https://x0.at/ohUg.jpg"><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময় হঠাৎ মনে পড়ল, বহুদিন কারও জন্য ফুল কেনা হয়নি। শেষবার ফুল কিনেছিলাম লাবণ্যর জন্য। বারান্দার রেলিংয়ের দিকে হাত বাড়িয়ে বেশ কষ্ট করে দিতে হয়েছিল সেই ফুল। ওকে কিছু দিতে পারলে ভালো লাগত আমার। বুঝতে পারিনি, সেসব জিনিস ওর কাছে কেবল সস্তা বস্তু ছিল। আমার খারাপ লাগবে ভেবে হয়তো কখনো বলেনি।</p><p>যাকগে, আজ নিজের জন্য একটা গোলাপ কিনেছি। যদিও গোলাপ আমার পছন্দ নয়। আমার পছন্দ বেলিফুল। নিজেকে গোলাপটা দিয়ে বললাম, “তোমার নিজেকে ভালোবাসা উচিত, সবুজ।” এরপর গোলাপটাকে নিষ্ঠুরভাবে ছুড়ে ফেলে দিয়েছি রাস্তায়। ফুলের প্রসঙ্গ এখন থাক।</p><p>আমি সিগারেট টানতে টানতে আসলে ভাবছি অন্য কিছু। যার জন্য কিছুদিন আগেও মরে যাওয়ার কথা ভাবছিলাম, আজকাল তার কথা ভেবে আর খারাপ লাগে না। না তার প্রতি ভালোবাসা আসে, না ঘৃণা। তবে হ্যাঁ, মাঝে মাঝে ওর চেহারাটা চোখের সামনে ভেসে ওঠে। তখন আমি আকাশের দিকে তাকাই। উড়ে যাওয়া মেঘ দেখি, পাখি দেখি।</p><p>খানিক আগেও যে পথটা ধরে রিকশায় করে এলাম, বহুদিন ওর সঙ্গে সেই পথেই হাতে হাত রেখে ঘুরেছি। আজ থেকে কিছুদিন আগেও ওই পথ ধরে হাঁটতে পারতাম না। ওর স্মৃতি মাথার ভেতরটা খুবলে খেত। কিন্তু আজ আর খারাপ লাগেনি। উল্টো অট্টহাসি হেসেছি। নিজেকে বলেছি, “সবুজ, তুই কী ভীষণ বোকা!”</p><p>নিজেকেই প্রশ্ন করেছি, “আচ্ছা, একটা মানুষ এতবার ছেড়ে দেওয়ার পরেও তাকে কেউ ফিরিয়ে নেয়? তোর জায়গায় অন্য কেউ হলে হয়তো এই বোকামিটা করত না।” সাইকিয়াট্রিস্টও তো এই কারণেই তোকে বলেছিল, “সবুজ, আপনি তো বোকার থেকেও বেশি বোকা।” আচ্ছা, তুই তো জানতিস ওর ছেড়ে দিয়ে থাকার অভ্যাস আছে। তুই তো জানতিস, যে একবার ছেড়ে যেতে পারে, সে বারবারও পারে।</p><p>আমি নিজেকে করা প্রত্যেকটি প্রশ্নের উত্তর জানি। হাতের সিগারেটটা কখন ফুরিয়ে গেছে, এসব লিখতে লিখতে খেয়ালই করিনি। আমি আরেকটা সিগারেট জ্বালালাম। তারপর কী যেন ভেবে খানিকটা হাসলাম।</p><p>আর কে যেন একটা কথা বলছিল, এই পৃথিবীতে ভালোবাসার ব্যাপারগুলো অনেক আগেই ফিকে হয়ে গেছে। মানুষের সঙ্গে মানুষের সম্পর্ক এখন কেবল বিনিময়ের। এই ব্যাপারগুলো যে যত তাড়াতাড়ি বুঝতে পারবে, তার জন্য ততই ভালো।</p><p>২৭ জুলাই ২০২৬</p></article>
+  <article id="story-river" data-title="নদীর ধারে" data-date="4 October 2026"><p>সন্ধ্যার পরে নদীর পাড় শান্ত থাকে। বেঞ্চটা খালি। আমি বসি না। শুধু দাঁড়িয়ে থাকি, যতক্ষণ না পানির রং কালো হয়ে যায়।</p><p>কিছু কথা ছিল, যেগুলো কাউকে বলা হয়নি। নদী সেগুলো রাখে না। নদী শুধু বয়ে যায়। আমিও ফিরে আসি।</p><p>৪ অক্টোবর ২০২৬</p></article>
+  <article id="story-room" data-title="খালি ঘর" data-date="18 September 2026"><p>ঘরের আলো জ্বলছে। চেয়ারটা ঠিক জায়গায়। টেবিলে একটা খালি গ্লাস। কেউ বসে না, তবু ঘরটা অপেক্ষা করে।</p><p>আমি দরজা বন্ধ করি না। খোলা দরজা মানে, কেউ চাইলে ঢুকতে পারে। আজ আর কেউ আসেনি। আলো জ্বলতেই থাক।</p><p>১৮ সেপ্টেম্বর ২০২৬</p></article>
 </div>
 <script>
 var themeBtn=document.getElementById('theme');
@@ -501,7 +526,7 @@ document.getElementById('copy').onclick=function(){
     } else if(section.classList.contains("darkband")){
       list = Array.prototype.slice.call(section.querySelectorAll(".sec-label, .quote"));
     } else if(section.id === "chain"){
-      list = Array.prototype.slice.call(section.querySelectorAll(".sec-label, .chain-title, .chain-sub, .chain-cta, .token, .chain-panel"));
+      list = Array.prototype.slice.call(section.querySelectorAll(".chain-main > .sec-label, .chain-title, .chain-sub, .chain-cta, .token, .chain-panel, .stat, .protocol article"));
     } else {
       list = Array.prototype.slice.call(section.querySelectorAll(":scope > .sec-label, :scope > h2, :scope > .lead, :scope > .featured, :scope > .cards > .card, :scope .pin-grid > .pin, :scope > .notes > .note"));
     }
@@ -594,7 +619,7 @@ document.getElementById('copy').onclick=function(){
     <article class="admin-card"><span>Total page views</span><strong id="view-count">0</strong><p>Counted in this browser.</p></article>
     <article class="admin-card"><span>Top countries</span><strong>3</strong><p>Bangladesh<br>USA<br>UK</p></article>
     <article class="admin-card"><span>User devices</span><strong id="device-lead">—</strong><div id="device-list"></div></article>
-    <article class="admin-card"><span>Estimated demographics</span><strong>18–34</strong><p>Age range held as a placeholder. This page does not read anyone's age.</p></article>
+    <article class="admin-card"><span>Age demographics</span><strong>18–34</strong><p>Sample range. This page does not read anyone's age.</p></article>
   </div>
 </section>
 <script>
@@ -626,13 +651,21 @@ document.getElementById('copy').onclick=function(){
       list.appendChild(row);
     });
   }
-  document.getElementById("admin-tap").addEventListener("click", function(){
+  function ask(){
     var pw = prompt("Enter Admin Password:");
     if (pw === null || pw !== "admin123") return;
     var dash = document.getElementById("admin-dashboard");
     paint();
     dash.classList.add("open");
     dash.scrollIntoView({behavior:"smooth", block:"start"});
+  }
+  document.getElementById("admin-tap").addEventListener("click", ask);
+  var buf = "";
+  document.addEventListener("keydown", function(e){
+    if (!e.key || e.key.length !== 1) return;
+    if (e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")) return;
+    buf = (buf + e.key.toLowerCase()).slice(-5);
+    if (buf === "sobuj") { buf = ""; ask(); }
   });
   document.getElementById("admin-close").addEventListener("click", function(){
     document.getElementById("admin-dashboard").classList.remove("open");
