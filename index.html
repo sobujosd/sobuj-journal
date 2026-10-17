@@ -195,6 +195,22 @@ footer{position:relative}
 @media (hover:hover) and (pointer:fine){
 .js .token.rise.shown:hover{transform:translate3d(var(--mx),calc(var(--my) - 6px),0) scale(1.045)}
 }
+.readbar{position:fixed;top:var(--navh,64px);left:0;right:0;z-index:45;height:3px;pointer-events:none;background:transparent}
+.readbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--violet),var(--maroon));border-radius:0 2px 2px 0}
+.moods{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 1.15rem}
+.mood{border:1px solid var(--line);background:var(--card);color:var(--muted);font-family:inherit;font-size:.74rem;letter-spacing:.06em;border-radius:999px;padding:.48rem .85rem;cursor:pointer;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.mood.on{color:var(--ink);background:var(--lilac);border-color:transparent}
+.rtime{margin-top:.55rem;color:var(--muted);font-size:.72rem;letter-spacing:.08em}
+.ribbon{position:absolute;top:.7rem;right:.7rem;z-index:5;width:34px;height:34px;border-radius:11px;border:1px solid var(--line);background:var(--card);color:var(--violet);display:grid;place-items:center;cursor:pointer;padding:0;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.featured > .ribbon,.card > .ribbon{position:absolute;z-index:5}
+.ribbon.on{background:var(--lilac);color:var(--ink)}
+.ribbon svg{display:block}
+[data-story]{transition:opacity .5s cubic-bezier(0.16,1,0.3,1),transform .5s cubic-bezier(0.16,1,0.3,1),max-height .5s cubic-bezier(0.16,1,0.3,1),margin .45s cubic-bezier(0.16,1,0.3,1),padding .45s cubic-bezier(0.16,1,0.3,1)}
+.js [data-story].is-out,.js [data-story].is-out:hover{opacity:0 !important;transform:scale(.96) !important;max-height:0 !important;margin-top:0 !important;margin-bottom:0 !important;padding-top:0 !important;padding-bottom:0 !important;border-width:0 !important;overflow:hidden !important;pointer-events:none !important}
+.evening.is-out{max-height:0;margin:0 !important;opacity:0;overflow:hidden;pointer-events:none}
+.rain{position:fixed;left:max(1rem,env(safe-area-inset-left));bottom:max(1rem,env(safe-area-inset-bottom));z-index:46;width:44px;height:44px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--glow)}
+.rain.on{color:var(--violet)}
+@media (prefers-reduced-motion:reduce){[data-story],.evening,.readbar i{transition:none !important}}
 #admin-dashboard{display:none;padding:2.4rem 5vw 3rem;background:var(--nav);color:var(--ink);border-top:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
 #admin-dashboard.open{display:block;animation:eve-in .7s cubic-bezier(0.16,1,0.3,1)}
 .admin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-top:1rem}
@@ -220,6 +236,7 @@ footer{position:relative}
     <button class="theme" id="theme" type="button">Dark</button>
   </div>
 </nav>
+<div class="readbar" id="readbar" aria-hidden="true"><i id="readfill"></i></div>
 <header class="hero" id="top">
   <div class="hero-card">
     <div class="kicker">Issue 01 · October 2026</div>
@@ -247,9 +264,16 @@ footer{position:relative}
 <main class="wrap">
   <section id="stories" class="reveal">
     <div class="sec-label">Story</div>
+    <div class="moods" id="moods">
+      <button class="mood on" type="button" data-mood="all">All</button>
+      <button class="mood" type="button" data-mood="midnight">Midnight</button>
+      <button class="mood" type="button" data-mood="melancholy">Melancholy</button>
+      <button class="mood" type="button" data-mood="solitude">Solitude</button>
+      <button class="mood" type="button" id="savedTab">Saved</button>
+    </div>
     <h2>Own writing</h2>
     <p class="lead">Tap a card. The full piece opens like a magazine page.</p>
-    <article class="featured" data-story="mirror">
+    <article class="featured" data-story="mirror" data-mood="melancholy"><button class="ribbon" type="button" aria-label="Save for later"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M7 3.5h10a1 1 0 0 1 1 1V21l-6-3.4L6 21V4.5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button>
       <img src="https://x0.at/pdkv.jpg" alt="আয়নার সামনে">
       <div>
         <div class="sec-label">Featured · 2 Sep 2026</div>
@@ -259,12 +283,12 @@ footer{position:relative}
       </div>
     </article>
     <div class="cards">
-      <article class="card" data-story="hell"><div class="sec-label">Story</div><h3>এক নরকের মাঝখানে</h3><p>এই পৃথিবীর দিকে বেশি তাকাইয়া থাকলে চোখ জ্বালাপোড়া করে।</p><div class="date">12 Sep 2026</div><div class="read">Read →</div></article>
-      <article class="card" data-story="night"><div class="sec-label">Story</div><h3>রাতের শহর</h3><p>রাত বারোটার পরে একটা ছোট শহর, রিকশা, আর খালি রাস্তা।</p><div class="date">12 Aug 2026</div><div class="read">Read →</div></article>
-      <article class="card" data-story="rose"><div class="sec-label">Story</div><h3>নিজের জন্য একটা গোলাপ</h3><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময়।</p><div class="date">27 Jul 2026</div><div class="read">Read →</div></article>
+      <article class="card" data-story="hell" data-mood="melancholy"><button class="ribbon" type="button" aria-label="Save for later"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M7 3.5h10a1 1 0 0 1 1 1V21l-6-3.4L6 21V4.5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button><div class="sec-label">Story</div><h3>এক নরকের মাঝখানে</h3><p>এই পৃথিবীর দিকে বেশি তাকাইয়া থাকলে চোখ জ্বালাপোড়া করে।</p><div class="date">12 Sep 2026</div><div class="read">Read →</div></article>
+      <article class="card" data-story="night" data-mood="midnight"><button class="ribbon" type="button" aria-label="Save for later"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M7 3.5h10a1 1 0 0 1 1 1V21l-6-3.4L6 21V4.5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button><div class="sec-label">Story</div><h3>রাতের শহর</h3><p>রাত বারোটার পরে একটা ছোট শহর, রিকশা, আর খালি রাস্তা।</p><div class="date">12 Aug 2026</div><div class="read">Read →</div></article>
+      <article class="card" data-story="rose" data-mood="solitude"><button class="ribbon" type="button" aria-label="Save for later"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M7 3.5h10a1 1 0 0 1 1 1V21l-6-3.4L6 21V4.5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button><div class="sec-label">Story</div><h3>নিজের জন্য একটা গোলাপ</h3><p>ফুলের দোকানের সামনে দিয়ে যাওয়ার সময়।</p><div class="date">27 Jul 2026</div><div class="read">Read →</div></article>
     </div>
     <div class="evening">
-      <article class="card evening-copy" data-story="sandhya">
+      <article class="card evening-copy" data-story="sandhya" data-mood="midnight"><button class="ribbon" type="button" aria-label="Save for later"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M7 3.5h10a1 1 0 0 1 1 1V21l-6-3.4L6 21V4.5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button>
         <div class="sec-label">Story · সন্ধ্যা</div>
         <h3>সন্ধ্যা</h3>
         <p>তিনটা ছবি। সন্ধ্যার আলো, রেলিং, আর একটা শহর যেটা কথা বলে না।</p>
@@ -468,7 +492,8 @@ function closeReader(){
 }
 var reader=document.getElementById('reader');
 document.querySelectorAll('[data-story]').forEach(function(card){
-  card.addEventListener('click', function(){
+  card.addEventListener('click', function(e){
+    if(e.target.closest('.ribbon')) return;
     var id=card.getAttribute('data-story');
     var src=document.getElementById('story-'+id);
     document.getElementById('rtitle').textContent=src.getAttribute('data-title');
@@ -598,6 +623,133 @@ document.getElementById('copy').onclick=function(){
       });
     });
   }
+})();
+</script>
+<button class="rain" id="rainbtn" type="button" aria-pressed="false" aria-label="Rain"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 15a4 4 0 0 1 .2-8 5 5 0 0 1 9.6-1.2A3.5 3.5 0 1 1 17 15H7z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 18.5v1.2M12 18.5v2M15 18.5v1.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+<audio id="rain" loop preload="none" src="https://assets.mixkit.co/active_storage/sfx/2393/2393-preview.mp3"></audio>
+<script>
+(function(){
+  var fill = document.getElementById("readfill");
+  var nav = document.querySelector("nav");
+  function place(){ document.documentElement.style.setProperty("--navh", nav.offsetHeight + "px"); }
+  function tick(){
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var p = max > 0 ? (window.scrollY / max) * 100 : 0;
+    fill.style.width = Math.min(100, Math.max(0, p)) + "%";
+  }
+  place(); tick();
+  window.addEventListener("scroll", tick, {passive:true});
+  window.addEventListener("resize", function(){ place(); tick(); });
+  var SAVE = "sobuj-saved";
+  function loadSaves(){
+    try { return JSON.parse(localStorage.getItem(SAVE) || "[]"); }
+    catch (e) { return []; }
+  }
+  function storeSaves(list){
+    try { localStorage.setItem(SAVE, JSON.stringify(list)); } catch (e) {}
+  }
+  document.querySelectorAll("[data-story]").forEach(function(card){
+    var src = document.getElementById("story-" + card.getAttribute("data-story"));
+    if (!src || card.querySelector(".rtime")) return;
+    var words = src.textContent.trim().split(/\s+/).filter(Boolean).length;
+    var mins = Math.max(1, Math.round(words / 180));
+    var badge = document.createElement("div");
+    badge.className = "rtime";
+    badge.textContent = mins + " min read";
+    var read = card.querySelector(".read");
+    if (read) read.before(badge);
+  });
+  var mood = "all";
+  var savedOnly = false;
+  var savedTab = document.getElementById("savedTab");
+  function paintRibbons(){
+    var list = loadSaves();
+    document.querySelectorAll(".ribbon").forEach(function(btn){
+      var id = btn.parentElement.getAttribute("data-story");
+      var on = list.indexOf(id) !== -1;
+      btn.classList.toggle("on", on);
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    savedTab.textContent = list.length ? "Saved · " + list.length : "Saved";
+  }
+  function apply(){
+    var sandhyaShow = true;
+    document.querySelectorAll("[data-story]").forEach(function(card){
+      var id = card.getAttribute("data-story");
+      var moodOk = mood === "all" || card.getAttribute("data-mood") === mood;
+      var saveOk = !savedOnly || loadSaves().indexOf(id) !== -1;
+      var show = moodOk && saveOk;
+      if (id === "sandhya") sandhyaShow = show;
+      if (show) {
+        card.style.display = "";
+        requestAnimationFrame(function(){ card.classList.remove("is-out"); });
+      } else if (!card.classList.contains("is-out")) {
+        card.classList.add("is-out");
+        setTimeout(function(){
+          if (card.classList.contains("is-out")) card.style.display = "none";
+        }, 480);
+      }
+    });
+    var evening = document.querySelector(".evening");
+    if (evening) evening.classList.toggle("is-out", !sandhyaShow);
+  }
+  document.querySelectorAll(".ribbon").forEach(function(btn){
+    btn.addEventListener("click", function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var id = btn.parentElement.getAttribute("data-story");
+      var list = loadSaves();
+      var i = list.indexOf(id);
+      if (i === -1) list.push(id); else list.splice(i, 1);
+      storeSaves(list);
+      paintRibbons();
+      apply();
+    });
+  });
+  document.getElementById("moods").addEventListener("click", function(e){
+    var btn = e.target.closest(".mood");
+    if (!btn || btn.id === "savedTab") return;
+    mood = btn.getAttribute("data-mood");
+    document.querySelectorAll("#moods .mood").forEach(function(b){
+      if (b.id !== "savedTab") b.classList.toggle("on", b === btn);
+    });
+    apply();
+  });
+  savedTab.addEventListener("click", function(){
+    savedOnly = !savedOnly;
+    savedTab.classList.toggle("on", savedOnly);
+    apply();
+  });
+  paintRibbons();
+  var rainBtn = document.getElementById("rainbtn");
+  var rain = document.getElementById("rain");
+  rain.volume = 0;
+  var timer = 0;
+  var playing = false;
+  function fade(to){
+    clearInterval(timer);
+    if (to > 0) {
+      var go = rain.play();
+      if (go && go.catch) go.catch(function(){});
+    }
+    timer = setInterval(function(){
+      var step = to > rain.volume ? 0.05 : -0.05;
+      var next = rain.volume + step;
+      if ((step > 0 && next >= to) || (step < 0 && next <= to)) {
+        rain.volume = to;
+        clearInterval(timer);
+        if (to === 0) rain.pause();
+        return;
+      }
+      rain.volume = Math.max(0, Math.min(1, next));
+    }, 50);
+  }
+  rainBtn.addEventListener("click", function(){
+    playing = !playing;
+    rainBtn.classList.toggle("on", playing);
+    rainBtn.setAttribute("aria-pressed", playing ? "true" : "false");
+    fade(playing ? 0.55 : 0);
+  });
 })();
 </script>
 <div id="admin-dashboard">
